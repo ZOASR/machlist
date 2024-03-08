@@ -10,8 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.4.15",
     "@astrojs/check": "^0.5.6",
+    "@astrojs/tailwind": "^5.1.0",
+    "@fontsource-variable/el-messiri": "^5.0.12",
+    "astro": "^4.4.15",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.4.2"
   }
 }
