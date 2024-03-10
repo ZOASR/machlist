@@ -1,0 +1,110 @@
+---
+import SectionLayout from "@layouts/SectionLayout.astro";
+import { Image } from "astro:assets";
+
+import heroImg from "@assets/hero_image.png";
+---
+
+<SectionLayout>
+	<div id="hero-bg"></div>
+	<div class="grid md:grid-cols-2 md:grid-rows-1 grid-rows-2 gap-6">
+		<div class="flex flex-col gap-8 justify-center">
+			<h1 class="text-[clamp(5rem,10dvw,10rem)]">
+				We design,<span
+					class="bg-clip-text text-transparent bg-gradient-to-r from-skin-accent to-skin-accent-1 [text-shadow:0_-2px_0_hsla(var(--color-primary),_0.8)] font-bold"
+				>
+					you profit</span
+				>
+			</h1>
+			<p class="text-[3rem]">
+				From design ideas to working production lines. we power your
+				industrial lines and machines
+			</p>
+			<div
+				class="flex gap-8 md:flex-row flex-col w-full md:w-fit text-3xl font-bold"
+			>
+				<a
+					href="/products"
+					class="font-bold animated-gradient group rounded-lg text-center px-8 py-4 text-skin-muted transition-all duration-150
+					hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
+					focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
+					>See our products <span
+						class="inline-block invisible opacity-0 transition-all duration-150 scale-0
+						group-hover:scale-100 group-hover:opacity-100 group-hover:visible
+						group-focus:scale-100 group-focus:opacity-100 group-focus:visible"
+						>&rarr;</span
+					></a
+				>
+				<a
+					href="/contact"
+					class="px-8 py-4 underline rounded-lg text-center relative transition-all duration-150
+					after:absolute after:bottom-0 after:left-0 after:w-0 after:h-2 after:bg-skin-base after:transition-all after:duration-150 after:border-inherit
+					hover:after:w-full
+					focus:after:w-full"
+					>Get in touch</a
+				>
+			</div>
+		</div>
+		<div
+			class="rounded-xl shadow-2xl overflow-clip row-start-1 md:col-start-2"
+		>
+			<Image
+				src={heroImg}
+				class="object-cover w-full h-full"
+				alt={"Hero side"}
+				loading={"eager"}
+			/>
+		</div>
+	</div>
+</SectionLayout>
+
+<style>
+	#hero-bg {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background-image: linear-gradient(
+			225deg,
+			hsla(var(--color-primary), 0.3),
+			transparent
+		);
+	}
+	#hero-bg::before {
+		content: "";
+		background-image: url("grain.png");
+		background-size: contain;
+		filter: brightness(10%);
+		opacity: 0.1;
+		position: absolute;
+		inset: 0;
+		mask-image: linear-gradient(45deg, black, transparent);
+	}
+	@keyframes gradientAnimation {
+		0% {
+			background-position: 0% 50%;
+		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
+	}
+
+	.animated-gradient {
+		background-image: linear-gradient(
+			to right,
+			hsla(var(--color-accent), 0.7),
+			hsla(var(--color-accent-1), 0.7)
+		);
+		background-size: 200% auto;
+		animation: gradientAnimation 4s infinite;
+		&:hover {
+			background-image: linear-gradient(
+				to right,
+				hsla(var(--color-accent), 1),
+				hsla(var(--color-accent-1), 1)
+			);
+		}
+	}
+</style>

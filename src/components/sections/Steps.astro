@@ -1,0 +1,32 @@
+---
+import SectionLayout from "@layouts/SectionLayout.astro";
+import Line from "@components/svelte/Line.svelte";
+---
+
+<SectionLayout>
+	<h1 class="text-[clamp(2.5rem,10dvw,5rem)]">How we do it</h1>
+
+	<div
+		class="relative mt-[5rem] flex flex-col items-center justify-center overflow-x-clip"
+	>
+		<Line client:only />
+	</div>
+</SectionLayout>
+
+<style>
+	#line {
+		stroke-dasharray: 0 1000;
+		animation: dash 0.2s linear both;
+		animation-timeline: view(block);
+		animation-range: cover 0% cover 100%;
+		/* z-index: -1; */
+	}
+	@keyframes dash {
+		0% {
+			stroke-dasharray: 1 1000;
+		}
+		100% {
+			stroke-dasharray: 150 1000;
+		}
+	}
+</style>
