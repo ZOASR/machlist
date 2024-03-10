@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-function withOpacity(varName, lightness) {
+function withOpacity(varName) {
 	return ({ opacityValue }) => {
 		if (opacityValue) {
 			return `hsla(var(${varName}), ${opacityValue})`;
