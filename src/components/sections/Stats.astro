@@ -1,0 +1,164 @@
+---
+import SectionLayout from "@layouts/SectionLayout.astro";
+---
+
+<SectionLayout>
+	<div class="flex flex-col gap-8 justify-items-start self-start">
+		<h1 class="text-[clamp(3rem,10dvw,8rem)]">What we offer</h1>
+
+		<p class="text-[3rem] text-skin-muted">
+			We offer over 50 machine designs crafted with over 20 years of
+			experience
+		</p>
+		<div class="gallery" data-aos="fade-right">
+			<div class="image"><img src="/stats_image_1.jpg" alt="" /></div>
+			<div class="image"><img src="/stats_image_2.jpg" alt="" /></div>
+			<div class="image"><img src="/stats_image_3.jpg" alt="" /></div>
+			<div class="image"><img src="/stats_image_4.jpg" alt="" /></div>
+			<div class="image"><img src="/stats_image_5.jpg" alt="" /></div>
+			<div class="image"><img src="/stats_image_6.jpg" alt="" /></div>
+			<div class="image"><img src="/stats_image_7.jpg" alt="" /></div>
+			<div class="image"><img src="/stats_image_8.jpg" alt="" /></div>
+
+			<div class="image faded">
+				<img src="/stats_image_1.jpg" alt="" />
+			</div>
+			<div class="image faded">
+				<img src="/stats_image_2.jpg" alt="" />
+			</div>
+			<div class="image faded">
+				<img src="/stats_image_3.jpg" alt="" />
+			</div>
+			<div class="image faded">
+				<img src="/stats_image_4.jpg" alt="" />
+			</div>
+			<div class="image faded">
+				<img src="/stats_image_5.jpg" alt="" />
+			</div>
+			<div class="image faded">
+				<img src="/stats_image_6.jpg" alt="" />
+			</div>
+			<div class="image faded">
+				<img src="/stats_image_7.jpg" alt="" />
+			</div>
+			<div class="image faded">
+				<img src="/stats_image_8.jpg" alt="" />
+			</div>
+			<!-- <img src="/stats_image_1.jpg" alt="" />
+			<img src="/stats_image_2.jpg" alt="" />
+			<img src="/stats_image_3.jpg" alt="" />
+			<img src="/stats_image_4.jpg" alt="" />
+			<img src="/stats_image_5.jpg" alt="" />
+			<img src="/stats_image_6.jpg" alt="" />
+			<img src="/stats_image_7.jpg" alt="" />
+			<img src="/stats_image_8.jpg" alt="" /> -->
+		</div>
+	</div>
+</SectionLayout>
+
+<style lang="scss">
+	$n: 8; /* number of images*/
+	$timing: 20s;
+	$offset: 360deg;
+
+	.gallery {
+		display: flex;
+		perspective: 1000px;
+		gap: 3rem;
+		justify-content: center;
+		width: 100%;
+		height: 300px;
+		padding: 0;
+		margin-block: 20rem;
+		transform-style: preserve-3d;
+		position: relative;
+		transition: all 250ms ease-in-out;
+		transform: scale(0.5);
+
+		&.aos-animate {
+			transform: scale(1);
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 25%;
+			width: 50%;
+			height: 20%;
+			background: radial-gradient(#0005, transparent 40%);
+		}
+	}
+	.gallery > .image {
+		position: absolute;
+		width: 200px;
+		height: 200px;
+		overflow: clip;
+		background: linear-gradient(
+			225deg,
+			hsla(var(--color-accent), 1),
+			hsla(var(--color-accent-1), 1)
+		);
+		backface-visibility: hidden;
+		border-radius: 20px;
+		z-index: 5;
+
+		&.faded {
+			backface-visibility: visible;
+			opacity: 0.2;
+			filter: blur(5px);
+		}
+
+		img {
+			width: inherit;
+			height: inherit;
+			object-fit: cover;
+		}
+
+		@for $i from 1 to ($n + 1) {
+			$deg: #{(360 / $n) * ($i)}deg;
+			&:nth-child(#{$i}),
+			&:nth-child(#{$i + 8}) {
+				transform: rotateY($deg) translateZ(300px);
+				animation: rotate-item-#{$i} $timing linear infinite;
+			}
+		}
+		@media (width <= 768px) {
+			width: 150px;
+			height: 150px;
+			@for $i from 1 to ($n + 1) {
+				$deg: #{(360 / $n) * ($i)}deg;
+				&:nth-child(#{$i}),
+				&:nth-child(#{$i + 8}) {
+					transform: rotateY($deg) translateZ(150px);
+					animation: rotate-item-#{$i} $timing linear infinite;
+				}
+			}
+		}
+	}
+
+	@for $i from 1 to ($n + 1) {
+		$deg: #{(360 / $n) * ($i)}deg;
+		@keyframes rotate-item-#{$i} {
+			0% {
+				transform: rotateY($deg) translateZ(300px);
+			}
+			100% {
+				transform: rotateY(calc($offset + $deg)) translateZ(300px);
+			}
+		}
+	}
+
+	@media (width <= 768px) {
+		@for $i from 1 to ($n + 1) {
+			$deg: #{(360 / $n) * ($i)}deg;
+			@keyframes rotate-item-#{$i} {
+				0% {
+					transform: rotateY(#{$deg}) translateZ(200px);
+				}
+				100% {
+					transform: rotateY(calc($offset + $deg)) translateZ(200px);
+				}
+			}
+		}
+	}
+</style>
