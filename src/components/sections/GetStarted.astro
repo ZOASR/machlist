@@ -32,10 +32,36 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 				></a
 			>
 		</div>
-		<div
-			class="md:w-4 md:h-[80%] h-4 w-[80%] md:transform-none md:bg-gradient-to-t bg-gradient-to-r from-skin-accent to-skin-accent-1 rounded-full shadow-2xl"
+		<svg
+			version="1.1"
+			id="Layer_1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 330 330"
+			xml:space="preserve"
+			width="10rem"
+			class="md:transform-none rotate-90"
 		>
-		</div>
+			<linearGradient
+				id="heading-gradient"
+				x1="0%"
+				y1="0%"
+				x2="100%"
+				y2="0%"
+			>
+				<stop offset="0%" stop-color="hsla(var(--color-accent), 1)"
+				></stop>
+				<stop offset="100%" stop-color="hsla(var(--color-accent-1), 1)"
+				></stop>
+			</linearGradient>
+			<path
+				fill="url(#heading-gradient)"
+				id="XMLID_27_"
+				d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255
+	s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
+	c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"
+			></path>
+		</svg>
 		<div
 			class="flex flex-col gap-8 flex-1 items-center justify-center h-full"
 		>
@@ -47,10 +73,36 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 				>Contact us</a
 			>
 		</div>
-		<div
-			class="md:w-4 md:h-[80%] h-4 w-[80%] md:transform-none md:bg-gradient-to-t bg-gradient-to-r from-skin-accent to-skin-accent-1 rounded-full shadow-2xl"
+		<svg
+			version="1.1"
+			id="Layer_1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 330 330"
+			xml:space="preserve"
+			width="10rem"
+			class="md:transform-none rotate-90"
 		>
-		</div>
+			<linearGradient
+				id="heading-gradient"
+				x1="0%"
+				y1="0%"
+				x2="100%"
+				y2="0%"
+			>
+				<stop offset="0%" stop-color="hsla(var(--color-accent), 1)"
+				></stop>
+				<stop offset="100%" stop-color="hsla(var(--color-accent-1), 1)"
+				></stop>
+			</linearGradient>
+			<path
+				fill="url(#heading-gradient)"
+				id="XMLID_27_"
+				d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255
+	s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
+	c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"
+			></path>
+		</svg>
 		<div class="flex-1 flex flex-col gap-8 h-full justify-center">
 			<p class="text-[3rem]">3. Get started</p>
 			<p class="text-skin-muted text-[2rem]">
@@ -60,7 +112,35 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 	</div>
 </SectionLayout>
 
+<!-- <linearGradient
+						id="heading-gradient"
+						x1="0%"
+						y1="0%"
+						x2="100%"
+						y2="0%"
+					>
+						<stop offset="0%" stop-color="#0000"></stop>
+						<stop
+							offset="100%"
+							stop-color="hsla(var(--color-primary), 1)"></stop>
+					</linearGradient> -->
+
 <style>
+	#heading-background path {
+		stroke-width: 5px;
+		animation: grow 2s ease-in-out forwards;
+		stroke-linecap: round;
+		stroke: url(#heading-gradient);
+	}
+
+	@keyframes grow {
+		from {
+			stroke-dasharray: 0 10000;
+		}
+		to {
+			stroke-dasharray: 570;
+		}
+	}
 	@keyframes gradientAnimation {
 		0% {
 			background-position: 0% 50%;

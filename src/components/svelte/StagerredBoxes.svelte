@@ -41,7 +41,7 @@
 	use:inView
 	on:enter={() => (show = true)}
 	on:exit={() => (show = false)}
-	class="relative h-[20rem] md:h-[30rem] md:w-[50rem] w-[80%] mx-auto mb-[5rem]"
+	class="relative h-[20rem] md:h-[30rem] md:w-[50rem] w-[80%] mx-auto my-[5rem]"
 >
 	{#each [1, 2, 3, 4, 5, 6, 7, 8] as n}
 		{#if show}
