@@ -3,8 +3,12 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 ---
 
 <SectionLayout>
-	<div class="flex flex-col gap-8 justify-items-start self-start">
-		<h1 class="text-[clamp(3rem,10dvw,8rem)]">What we offer</h1>
+	<div
+		class="flex flex-col gap-8 justify-items-start self-start w-full overflow-clip"
+	>
+		<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
+			What we offer
+		</h1>
 
 		<p class="md:text-[3rem] text-skin-muted">
 			We offer over 50 machine designs crafted with over 20 years of
@@ -123,6 +127,7 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 		@media (width <= 768px) {
 			width: 150px;
 			height: 150px;
+			margin-inline: 0;
 			@for $i from 1 to ($n + 1) {
 				$deg: #{(360 / $n) * ($i)}deg;
 				&:nth-child(#{$i}),
