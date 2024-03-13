@@ -1,5 +1,5 @@
 <section
-	class="md:px-[3rem] px-[1rem] py-[5rem] grid items-center mb-[2rem] relative md:min-h-[100dvh] md:h-max"
+	class="md:px-[3rem] px-[1rem] py-[5rem] grid items-center relative md:min-h-[100dvh] md:h-max"
 	data-aos="fade-down"
 >
 	<slot />
@@ -7,6 +7,17 @@
 
 <style>
 	section {
-		border-bottom: 2px solid hsl(var(--color-primary));
+		background-image: linear-gradient(
+			225deg,
+			hsla(var(--color-primary), 0.3),
+			transparent
+		);
+		border-top: 5px solid hsl(var(--color-primary));
+		border-image-slice: 1;
+		border-image-source: linear-gradient(
+			90deg,
+			hsl(var(--color-accent)),
+			hsl(var(--color-accent-1))
+		);
 	}
 </style>

@@ -1,40 +1,83 @@
+---
+// import { getRelativeLocaleUrl } from "astro:i18n";
+import HeaderLink from "./HeaderLink.astro";
+
+// localed
+// const productsURL = getRelativeLocaleUrl(locale, "products");
+// const aboutURL = getRelativeLocaleUrl(locale, "about");
+// const contactURL = getRelativeLocaleUrl(locale, "contact");
+// const tailored_designsURL = getRelativeLocaleUrl(locale, "tailored_designs");
+// const homeURL = getRelativeLocaleUrl(locale, "/");
+// const currentPath = Astro.url.pathname;
+
+// not localed
+const productsURL = "/products";
+const aboutURL = "/about";
+const contactURL = "/contact";
+const designsURL = "/designs";
+const homeURL = "/";
+const currentPath = Astro.url.pathname;
+---
+
 <header
-	class="flex gap-8 w-full justify-between items-center p-8 border-b-2 border-skin-base"
+	class="flex gap-8 w-full justify-between items-center p-8 border-b-2 border-skin-base relative shadow-2xl"
 >
 	<!-- <img src="/" alt="Machlist logo" /> -->
 	<div class="text-[3rem] min-w-max">Machlist</div>
 	<nav
 		class="w-max flex py-4 px-2 gap-4 justify-start items-center overflow-x-auto overflow-y-visible whitespace-nowrap"
 	>
-		<a
-			class="px-4 py-2 text-3xl text-nowrap min-w-max rounded-md transition-colors duration-150
-				hover:bg-gradient-to-r from-skin-accent to-skin-accent-1 hover:shadow-md
-				focus:bg-gradient-to-r focus:shadow-md"
-			href="/">Homepage</a
+		<HeaderLink highlighted={currentPath == homeURL} link="/">
+			Homepage
+		</HeaderLink>
+		<HeaderLink
+			highlighted={currentPath.includes(productsURL)}
+			link="/products"
 		>
-		<a
-			class="px-4 py-2 text-3xl text-nowrap min-w-max rounded-md transition-colors duration-150
-				hover:bg-gradient-to-r from-skin-accent to-skin-accent-1 hover:shadow-md
-				focus:bg-gradient-to-r focus:shadow-md"
-			href="/products">Products</a
+			Products
+		</HeaderLink>
+		<HeaderLink
+			highlighted={currentPath.includes(designsURL)}
+			link="/designs"
 		>
-		<a
-			class="px-4 py-2 text-3xl text-nowrap min-w-max rounded-md transition-colors duration-150
-				hover:bg-gradient-to-r from-skin-accent to-skin-accent-1 hover:shadow-md
-				focus:bg-gradient-to-r focus:shadow-md"
-			href="/designs">Designs</a
+			Designs
+		</HeaderLink>
+		<HeaderLink highlighted={currentPath.includes(aboutURL)} link="/about">
+			About Us
+		</HeaderLink>
+		<HeaderLink
+			highlighted={currentPath.includes(contactURL)}
+			link="/contact"
 		>
-		<a
-			class="px-4 py-2 text-3xl text-nowrap min-w-max rounded-md transition-colors duration-150
-				hover:bg-gradient-to-r from-skin-accent to-skin-accent-1 hover:shadow-md
-				focus:bg-gradient-to-r focus:shadow-md"
-			href="/about">About Us</a
-		>
-		<a
-			class="px-4 py-2 text-3xl text-nowrap min-w-max rounded-md transition-colors duration-150
-				hover:bg-gradient-to-r from-skin-accent to-skin-accent-1 hover:shadow-md
-				focus:bg-gradient-to-r focus:shadow-md"
-			href="/contact">Contact us</a
-		>
+			Contact us
+		</HeaderLink>
 	</nav>
 </header>
+
+<style>
+	header {
+		background-image: linear-gradient(
+			225deg,
+			hsla(var(--color-primary), 0.5),
+			transparent
+		);
+		border-bottom: 2px solid hsl(var(--color-primary));
+		border-image-slice: 1;
+		border-image-source: linear-gradient(
+			90deg,
+			hsl(var(--color-accent)),
+			hsl(var(--color-accent-1))
+		);
+	}
+	header::before {
+		content: "";
+		background-image: url(/grain.png);
+		background-size: contain;
+		filter: brightness(10%);
+		opacity: 0.1;
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		mask-image: linear-gradient(45deg, black, transparent);
+	}
+</style>
