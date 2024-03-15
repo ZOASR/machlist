@@ -17,7 +17,7 @@ export default function inView(
 		bottom?: number;
 	}): void => {
 		const rootMargin = `0px 0px 0px 0px`;
-		const options = { root, rootMargin };
+		const options = { root, rootMargin, threshold: 0.8 };
 		if (observer) observer.disconnect();
 		observer = new IntersectionObserver(handleIntersect, options);
 		observer.observe(node);
