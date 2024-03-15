@@ -53,7 +53,9 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 </SectionLayout>
 
 <style lang="scss">
+	@use "sass:math";
 	$n: 8; /* number of images*/
+	$step-angle: math.div(360, $n);
 	$timing: 20s;
 	$offset: 360deg;
 
@@ -117,7 +119,7 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 		}
 
 		@for $i from 1 to ($n + 1) {
-			$deg: #{(360 / $n) * ($i)}deg;
+			$deg: #{$step-angle * ($i)}deg;
 			&:nth-child(#{$i}),
 			&:nth-child(#{$i + 8}) {
 				transform: rotateY($deg) translateZ(300px);
@@ -129,7 +131,7 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 			height: 150px;
 			margin-inline: 0;
 			@for $i from 1 to ($n + 1) {
-				$deg: #{(360 / $n) * ($i)}deg;
+				$deg: #{$step-angle * ($i)}deg;
 				&:nth-child(#{$i}),
 				&:nth-child(#{$i + 8}) {
 					transform: rotateY($deg) translateZ(150px);
@@ -140,7 +142,7 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 	}
 
 	@for $i from 1 to ($n + 1) {
-		$deg: #{(360 / $n) * ($i)}deg;
+		$deg: #{$step-angle * ($i)}deg;
 		@keyframes rotate-item-#{$i} {
 			0% {
 				transform: rotateY($deg) translateZ(300px);
@@ -153,7 +155,7 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 
 	@media (width <= 768px) {
 		@for $i from 1 to ($n + 1) {
-			$deg: #{(360 / $n) * ($i)}deg;
+			$deg: #{$step-angle * ($i)}deg;
 			@keyframes rotate-item-#{$i} {
 				0% {
 					transform: rotateY(#{$deg}) translateZ(200px);
