@@ -3,12 +3,9 @@ import { Icon } from "astro-icon/components";
 ---
 
 <footer
-	class="w-full mt-auto h-max p-8 flex flex-col gap-8 md:flex-row justify-between items-center md:items-start bg-skin-primary"
+	class="w-full mt-auto h-max p-8 flex flex-col gap-8 md:flex-row justify-between items-center md:items-start"
 >
-	<a
-		href="/"
-		class="md:w-[clamp(30rem,20dvw,50rem)] w-[clamp(20rem,80dvw,30rem)] self-center"
-	>
+	<a href="/" class="text-[5rem] self-center text-center">
 		<!-- <img
 					class="w-full h-full"
 					src="/logo-slogan-en.svg"
@@ -70,7 +67,7 @@ import { Icon } from "astro-icon/components";
 			</a>
 		</div>
 	</div>
-	<div class="h-full flex flex-col gap-8 justify-between items-center">
+	<div class="h-full flex flex-col gap-12 justify-between items-center">
 		<h1 class="text-[2rem]">Location</h1>
 		<div class="flex flex-col gap-8">
 			<a
@@ -78,11 +75,8 @@ import { Icon } from "astro-icon/components";
 				href="#"
 				class="flex items-center gap-4 text-start focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
 			>
-				<img src="/Pin.svg" alt="" />
 				<Icon name="ic:baseline-location-on" />
-				<p class="text-lg">
-					18 Omar Ibn El-khattab St. - Faisal - Giza
-				</p>
+				<p>18 Omar Ibn El-khattab St. - Faisal - Giza</p>
 			</a>
 		</div>
 	</div>
@@ -107,15 +101,30 @@ import { Icon } from "astro-icon/components";
 				<Icon name="ic:baseline-whatsapp" />
 				+20 115 089 4307
 			</a>
-			<div class="flex items-center gap-4 text-center">
-				<a
-					href="mailto:cadshop@cadsoul.com"
-					class="focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-				>
-					<Icon name="ic:twotone-email" />
-					cadshop@cadsoul.com
-				</a>
-			</div>
+			<a
+				href="mailto:cadshop@cadsoul.com"
+				class="flex items-center gap-4 text-center focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
+			>
+				<Icon name="ic:twotone-email" />
+				cadshop@cadsoul.com
+			</a>
 		</div>
 	</div>
 </footer>
+
+<style>
+	footer {
+		background-image: linear-gradient(
+			225deg,
+			hsla(var(--color-primary), 0.5),
+			transparent
+		);
+		border-top: 3px solid hsl(var(--color-primary));
+		border-image-slice: 1;
+		border-image-source: linear-gradient(
+			90deg,
+			hsl(var(--color-accent)),
+			hsl(var(--color-accent-1))
+		);
+	}
+</style>
