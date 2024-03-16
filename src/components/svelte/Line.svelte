@@ -17,6 +17,8 @@
 			},
 		};
 	}
+
+	export let locale: string = "en";
 </script>
 
 <div
@@ -37,9 +39,11 @@
 	<ShowOnEnter classes="md:self-start">
 		<BulletPoint
 			dir="right"
-			title="You choose"
+			title={locale === "en" ? "We design" : "اختر "}
 			order={1}
-			description="Choose from a wide collection of machine designs"
+			description={locale === "en"
+				? "Choose from a wide collection of machine designs"
+				: "اختر من مجموعة من تصميمات الماكينات و خطوط الإنتاج"}
 		/>
 	</ShowOnEnter>
 	<ShowOnEnter>
@@ -55,9 +59,11 @@
 	<ShowOnEnter classes="md:self-end">
 		<BulletPoint
 			dir="left"
-			title="We design"
+			title={locale === "en" ? "We design" : "نحن نصمم اختيارك"}
 			order={2}
-			description="With over 20 years of experience in the industry, we can help you create the design that meets your needs"
+			description={locale == "en"
+				? "With over 20 years of experience in the industry, we can help you create the design that meets your needs"
+				: "مع مهارات عالية من الخبرة في الصناعة، يمكننا مساعدتك على انشاء التصميم الذي يلبي  احتياجك"}
 		/>
 	</ShowOnEnter>
 	<ShowOnEnter>
@@ -73,9 +79,11 @@
 	<ShowOnEnter classes="md:self-start">
 		<BulletPoint
 			dir="right"
-			title="You profit"
+			title={locale === "en" ? "You profit" : "ابدأ بالكسب"}
 			order={3}
-			description="With an effecient machine design, you can profit from the time and money you save"
+			description={locale === "en"
+				? "With an effecient machine design, you can profit from the time and money you save"
+				: "مع تصميم ذو كفائة عالية لماكيناتنا، يمكن تحقيق أرباح من الوقت والمال الذي توفره"}
 		/>
 	</ShowOnEnter>
 </div>

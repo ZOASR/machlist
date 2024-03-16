@@ -2,8 +2,9 @@
 	import { quintInOut, quintOut } from "svelte/easing";
 	import inView from "./InView";
 	let show = false;
+	export let dir = "left" as "left" | "right";
 
-	function slideFromLeft(
+	function slide(
 		node: Element,
 		{
 			duration,
@@ -21,7 +22,7 @@
 			css: (t: number) => {
 				const eased = easing(t);
 				return `
-					transform: translateX(-${100 - eased * 100}%);
+					transform: translateX(${dir === "left" ? "-" : ""}${100 - eased * 100}%);
 					opacity: ${eased};
 					`;
 			},
@@ -54,7 +55,7 @@
 				z-index: ${8 - n};
 				scale: ${clamp(0.2, 1.2 - n / 8, 1)};
 				${n === 1 ? "" : `filter: blur(${(n / 8) * 10}px);`}`}
-				transition:slideFromLeft={{
+				transition:slide={{
 					duration: 700,
 					delay: 50 * (n - 1),
 					easing: quintInOut,

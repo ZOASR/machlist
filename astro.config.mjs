@@ -7,11 +7,22 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
-  integrations: [tailwind({
-    nesting: true
-  }), svelte(), icon()],
-  adapter: vercel({
-    imageService: true
-  })
+	output: "server",
+	integrations: [
+		tailwind({
+			nesting: true,
+		}),
+		svelte(),
+		icon(),
+	],
+	adapter: vercel({
+		imageService: true,
+	}),
+	i18n: {
+		defaultLocale: "ar",
+		locales: ["en", "ar"],
+		routing: {
+			prefixDefaultLocale: true,
+		},
+	},
 });

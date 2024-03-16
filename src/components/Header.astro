@@ -1,57 +1,103 @@
 ---
-// import { getRelativeLocaleUrl } from "astro:i18n";
+import { getLocaleByPath, getRelativeLocaleUrl } from "astro:i18n";
 import HeaderLink from "./HeaderLink.astro";
 
-// localed
-// const productsURL = getRelativeLocaleUrl(locale, "products");
-// const aboutURL = getRelativeLocaleUrl(locale, "about");
-// const contactURL = getRelativeLocaleUrl(locale, "contact");
-// const tailored_designsURL = getRelativeLocaleUrl(locale, "tailored_designs");
-// const homeURL = getRelativeLocaleUrl(locale, "/");
-// const currentPath = Astro.url.pathname;
+const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 
-// not localed
-const productsURL = "/products";
-const aboutURL = "/about";
-const contactURL = "/contact";
-const designsURL = "/designs";
-const homeURL = "/";
+// localed
+const productsURL = getRelativeLocaleUrl(locale, "products");
+const aboutURL = getRelativeLocaleUrl(locale, "about");
+const contactURL = getRelativeLocaleUrl(locale, "contact");
+const designsURL = getRelativeLocaleUrl(locale, "designs");
+const homeURL = getRelativeLocaleUrl(locale, "/");
 const currentPath = Astro.url.pathname;
 ---
 
 <header
 	class="flex gap-8 w-full justify-between items-center p-8 border-b-2 border-skin-base relative shadow-2xl"
+	dir={locale === "en" ? "ltr" : "rtl"}
 >
 	<!-- <img src="/" alt="Machlist logo" /> -->
-	<div class="text-[3rem] min-w-max">Machlist</div>
-	<nav
-		class="w-max flex py-4 px-2 gap-4 justify-start items-center overflow-x-auto overflow-y-visible whitespace-nowrap"
-	>
-		<HeaderLink highlighted={currentPath == homeURL} link="/">
-			Homepage
-		</HeaderLink>
-		<HeaderLink
-			highlighted={currentPath.includes(productsURL)}
-			link="/products"
-		>
-			Products
-		</HeaderLink>
-		<HeaderLink
-			highlighted={currentPath.includes(designsURL)}
-			link="/designs"
-		>
-			Designs
-		</HeaderLink>
-		<HeaderLink highlighted={currentPath.includes(aboutURL)} link="/about">
-			About Us
-		</HeaderLink>
-		<HeaderLink
-			highlighted={currentPath.includes(contactURL)}
-			link="/contact"
-		>
-			Contact us
-		</HeaderLink>
-	</nav>
+
+	{
+		locale === "en" ? (
+			<>
+				<a href="/en" class="text-[3rem] min-w-max">
+					Machlist
+				</a>
+				<nav class="w-max flex py-4 px-2 gap-4 justify-start items-center overflow-x-auto overflow-y-visible whitespace-nowrap">
+					<HeaderLink
+						highlighted={currentPath == homeURL}
+						link={homeURL}
+					>
+						Homepage
+					</HeaderLink>
+					<HeaderLink
+						highlighted={currentPath.includes(productsURL)}
+						link={productsURL}
+					>
+						Products
+					</HeaderLink>
+					<HeaderLink
+						highlighted={currentPath.includes(designsURL)}
+						link={designsURL}
+					>
+						Designs
+					</HeaderLink>
+					<HeaderLink
+						highlighted={currentPath.includes(aboutURL)}
+						link={aboutURL}
+					>
+						About Us
+					</HeaderLink>
+					<HeaderLink
+						highlighted={currentPath.includes(contactURL)}
+						link={contactURL}
+					>
+						Contact us
+					</HeaderLink>
+				</nav>
+			</>
+		) : (
+			<>
+				<a href="/ar" class="text-[3rem] min-w-max">
+					ماك-ليست
+				</a>
+				<nav class="w-max flex py-4 px-2 gap-4 justify-start items-center overflow-x-auto overflow-y-visible whitespace-nowrap">
+					<HeaderLink
+						highlighted={currentPath == homeURL}
+						link={homeURL}
+					>
+						الصفحة الرئيسية
+					</HeaderLink>
+					<HeaderLink
+						highlighted={currentPath.includes(productsURL)}
+						link={productsURL}
+					>
+						منجاتنا
+					</HeaderLink>
+					<HeaderLink
+						highlighted={currentPath.includes(designsURL)}
+						link={designsURL}
+					>
+						تصميمات
+					</HeaderLink>
+					<HeaderLink
+						highlighted={currentPath.includes(aboutURL)}
+						link={aboutURL}
+					>
+						عنّا
+					</HeaderLink>
+					<HeaderLink
+						highlighted={currentPath.includes(contactURL)}
+						link={contactURL}
+					>
+						اتصل بنا
+					</HeaderLink>
+				</nav>
+			</>
+		)
+	}
 </header>
 
 <style>

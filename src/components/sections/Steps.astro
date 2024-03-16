@@ -1,12 +1,14 @@
 ---
 import SectionLayout from "@layouts/SectionLayout.astro";
 import Line from "@components/svelte/Line.svelte";
+import { getLocaleByPath } from "astro:i18n";
+const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
 
 <SectionLayout>
 	<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
-		How we do it?
+		{locale === "en" ? "How we do it?" : "كيف تصلك خدماتنا"}
 	</h1>
 
-	<Line client:only />
+	<Line client:only locale={locale} />
 </SectionLayout>

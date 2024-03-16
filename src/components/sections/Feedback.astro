@@ -1,64 +1,120 @@
 ---
 import SectionLayout from "@layouts/SectionLayout.astro";
+import { getLocaleByPath } from "astro:i18n";
+const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
 
 <SectionLayout>
-	<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
-		Already a customer?
-	</h1>
-
-	<p class="md:text-[3rem] text-skin-muted">We'd love to hear from you</p>
-
-	<form class="flex flex-col justify-center items-center gap-4 w-full">
-		<label
-			class="flex gap-4 flex-col items-center justify-center md:flex-row w-full"
-		>
-			Name:
-			<input
-				placeholder="Your name"
-				class="bg-skin-base/20 border-none flex-1"
-				type="text"
-				name="Name"
-				required
-			/>
-		</label>
-		<label
-			class="flex gap-4 flex-col items-center justify-center md:flex-row w-full"
-		>
-			Email:
-			<input
-				placeholder="example@example.com"
-				class="bg-skin-base/20 border-none flex-1"
-				type="email"
-				name="Email"
-				required
-			/>
-		</label>
-		<label
-			class="flex gap-4 flex-col items-center justify-center md:flex-row w-full"
-		>
-			Phone number:
-			<input
-				class="bg-skin-base/20 border-none flex-1"
-				type="text"
-				name="Phone"
-				pattern="\+[0-9][0-9]{9}"
-				placeholder="+2012345678"
-			/>
-		</label>
-		<div class="flex flex-col md:flex-row items-center gap-4 w-full">
-			<label for="">Your Feedback:</label>
-			<textarea
-				placeholder="Your feedback"
-				class="bg-skin-base/20 border-none text-4xl flex-1 h-auto"
-				name="Feedback"
-				required
-				id=""
-				cols="30"
-				rows="10"></textarea>
-		</div>
-	</form>
+	{
+		locale === "en" ? (
+			<>
+				<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
+					Already a customer?
+				</h1>
+				<p class="md:text-[3rem] text-skin-muted">
+					We'd love to hear from you
+				</p>
+				<form class="flex flex-col justify-center items-center gap-4 w-full">
+					<label class="flex gap-4 flex-col items-center justify-center md:flex-row w-full">
+						Name:
+						<input
+							placeholder="Your name"
+							class="bg-skin-base/20 border-none flex-1"
+							type="text"
+							name="Name"
+							required
+						/>
+					</label>
+					<label class="flex gap-4 flex-col items-center justify-center md:flex-row w-full">
+						Email:
+						<input
+							placeholder="example@example.com"
+							class="bg-skin-base/20 border-none flex-1"
+							type="email"
+							name="Email"
+							required
+						/>
+					</label>
+					<label class="flex gap-4 flex-col items-center justify-center md:flex-row w-full">
+						Phone number:
+						<input
+							class="bg-skin-base/20 border-none flex-1"
+							type="text"
+							name="Phone"
+							pattern="\+[0-9][0-9]{9}"
+							placeholder="+2012345678"
+						/>
+					</label>
+					<div class="flex flex-col md:flex-row items-center gap-4 w-full">
+						<label for="">Your Feedback:</label>
+						<textarea
+							placeholder="Your feedback"
+							class="bg-skin-base/20 border-none text-4xl flex-1 h-auto"
+							name="Feedback"
+							required
+							id=""
+							cols="30"
+							rows="10"
+						/>
+					</div>
+				</form>
+			</>
+		) : (
+			<>
+				<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
+					هل أنت عميل بالفعل؟
+				</h1>
+				<p class="md:text-[3rem] text-skin-muted">نريد أن نسمع آرائك</p>
+				<form class="flex flex-col justify-center items-center gap-4 w-full">
+					<label class="flex gap-4 flex-col items-center justify-center md:flex-row w-full">
+						الإسم:
+						<input
+							placeholder="إسمك"
+							class="bg-skin-base/20 border-none flex-1"
+							type="text"
+							name="Name"
+							required
+						/>
+					</label>
+					<label class="flex gap-4 flex-col items-center justify-center md:flex-row w-full">
+						عنوان البريد الإلكتروني:
+						<input
+							placeholder="example@example.com"
+							class="bg-skin-base/20 border-none flex-1"
+							type="email"
+							name="Email"
+							required
+						/>
+					</label>
+					<label class="flex gap-4 flex-col items-center justify-center md:flex-row w-full">
+						رقم الهاتف:
+						<input
+							class="bg-skin-base/20 border-none flex-1"
+							type="text"
+							name="Phone"
+							pattern="\+[0-9][0-9]{9}"
+							placeholder="+2012345678"
+						/>
+					</label>
+					<div class="flex flex-col md:flex-row items-center gap-4 w-full">
+						<label for="">رأيك:</label>
+						<textarea
+							placeholder="رأيك"
+							class="bg-skin-base/20 border-none text-4xl flex-1 h-auto"
+							name="Feedback"
+							required
+							id=""
+							cols="30"
+							rows="10"
+						/>
+					</div>
+				</form>
+			</>
+		)
+	}
 </SectionLayout>
+
+<!-- -->
 
 <style>
 	textarea,

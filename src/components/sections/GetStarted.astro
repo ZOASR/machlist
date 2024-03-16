@@ -1,133 +1,123 @@
 ---
+import Arrow from "@components/Arrow.astro";
 import StagerredBoxes from "@components/svelte/StagerredBoxes.svelte";
 import SectionLayout from "@layouts/SectionLayout.astro";
+import { getLocaleByPath } from "astro:i18n";
+const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
 
 <SectionLayout>
-	<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
-		Where to start?
-	</h1>
-	<StagerredBoxes client:only />
-	<div
-		class="w-full flex md:flex-row flex-col justify-center items-center gap-[5rem] h-full text-center"
-	>
-		<div
-			class="flex flex-col items-center gap-8 flex-1 h-full justify-center"
-		>
-			<p class="text-[3rem]">1. Browse our products</p>
-			<p class="text-skin-muted text-[2rem]">
-				Browse over 50 machine designs and production lines and select
-				the perfect one for your needs
-			</p>
-			<a
-				href="/products"
-				class="font-bold w-max animated-gradient group rounded-lg text-center px-8 py-4 text-skin-muted transition-all duration-150
+	{
+		locale === "en" ? (
+			<>
+				<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
+					Where to start?
+				</h1>
+				<StagerredBoxes client:only dir="left" />
+				<div class="w-full flex md:flex-row flex-col justify-center items-center gap-[5rem] h-full text-center">
+					<div class="flex flex-col items-center gap-8 flex-1 h-full justify-center">
+						<p class="text-[3rem]">1. Browse our products</p>
+						<p class="text-skin-muted text-[2rem]">
+							Browse over 50 machine designs and production lines
+							and select the perfect one for your needs
+						</p>
+						<a
+							href="/products"
+							class="font-bold w-max animated-gradient group rounded-lg text-center px-8 py-4 text-skin-muted transition-all duration-150
 					hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
 					focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
-				>See our products <span
-					class="inline-block invisible opacity-0 transition-all duration-150 scale-0
+						>
+							See our products{" "}
+							<span
+								class="inline-block invisible opacity-0 transition-all duration-150 scale-0
 						group-hover:scale-100 group-hover:opacity-100 group-hover:visible
 						group-focus:scale-100 group-focus:opacity-100 group-focus:visible"
-					>&rarr;</span
-				></a
-			>
-		</div>
-		<svg
-			version="1.1"
-			id="Layer_1"
-			xmlns="http://www.w3.org/2000/svg"
-			xmlns:xlink="http://www.w3.org/1999/xlink"
-			viewBox="0 0 330 330"
-			xml:space="preserve"
-			width="10rem"
-			class="md:transform-none rotate-90"
-		>
-			<linearGradient
-				id="heading-gradient"
-				x1="0%"
-				y1="0%"
-				x2="100%"
-				y2="0%"
-			>
-				<stop offset="0%" stop-color="hsla(var(--color-accent), 1)"
-				></stop>
-				<stop offset="100%" stop-color="hsla(var(--color-accent-1), 1)"
-				></stop>
-			</linearGradient>
-			<path
-				fill="url(#heading-gradient)"
-				id="XMLID_27_"
-				d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255
-	s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
-	c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"
-			></path>
-		</svg>
-		<div
-			class="flex flex-col gap-8 flex-1 items-center justify-center h-full"
-		>
-			<p class="text-[3rem]">2. Get in touch</p>
-			<p class="text-skin-muted text-[2rem]">Contact our sales team</p>
-			<a
-				href="/contact"
-				class="hover:underline w-max bg-skin-primary text-white px-8 py-4 rounded-lg text-center hover:bg-skin-primary/80 transition-all duration-150"
-				>Contact us</a
-			>
-		</div>
-		<svg
-			version="1.1"
-			id="Layer_1"
-			xmlns="http://www.w3.org/2000/svg"
-			xmlns:xlink="http://www.w3.org/1999/xlink"
-			viewBox="0 0 330 330"
-			xml:space="preserve"
-			width="10rem"
-			class="md:transform-none rotate-90"
-		>
-			<linearGradient
-				id="heading-gradient"
-				x1="0%"
-				y1="0%"
-				x2="100%"
-				y2="0%"
-			>
-				<stop offset="0%" stop-color="hsla(var(--color-accent), 1)"
-				></stop>
-				<stop offset="100%" stop-color="hsla(var(--color-accent-1), 1)"
-				></stop>
-			</linearGradient>
-			<path
-				fill="url(#heading-gradient)"
-				id="XMLID_27_"
-				d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255
-	s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
-	c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"
-			></path>
-		</svg>
-		<div class="flex-1 flex flex-col gap-8 h-full justify-center">
-			<p class="text-[3rem]">3. Get started</p>
-			<p class="text-skin-muted text-[2rem]">
-				Start integrating your perfect production line with us
-			</p>
-		</div>
-	</div>
+							>
+								&rarr;
+							</span>
+						</a>
+					</div>
+					<Arrow dir={locale === "en" ? "ltr" : "rtl"} />
+
+					<div class="flex flex-col gap-8 flex-1 items-center justify-center h-full">
+						<p class="text-[3rem]">2. Get in touch</p>
+						<p class="text-skin-muted text-[2rem]">
+							Contact our sales team
+						</p>
+						<a
+							href="/contact"
+							class="hover:underline w-max bg-skin-primary text-white px-8 py-4 rounded-lg text-center hover:bg-skin-primary/80 transition-all duration-150"
+						>
+							Contact us
+						</a>
+					</div>
+					<Arrow dir={locale === "en" ? "ltr" : "rtl"} />
+					<div class="flex-1 flex flex-col gap-8 h-full justify-center">
+						<p class="text-[3rem]">3. Get started</p>
+						<p class="text-skin-muted text-[2rem]">
+							Start integrating your perfect production line with
+							us
+						</p>
+					</div>
+				</div>
+			</>
+		) : (
+			<>
+				<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
+					من أين أبدأ؟
+				</h1>
+				<StagerredBoxes client:only dir="right" />
+				<div class="w-full flex md:flex-row flex-col justify-center items-center gap-[5rem] h-full text-center">
+					<div class="flex flex-col items-center gap-8 flex-1 h-full justify-center">
+						<p class="text-[3rem]">1. تصفح منتجاتنا</p>
+						<p class="text-skin-muted text-[2rem]">
+							تصفح من بين أكثر من 50 تصميم و خط إنتاج و اختر
+							المنتج المناسب لك
+						</p>
+						<a
+							href="/products"
+							class="font-bold w-max animated-gradient group rounded-lg text-center px-8 py-4 text-skin-muted transition-all duration-150
+					hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
+					focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
+						>
+							تصفح منتجاتنا{" "}
+							<span
+								class="inline-block invisible opacity-0 transition-all duration-150 scale-0
+						group-hover:scale-100 group-hover:opacity-100 group-hover:visible
+						group-focus:scale-100 group-focus:opacity-100 group-focus:visible"
+							>
+								&larr;
+							</span>
+						</a>
+					</div>
+					<Arrow dir={locale === "en" ? "ltr" : "rtl"} />
+
+					<div class="flex flex-col gap-8 flex-1 items-center justify-center h-full">
+						<p class="text-[3rem]">2. تواصل معنا</p>
+						<p class="text-skin-muted text-[2rem]">
+							تواصل مع فريق المبيعات لدينا
+						</p>
+						<a
+							href="/contact"
+							class="hover:underline w-max bg-skin-primary text-white px-8 py-4 rounded-lg text-center hover:bg-skin-primary/80 transition-all duration-150"
+						>
+							تواصل معنا
+						</a>
+					</div>
+					<Arrow dir={locale === "en" ? "ltr" : "rtl"} />
+					<div class="flex-1 flex flex-col gap-8 h-full justify-center">
+						<p class="text-[3rem]">3. ابدأ</p>
+						<p class="text-skin-muted text-[2rem]">
+							ابدأ بتشغيل خط الانتاج الخاص بك
+						</p>
+					</div>
+				</div>
+			</>
+		)
+	}
 </SectionLayout>
 
 <style>
-	#heading-background path {
-		stroke-width: 5px;
-		animation: grow 2s ease-in-out forwards;
-		stroke-linecap: round;
-		stroke: url(#heading-gradient);
-	}
-
-	@keyframes grow {
-		from {
-			stroke-dasharray: 0 10000;
-		}
-		to {
-			stroke-dasharray: 570;
-		}
-	}
 	@keyframes gradientAnimation {
 		0% {
 			background-position: 0% 50%;

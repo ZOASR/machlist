@@ -1,19 +1,37 @@
 ---
 import SectionLayout from "@layouts/SectionLayout.astro";
+import { getLocaleByPath } from "astro:i18n";
+const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
 
 <SectionLayout>
 	<div
 		class="flex flex-col gap-8 justify-items-start self-start w-full overflow-clip"
 	>
-		<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
-			What we offer
-		</h1>
-
-		<p class="md:text-[3rem] text-skin-muted">
-			We offer over 50 machine designs crafted with over 20 years of
-			experience
-		</p>
+		{
+			locale === "en" ? (
+				<>
+					<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
+						What we offer
+					</h1>
+					<p class="md:text-[3rem] text-skin-muted">
+						We offer over 50 machine designs crafted with over 20
+						years of experience
+					</p>
+				</>
+			) : (
+				<>
+					<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
+						ما نقدمه
+					</h1>
+					<p class="md:text-[3rem] text-skin-muted">
+						نحن نقدم ما يعادي الـ50 تصميم للماكينات و خطوط الإنتاج
+						تم تصميمها و بعناية بمساعدة خبراتنا التي تفوق ال 20
+						عاماً في مجال التصنيع
+					</p>
+				</>
+			)
+		}
 		<div class="gallery" data-aos="fade-right">
 			<div class="image"><img src="/stats_image_1.jpg" alt="" /></div>
 			<div class="image"><img src="/stats_image_2.jpg" alt="" /></div>

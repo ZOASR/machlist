@@ -1,0 +1,35 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getLocaleByPath } from "astro:i18n";
+
+const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
+---
+
+<Layout title={`عن الشركة`}>
+	<div class="px-[3rem] text-center py-[10rem]">
+		<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center">ماك-ليست</h1>
+
+		<h2 class="text-[4rem] text-start font-bold">عن ماك-ليست:</h2>
+		<hr />
+		<p class="text-[3rem] text-pretty">
+			تأسست شركة " ماك-ليســـت " عام 2005 بالقاهرة وتعمل في مجال ماكينات
+			وخطوط الإنتاج المختلفة. ويوجد لدينا العديد من الماكينات والخطوط التي
+			تم تصنيعها بعدة طرازات مع التطوير والتعديل في كل مرة حتي وصلت إلي
+			الشكل النهائي الحالي.
+			<br />
+			ومن هذه الطرازات خط إنتاج الصابون وخط درفلة زوايا الصاج وخط سحب الأسلاك
+			وخط الصوف المعدني وماكينة السوستة ومصاعد السيارات وغيرها من الماكينات
+			واالخطوط المختلفة في مجال خطوط الإنتاج
+		</p>
+
+		<div class="my-[5rem]"></div>
+
+		<h2 class="text-[4rem] text-start font-bold">رؤيتنا:</h2>
+		<hr />
+		<p class="text-[3rem] text-pretty">
+			رؤيتنا هي أن نصبح شركة رائدة في المجال الصناعي للآلات و خطوط الإنتاج
+			والتصميم والتنفيذ والتوريد، نريد أن نكون الأفضل في السوق وأن نقدم
+			لعملائنا الحلول الأفضل لاحتياجاتهم.
+		</p>
+	</div>
+</Layout>

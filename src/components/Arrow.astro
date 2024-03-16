@@ -1,0 +1,38 @@
+---
+const { dir } = Astro.props;
+---
+
+<svg
+	version="1.1"
+	id="Layer_1"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	viewBox="0 0 330 330"
+	xml:space="preserve"
+	width="10rem"
+	class:list={{
+		"md:rotate-180 rotate-90": dir === "rtl",
+		"md:rotate-[-90deg] rotate-90": dir === "ltr",
+	}}
+>
+	<linearGradient id="heading-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+		<stop offset="0%" stop-color="hsla(var(--color-accent), 1)"></stop>
+		<stop offset="100%" stop-color="hsla(var(--color-accent-1), 1)"></stop>
+	</linearGradient>
+	<path
+		fill="url(#heading-gradient)"
+		id="XMLID_27_"
+		d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255
+	s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
+	c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"
+	></path>
+</svg>
+
+<style>
+	#heading-background path {
+		stroke-width: 5px;
+		animation: grow 2s ease-in-out forwards;
+		stroke-linecap: round;
+		stroke: url(#heading-gradient);
+	}
+</style>

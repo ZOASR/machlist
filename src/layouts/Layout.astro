@@ -2,16 +2,18 @@
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
 import "@fontsource-variable/el-messiri";
+import { getLocaleByPath } from "astro:i18n";
 
 interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
+const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Machlist" />
@@ -20,7 +22,7 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>Machlist - {title}</title>
 	</head>
-	<body class="text-skin-base">
+	<body class="text-skin-base" dir={locale === "en" ? "ltr" : "rtl"}>
 		<Header />
 		<main>
 			<slot />
@@ -60,6 +62,9 @@ const { title } = Astro.props;
 		font-size: 1.6em;
 		min-height: 100dvh;
 		background-color: hsl(var(--color-background));
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 
 	html {
