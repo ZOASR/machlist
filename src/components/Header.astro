@@ -56,6 +56,18 @@ const currentPath = Astro.url.pathname;
 					>
 						Contact us
 					</HeaderLink>
+					<div class="px-4 py-2 w-[15rem] text-3xl text-nowrap min-w-[13rem] rounded-md transition-all duration-150">
+						<LanguageSelector
+							client:visible
+							locale={locale}
+							items={items}
+						>
+							<span slot="check">
+								<Icon name="ic:round-check" />
+							</span>
+							<Icon name="ic:outline-keyboard-double-arrow-down" />
+						</LanguageSelector>
+					</div>
 				</nav>
 			</>
 		) : (
@@ -94,6 +106,18 @@ const currentPath = Astro.url.pathname;
 					>
 						اتصل بنا
 					</HeaderLink>
+					<div class="px-4 py-2 text-3xl text-nowrap min-w-max rounded-md transition-all duration-150">
+						<LanguageSelector
+							client:visible
+							locale={locale}
+							items={items}
+						>
+							<span slot="check">
+								<Icon name="ic:round-check" />
+							</span>
+							<Icon name="ic:outline-keyboard-double-arrow-down" />
+						</LanguageSelector>
+					</div>
 				</nav>
 			</>
 		)
