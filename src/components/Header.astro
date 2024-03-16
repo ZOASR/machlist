@@ -1,6 +1,8 @@
 ---
 import { getLocaleByPath, getRelativeLocaleUrl } from 'astro:i18n';
 import HeaderLink from './HeaderLink.astro';
+import { Icon } from 'astro-icon/components';
+import LanguageSelector from './svelte/LanguageSelector.svelte';
 
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 
@@ -11,10 +13,23 @@ const contactURL = getRelativeLocaleUrl(locale, 'contact');
 const designsURL = getRelativeLocaleUrl(locale, 'designs');
 const homeURL = getRelativeLocaleUrl(locale, '/');
 const currentPath = Astro.url.pathname;
+
+const items = [
+	{
+		label: 'English',
+		value: 'en',
+		href: currentPath.replace(/\/(en|ar)/g, '/en')
+	},
+	{
+		label: 'العربية',
+		value: 'ar',
+		href: currentPath.replace(/\/(en|ar)/g, '/ar')
+	}
+];
 ---
 
 <header
-	class="flex gap-8 w-full justify-between items-center p-8 border-b-2 border-skin-base relative shadow-2xl"
+	class="flex flex-row-reverse gap-8 w-full justify-between items-center p-8 border-b-2 border-skin-base relative shadow-2xl"
 	dir={locale === 'en' ? 'ltr' : 'rtl'}
 >
 	<!-- <img src="/" alt="Machlist logo" /> -->
@@ -30,31 +45,46 @@ const currentPath = Astro.url.pathname;
 						highlighted={currentPath == homeURL}
 						link={homeURL}
 					>
-						Homepage
+						<span class="flex gap-2">
+							<Icon name="ic:twotone-home" />
+							Homepage
+						</span>
 					</HeaderLink>
 					<HeaderLink
 						highlighted={currentPath.includes(productsURL)}
 						link={productsURL}
 					>
-						Products
+						<span class="flex gap-2">
+							<Icon name="ic:twotone-shopping-cart" />
+							Products
+						</span>
 					</HeaderLink>
 					<HeaderLink
 						highlighted={currentPath.includes(designsURL)}
 						link={designsURL}
 					>
-						Designs
+						<span class="flex gap-2">
+							<Icon name="ic:twotone-design-services" />
+							Designs
+						</span>
 					</HeaderLink>
 					<HeaderLink
 						highlighted={currentPath.includes(aboutURL)}
 						link={aboutURL}
 					>
-						About Us
+						<span class="flex gap-2">
+							<Icon name="ic:twotone-info" />
+							About Us
+						</span>
 					</HeaderLink>
 					<HeaderLink
 						highlighted={currentPath.includes(contactURL)}
 						link={contactURL}
 					>
-						Contact us
+						<span class="flex gap-2">
+							<Icon name="ic:twotone-contact-support" />
+							Contact us
+						</span>
 					</HeaderLink>
 					<div class="px-4 py-2 w-[15rem] text-3xl text-nowrap min-w-[13rem] rounded-md transition-all duration-150">
 						<LanguageSelector
@@ -80,31 +110,46 @@ const currentPath = Astro.url.pathname;
 						highlighted={currentPath == homeURL}
 						link={homeURL}
 					>
-						الصفحة الرئيسية
+						<span class="flex gap-2">
+							<Icon name="ic:twotone-home" />
+							الصفحة الرئيسية
+						</span>
 					</HeaderLink>
 					<HeaderLink
 						highlighted={currentPath.includes(productsURL)}
 						link={productsURL}
 					>
-						منتجاتنا
+						<span class="flex gap-2">
+							<Icon name="ic:twotone-shopping-cart" />
+							منتجاتنا
+						</span>
 					</HeaderLink>
 					<HeaderLink
 						highlighted={currentPath.includes(designsURL)}
 						link={designsURL}
 					>
-						تصميمات
+						<span class="flex gap-2">
+							<Icon name="ic:twotone-design-services" />
+							تصميمات
+						</span>
 					</HeaderLink>
 					<HeaderLink
 						highlighted={currentPath.includes(aboutURL)}
 						link={aboutURL}
 					>
-						عنّا
+						<span class="flex gap-2">
+							<Icon name="ic:twotone-info" />
+							عنّا
+						</span>
 					</HeaderLink>
 					<HeaderLink
 						highlighted={currentPath.includes(contactURL)}
 						link={contactURL}
 					>
-						اتصل بنا
+						<span class="flex gap-2">
+							<Icon name="ic:twotone-contact-support" />
+							اتصل بنا
+						</span>
 					</HeaderLink>
 					<div class="px-4 py-2 text-3xl text-nowrap min-w-max rounded-md transition-all duration-150">
 						<LanguageSelector
