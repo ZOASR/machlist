@@ -1,8 +1,8 @@
 ---
-import Footer from '@components/Footer.astro';
-import Header from '@components/Header.astro';
-import '@fontsource-variable/el-messiri';
-import { getLocaleByPath } from 'astro:i18n';
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import "@fontsource-variable/el-messiri";
+import { getLocaleByPath } from "astro:i18n";
 
 interface Props {
 	title: string;
@@ -18,16 +18,16 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 		<meta charset="UTF-8" />
 		<meta
 			name="description"
-			content={locale === 'en'
-				? 'Machlist is an Egyptian company established at 2005 in Cairo for machines and production lines.'
+			content={locale === "en"
+				? "Machlist is an Egyptian company established at 2005 in Cairo for machines and production lines."
 				: 'تأسست شركة " ماك-ليســـت " عام 2005 بالقاهرة وتعمل في مجال ماكينات وخطوط الإنتاج المختلفة'}
 		/>
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{locale === 'en' ? 'Machlist' : 'ماك-ليست'} - {title}</title>
+		<title>{locale === "en" ? "Machlist" : "ماك-ليست"} - {title}</title>
 	</head>
-	<body class="text-skin-base" dir={locale === 'en' ? 'ltr' : 'rtl'}>
+	<body class="text-skin-base" dir={locale === "en" ? "ltr" : "rtl"}>
 		<Header />
 		<main>
 			<slot />
@@ -40,7 +40,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 <style is:global>
 	:root {
 		--color-neutral: 0, 0%, 13%; /* hsl(0, 0%, 13%) */
-		--color-primary: 213, 34%, 15%; /* hsl(213, 34%, 15%) */
+		--color-primary: 213, 34%, 85%; /* hsl(213, 34%, 85%) */
 		--color-secondary: 0, 0%, 30%; /* hsl(0, 0%, 30%) */
 		--color-accent: 51, 100%, 50%; /* hsl(51, 80%, 50%) */
 		--color-accent-1: 12, 100%, 50%; /* hsl(12, 100%, 50%) */
@@ -50,8 +50,10 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 		--color-purple: 277, 70%, 35%; /* hsl(277, 70%, 35%) */
 		--color-teal: 180, 100%, 25%; /* hsl(180, 100%, 25%) */
 		--color-magenta: 326, 100%, 50%; /* hsl(326, 100%, 50%) */
-		--color-text-base: var(--color-primary);
+		--color-text-base: 213, 34%, 15%;
 		--color-text-muted: var(--color-secondary);
+
+		/* --test: hsl(32, 34%, 50%); */
 	}
 
 	/* CSS RESETS */
@@ -73,7 +75,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 	}
 
 	html {
-		font-family: 'El Messiri Variable', Helvetica, sans-serif;
+		font-family: "El Messiri Variable", Helvetica, sans-serif;
 		font-size: 62.5%;
 		scroll-behavior: smooth;
 		-webkit-font-smoothing: antialiased;
@@ -82,8 +84,8 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 	}
 
 	button,
-	input[type='submit'],
-	input[type='button'] {
+	input[type="submit"],
+	input[type="button"] {
 		cursor: pointer;
 		background-color: transparent;
 		border: none;

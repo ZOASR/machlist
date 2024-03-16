@@ -48,7 +48,7 @@
 		{#if show}
 			<img
 				src={`/stats_image_${n}.jpg`}
-				alt="Machine Thumbnail"
+				alt="Machine cover"
 				class="absolute h-[20rem] w-[20rem] md:h-[30rem] md:w-[30rem] rounded-3xl shadow-lg"
 				style={`
 				left: ${10 * (n - 1)}%;

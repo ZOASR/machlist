@@ -1,11 +1,11 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { getLocaleByPath } from 'astro:i18n';
+import { Icon } from "astro-icon/components";
+import { getLocaleByPath } from "astro:i18n";
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
 
 {
-	locale === 'en' ? (
+	locale === "en" ? (
 		<footer class="w-full mt-auto h-max p-8 flex flex-col gap-8 md:flex-row justify-between items-center md:items-start">
 			<a href="/en" class="text-[5rem] self-center text-center">
 				Machlist

@@ -1,9 +1,9 @@
 ---
-import SectionLayout from '@layouts/SectionLayout.astro';
-import { Image } from 'astro:assets';
+import SectionLayout from "@layouts/SectionLayout.astro";
+import { Image } from "astro:assets";
 
-import heroImg from '@assets/hero_image.png';
-import { getLocaleByPath } from 'astro:i18n';
+import heroImg from "@assets/hero_image.png";
+import { getLocaleByPath } from "astro:i18n";
 
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
@@ -12,10 +12,10 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 	<div id="hero-bg"></div>
 	<div
 		class="h-full grid md:grid-cols-2 md:grid-rows-1 grid-rows-2 gap-6"
-		dir={locale === 'en' ? 'ltr' : 'rtl'}
+		dir={locale === "en" ? "ltr" : "rtl"}
 	>
 		{
-			locale === 'en' ? (
+			locale === "en" ? (
 				<div class="flex flex-col gap-8 justify-center">
 					<h1 class="text-[clamp(5rem,10dvw,10rem)]">
 						We design,
@@ -34,7 +34,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 					hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
 					focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
 						>
-							See our products{' '}
+							See our products{" "}
 							<span
 								class="inline-block invisible opacity-0 transition-all duration-150 scale-0
 						group-hover:scale-100 group-hover:opacity-100 group-hover:visible
@@ -45,7 +45,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 						</a>
 						<a
 							href="/contact"
-							class="px-8 py-4 text-white bg-skin-primary/50 rounded-lg text-center relative transition-all duration-150
+							class="px-8 py-4 bg-skin-primary/50 rounded-lg text-center relative transition-all duration-150
 					after:absolute after:bottom-0 after:left-0 after:w-0 after:h-2 after:bg-skin-base after:transition-all after:duration-150 after:border-inherit
 					hover:after:w-full hover:underline hover:bg-skin-primary/80
 					focus:after:w-full focus:underline focus:bg-skin-primary/80"
@@ -73,7 +73,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 					hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
 					focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
 						>
-							منتجاتنا{' '}
+							منتجاتنا{" "}
 							<span
 								class="inline-block invisible opacity-0 transition-all duration-150 scale-0
 						group-hover:scale-100 group-hover:opacity-100 group-hover:visible
@@ -84,7 +84,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 						</a>
 						<a
 							href="/contact"
-							class="px-8 py-4 text-white bg-skin-primary/50 rounded-lg text-center relative transition-all duration-150
+							class="px-8 py-4 bg-skin-primary/50 rounded-lg text-center relative transition-all duration-150
 					after:absolute after:bottom-0 after:left-0 after:w-0 after:h-2 after:bg-skin-base after:transition-all after:duration-150 after:border-inherit
 					hover:after:w-full hover:underline hover:bg-skin-primary/80
 					focus:after:w-full focus:underline focus:bg-skin-primary/80"
@@ -102,8 +102,8 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 			<Image
 				src={heroImg}
 				class="object-cover w-full h-full"
-				alt={'Hero side'}
-				loading={'eager'}
+				alt={"Hero side"}
+				loading={"eager"}
 			/>
 		</div>
 	</div>
@@ -121,7 +121,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 		);
 	}
 	#hero-bg::before {
-		content: '';
+		content: "";
 		background-image: url(/grain.png);
 		background-size: contain;
 		filter: brightness(10%);

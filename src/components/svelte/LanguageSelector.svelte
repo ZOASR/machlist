@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { Select } from 'bits-ui';
-	import { quintInOut } from 'svelte/easing';
-	import { navigate } from 'astro:transitions/client';
+	import { Select } from "bits-ui";
+	import { quintInOut } from "svelte/easing";
+	import { navigate } from "astro:transitions/client";
 
-	export let locale: string = 'ar';
+	export let locale: string = "ar";
 
 	export let items: any[] = [
 		{
-			value: 'en',
-			label: 'English',
-			href: '#'
+			value: "en",
+			label: "English",
+			href: "#"
 		},
 		{
-			value: 'ar',
-			label: 'العربية',
-			href: '#'
+			value: "ar",
+			label: "العربية",
+			href: "#"
 		}
 	];
 
@@ -47,14 +47,14 @@
 <Select.Root
 	{items}
 	onSelectedChange={(item) => {
-		const { value } = item ? item : { value: 'ar' };
+		const { value } = item ? item : { value: "ar" };
 		navigate(items.find((i) => i.value === value).href, {
-			history: 'replace'
+			history: "replace"
 		});
 	}}
 	selected={{
 		value: locale,
-		label: locale == 'en' ? 'اللغة ' : 'Language'
+		label: locale == "en" ? "اللغة " : "Language"
 	}}
 >
 	<Select.Trigger
@@ -63,12 +63,12 @@
 	>
 		<Select.Value
 			class=""
-			placeholder={locale == 'en' ? 'العربية' : 'English'}
+			placeholder={locale == "en" ? "العربية" : "English"}
 		/>
 		<slot />
 	</Select.Trigger>
 	<Select.Content
-		class="rounded-xl border-2 border-skin-primary p-2 space-y-4 text-white shadow-xl outline-none bg-gradient-to-br from-skin-secondary to-skin-primary"
+		class="rounded-xl border-2 border-skin-primary p-2 space-y-4 text-white shadow-xl outline-none bg-skin-neutral"
 		transition={fadeAndScale}
 		transitionConfig={{ duration: 100, easing: quintInOut }}
 		style="transform-origin: top center;"
