@@ -1,5 +1,5 @@
 ---
-import { getLocaleByPath } from "astro:i18n";
+import { getLocaleByPath } from 'astro:i18n';
 
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
@@ -7,7 +7,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 <section
 	class="md:px-[3rem] px-[1rem] py-[5rem] grid items-center relative md:min-h-[100dvh] md:h-max"
 	data-aos="fade-down"
-	dir={locale === "en" ? "ltr" : "rtl"}
+	dir={locale === 'en' ? 'ltr' : 'rtl'}
 >
 	<slot />
 </section>

@@ -1,26 +1,26 @@
 ---
-import { getLocaleByPath, getRelativeLocaleUrl } from "astro:i18n";
-import HeaderLink from "./HeaderLink.astro";
+import { getLocaleByPath, getRelativeLocaleUrl } from 'astro:i18n';
+import HeaderLink from './HeaderLink.astro';
 
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 
 // localed
-const productsURL = getRelativeLocaleUrl(locale, "products");
-const aboutURL = getRelativeLocaleUrl(locale, "about");
-const contactURL = getRelativeLocaleUrl(locale, "contact");
-const designsURL = getRelativeLocaleUrl(locale, "designs");
-const homeURL = getRelativeLocaleUrl(locale, "/");
+const productsURL = getRelativeLocaleUrl(locale, 'products');
+const aboutURL = getRelativeLocaleUrl(locale, 'about');
+const contactURL = getRelativeLocaleUrl(locale, 'contact');
+const designsURL = getRelativeLocaleUrl(locale, 'designs');
+const homeURL = getRelativeLocaleUrl(locale, '/');
 const currentPath = Astro.url.pathname;
 ---
 
 <header
 	class="flex gap-8 w-full justify-between items-center p-8 border-b-2 border-skin-base relative shadow-2xl"
-	dir={locale === "en" ? "ltr" : "rtl"}
+	dir={locale === 'en' ? 'ltr' : 'rtl'}
 >
 	<!-- <img src="/" alt="Machlist logo" /> -->
 
 	{
-		locale === "en" ? (
+		locale === 'en' ? (
 			<>
 				<a href="/en" class="text-[3rem] min-w-max">
 					Machlist
@@ -116,7 +116,7 @@ const currentPath = Astro.url.pathname;
 		);
 	}
 	header::before {
-		content: "";
+		content: '';
 		background-image: url(/grain.png);
 		background-size: contain;
 		filter: brightness(10%);

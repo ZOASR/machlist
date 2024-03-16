@@ -1,8 +1,8 @@
 ---
-import Footer from "@components/Footer.astro";
-import Header from "@components/Header.astro";
-import "@fontsource-variable/el-messiri";
-import { getLocaleByPath } from "astro:i18n";
+import Footer from '@components/Footer.astro';
+import Header from '@components/Header.astro';
+import '@fontsource-variable/el-messiri';
+import { getLocaleByPath } from 'astro:i18n';
 
 interface Props {
 	title: string;
@@ -22,7 +22,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 		<meta name="generator" content={Astro.generator} />
 		<title>Machlist - {title}</title>
 	</head>
-	<body class="text-skin-base" dir={locale === "en" ? "ltr" : "rtl"}>
+	<body class="text-skin-base" dir={locale === 'en' ? 'ltr' : 'rtl'}>
 		<Header />
 		<main>
 			<slot />
@@ -68,7 +68,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 	}
 
 	html {
-		font-family: "El Messiri Variable", Helvetica, sans-serif;
+		font-family: 'El Messiri Variable', Helvetica, sans-serif;
 		font-size: 62.5%;
 		scroll-behavior: smooth;
 		-webkit-font-smoothing: antialiased;
@@ -77,8 +77,8 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 	}
 
 	button,
-	input[type="submit"],
-	input[type="button"] {
+	input[type='submit'],
+	input[type='button'] {
 		cursor: pointer;
 		background-color: transparent;
 		border: none;

@@ -1,28 +1,28 @@
-import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
-import svelte from "@astrojs/svelte";
-import vercel from "@astrojs/vercel/serverless";
+import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
+import svelte from '@astrojs/svelte';
+import vercel from '@astrojs/vercel/serverless';
 
-import icon from "astro-icon";
+import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
-	output: "server",
+	output: 'server',
 	integrations: [
 		tailwind({
-			nesting: true,
+			nesting: true
 		}),
 		svelte(),
-		icon(),
+		icon()
 	],
 	adapter: vercel({
-		imageService: true,
+		imageService: true
 	}),
 	i18n: {
-		defaultLocale: "ar",
-		locales: ["en", "ar"],
+		defaultLocale: 'ar',
+		locales: ['en', 'ar'],
 		routing: {
-			prefixDefaultLocale: true,
-		},
-	},
+			prefixDefaultLocale: true
+		}
+	}
 });

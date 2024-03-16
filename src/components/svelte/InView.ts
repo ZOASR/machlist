@@ -5,12 +5,12 @@ export default function inView(
 	let observer: IntersectionObserver;
 
 	const handleIntersect = (e: IntersectionObserverEntry[]) => {
-		const v = e[0].isIntersecting ? "enter" : "exit";
+		const v = e[0].isIntersecting ? 'enter' : 'exit';
 		node.dispatchEvent(new CustomEvent(v));
 	};
 
 	const setObserver = ({
-		root = null,
+		root = null
 	}: {
 		root?: Element | null;
 		top?: number;
@@ -32,6 +32,6 @@ export default function inView(
 
 		destroy() {
 			if (observer) observer.disconnect();
-		},
+		}
 	};
 }

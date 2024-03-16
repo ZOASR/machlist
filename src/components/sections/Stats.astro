@@ -1,6 +1,6 @@
 ---
-import SectionLayout from "@layouts/SectionLayout.astro";
-import { getLocaleByPath } from "astro:i18n";
+import SectionLayout from '@layouts/SectionLayout.astro';
+import { getLocaleByPath } from 'astro:i18n';
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
 
@@ -9,7 +9,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 		class="flex flex-col gap-8 justify-items-start self-start w-full overflow-clip"
 	>
 		{
-			locale === "en" ? (
+			locale === 'en' ? (
 				<>
 					<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
 						What we offer
@@ -71,7 +71,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 </SectionLayout>
 
 <style lang="scss">
-	@use "sass:math";
+	@use 'sass:math';
 	$n: 8; /* number of images*/
 	$step-angle: math.div(360, $n);
 	$timing: 20s;
@@ -101,7 +101,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 			transform: scale(1);
 		}
 		&::after {
-			content: "";
+			content: '';
 			position: absolute;
 			bottom: 0;
 			left: 25%;

@@ -1,12 +1,12 @@
 ---
-import SectionLayout from "@layouts/SectionLayout.astro";
-import { getLocaleByPath } from "astro:i18n";
+import SectionLayout from '@layouts/SectionLayout.astro';
+import { getLocaleByPath } from 'astro:i18n';
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
 
 <SectionLayout>
 	{
-		locale === "en" ? (
+		locale === 'en' ? (
 			<>
 				<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
 					Already a customer?
