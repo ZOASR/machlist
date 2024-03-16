@@ -10,10 +10,8 @@ const { dir } = Astro.props;
 	viewBox="0 0 330 330"
 	xml:space="preserve"
 	width="10rem"
-	class:list={{
-		"md:rotate-180 rotate-90": dir === "rtl",
-		"md:rotate-[-90deg] rotate-90": dir === "ltr",
-	}}
+	class="animate-pulse"
+	style=`--transform-dir: ${dir === 'rtl' ? '1' : '-1'}; --rotation: ${dir === 'rtl' ? '180deg' : '0deg'}`
 >
 	<linearGradient id="heading-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
 		<stop offset="0%" stop-color="hsla(var(--color-accent), 1)"></stop>
@@ -34,5 +32,37 @@ const { dir } = Astro.props;
 		animation: grow 2s ease-in-out forwards;
 		stroke-linecap: round;
 		stroke: url(#heading-gradient);
+	}
+
+	svg {
+		transform: rotate(90deg);
+		animation: bounce 1s ease-in-out infinite;
+	}
+
+	@keyframes bounce {
+		0%,
+		100% {
+			transform: translateX(calc(25% * var(--transform-dir)))
+				rotate(var(--rotation));
+			animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+		}
+		50% {
+			transform: rotate(var(--rotation));
+			animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+		}
+	}
+
+	@media (width <= 768px) {
+		@keyframes bounce {
+			0%,
+			100% {
+				transform: translateY(-25%) rotate(90deg);
+				animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+			}
+			50% {
+				transform: rotate(90deg);
+				animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+			}
+		}
 	}
 </style>

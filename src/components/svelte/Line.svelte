@@ -59,7 +59,7 @@
 	<ShowOnEnter classes="md:self-end">
 		<BulletPoint
 			dir="left"
-			title={locale === "en" ? "We design" : "نحن نصمم اختيارك"}
+			title={locale === "en" ? "We design" : "نحن نصمم"}
 			order={2}
 			description={locale == "en"
 				? "With over 20 years of experience in the industry, we can help you create the design that meets your needs"
