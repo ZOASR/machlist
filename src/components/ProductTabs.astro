@@ -1,0 +1,43 @@
+---
+import type { Tab } from "@utils/utils";
+import { getLocaleByPath } from "astro:i18n";
+type Props = {
+	activeId: number;
+	tabs: Tab[];
+	old?: boolean;
+};
+
+const { activeId, tabs, old } = Astro.props;
+const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
+---
+
+<div>
+	<ul class="flex list-none mx-auto justify-center w-max">
+		{
+			tabs.map((tab) => {
+				const tabLink = old
+					? `/${locale}/designs/${locale}${tab.link}`
+					: `/${locale}/products/${locale}${tab.link}`;
+				return (
+					<li
+						class:list={[
+							"p-4 rounded-t-lg font-bold",
+							{
+								"bg-gradient-to-b from-skin-accent to-skin-accent-1 underline ":
+									tab.id == activeId
+							}
+						]}
+						style={{
+							"border-bottom":
+								"5px solid hsl(var(--color-accent-1))"
+						}}
+					>
+						<a href={tabLink}>
+							{locale == "en" ? tab.name.en : tab.name.ar}
+						</a>
+					</li>
+				);
+			})
+		}
+	</ul>
+</div>

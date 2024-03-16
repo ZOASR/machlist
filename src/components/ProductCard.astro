@@ -1,0 +1,117 @@
+---
+import { getLocaleByPath, getRelativeLocaleUrl } from "astro:i18n";
+import { Image } from "astro:assets";
+
+interface Props {
+	title: string;
+	slug: string;
+	cover: ImageMetadata;
+	production_rate?: number;
+	model?: string;
+}
+const { title, slug, cover, production_rate, model } = Astro.props;
+const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
+---
+
+{
+	locale == "ar" ? (
+		<a
+			href={getRelativeLocaleUrl("ar", slug)}
+			aria-label={title}
+			class="product-card p-8 pb-24 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-4 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
+							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsl(var(--color-neutral))]
+							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsl(var(--color-neutral))] focus:outline-dashed
+							"
+		>
+			<Image
+				class="w-full h-1/2 object-cover rounded-lg"
+				src={cover}
+				alt={title}
+			/>
+			<h2 class="text-[2.8rem]" dir="rtl">
+				{title}
+			</h2>
+			{production_rate && (
+				<p class="text-[2.2rem]">
+					معدل الإنتاج:{" "}
+					<span class="underline font-bold">
+						{production_rate} كغ/ساعة
+					</span>
+				</p>
+			)}
+
+			<p class="text-[2.2rem]">
+				الموديل: <span class="underline font-bold">{model}</span>
+			</p>
+		</a>
+	) : (
+		<a
+			href={getRelativeLocaleUrl("en", slug)}
+			aria-label={title}
+			class="product-card p-8 pb-24 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-4 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
+							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsl(var(--color-neutral))]
+							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsl(var(--color-neutral))] focus:outline-dashed
+							"
+		>
+			<Image
+				class="w-full h-1/2 object-cover rounded-lg"
+				src={cover}
+				alt={title}
+			/>
+			<h2 class="text-[2.8rem]">{title}</h2>
+			{production_rate && (
+				<p class="text-[2.2rem]">
+					Production rate:{" "}
+					<span class="underline font-bold">
+						{production_rate} kg/h
+					</span>
+				</p>
+			)}
+
+			<p class="text-[2.2rem]">
+				Model: <span class="underline font-bold">{model}</span>
+			</p>
+		</a>
+	)
+}
+
+<style>
+	.product-card {
+		animation: slide-up 1s ease-in-out alternate;
+		animation-timeline: view(block);
+		animation-range: cover 0% cover 25%;
+	}
+
+	@keyframes slide-up {
+		from {
+			translate: 0 25%;
+			opacity: 0.4;
+		}
+		to {
+			translate: 0 0;
+			opacity: 1;
+		}
+	}
+
+	@media (width <= 768px) {
+		.product-card {
+			animation: none;
+		}
+		.product-card:not(:nth-child(1)) {
+			animation: slide-up 1s ease-in-out alternate;
+			animation-timeline: view(block);
+			animation-range: cover 0% cover 30%;
+		}
+
+		@keyframes slide-up {
+			from {
+				translate: 25% 0;
+				opacity: 0;
+			}
+			to {
+				translate: 0 0;
+				opacity: 1;
+			}
+		}
+	}
+</style>

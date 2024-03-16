@@ -1,0 +1,134 @@
+<slot />
+
+<style is:global>
+	article img {
+		width: 100%;
+		max-width: fit-content;
+		margin: 0 auto;
+		object-fit: cover;
+		height: auto;
+		display: block;
+		border-radius: 10px;
+		border: 2px solid hsl(var(--color-neutral));
+	}
+	article {
+		text-align: start;
+		box-shadow: 0 0 20px hsla(var(--color-neutral), 0.4);
+		font-size: 120%;
+		text-shadow: 0 0 10px hsla(var(--color-neutral), 0.3);
+		background: linear-gradient(
+			225deg,
+			hsla(var(--color-primary), 0.5),
+			transparent
+		);
+	}
+
+	article li {
+		margin: 1rem 0;
+		/* list-style: dot; */
+	}
+
+	article ul,
+	article ol {
+		list-style: dot;
+	}
+
+	article ul li::marker,
+	article ol li::marker {
+		text-decoration: underline;
+		color: hsl(var(--color-accent-1));
+		font-size: 2rem;
+		padding: 1rem;
+	}
+	article table,
+	article th,
+	article td {
+		border: 2px solid hsl(var(--text-color-base));
+		border-collapse: collapse;
+	}
+	article th {
+		font-size: clamp(100%, 3dvw, 150%);
+		text-decoration: underline;
+		background-color: hsl(var(--color-primary));
+		font-weight: 800;
+	}
+	article table {
+		width: 90%;
+		margin: 0 auto;
+		background-color: hsl(var(--color-neutral));
+	}
+	article td {
+		padding: 1rem;
+		text-align: start;
+	}
+	article h1 {
+		font-size: clamp(100%, 5dvw, 200%);
+	}
+	article h1,
+	article h2,
+	article h3 {
+		margin: 2rem 0;
+		background: linear-gradient(0deg, hsl(var(--color-primary)), #fff0);
+		filter: drop-shadow(0 0 5px hsl(var(--color-primary)));
+		padding: 0 2rem;
+		border-radius: 5px;
+	}
+
+	article p,
+	article ul,
+	article ol {
+		@apply px-[3rem];
+	}
+
+	article p:has(a) {
+		text-decoration: underline;
+		font-weight: bold;
+		text-align: center;
+		margin: 2rem 0;
+	}
+
+	p:has(img) + p:has(em) em,
+	p:has(img + em) em,
+	div + p:has(em) {
+		position: relative;
+		text-align: center;
+		margin: 0 auto;
+		width: max-content;
+		color: hsl(var(--text-color-base));
+		font-weight: lighter;
+		text-shadow: 0 0 10px hsl(var(--color-primary));
+		border-end-end-radius: 5px;
+		padding: 0 2rem;
+		font-size: 80%;
+		border-end-start-radius: 5px;
+		background: linear-gradient(0deg, hsl(var(--color-primary)), #fff0);
+	}
+	p:has(img) + p:has(em) {
+		margin-top: -2rem;
+	}
+	p:has(em) {
+		text-align: center;
+		color: hsl(var(--color-primary));
+		font-weight: bold;
+		text-shadow: 0 0 10px hsl(var(--text-color-base));
+	}
+	article hr {
+		width: 80%;
+		margin: 0 auto;
+		border-color: hsl(var(--color-neutral));
+		border-width: 1px;
+		border-style: dashed;
+	}
+	article p {
+		margin: 2rem 0;
+	}
+
+	@media (width <= 768px) {
+		article {
+			font-size: 100%;
+		}
+		article img {
+			width: 100%;
+		}
+	}
+</style>

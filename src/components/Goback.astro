@@ -1,0 +1,22 @@
+---
+import { getLocaleByPath } from "astro:i18n";
+
+const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
+---
+
+<button
+	class="w-full p-8 md:text-[3rem] text-[2rem] font-thin text-start hover:!opacity-100 hover:underline animate-pulse"
+	id="go-back"
+	dir={locale == "ar" ? "rtl" : "ltr"}
+	onclick="history.back()"
+>
+	<span class="">
+		{
+			locale == "en" ? (
+				<>&larr; Go back to previous page</>
+			) : (
+				<>&rarr; العودة للصفحة السابقة</>
+			)
+		}
+	</span>
+</button>

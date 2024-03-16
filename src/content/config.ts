@@ -1,13 +1,13 @@
 // 1. Import utilities from `astro:content`
-import { z, defineCollection } from 'astro:content';
+import { z, defineCollection } from "astro:content";
 
 // 2. Define a `type` and `schema` for each collection
 const productsCollection = defineCollection({
-	type: 'content',
+	type: "content",
 	schema: ({ image }) =>
 		z.object({
 			title: z.string(),
-			thumbnail: image(),
+			cover: image(),
 			order: z.number(),
 			production_rate: z.number().optional(),
 			model: z.string().optional(),
@@ -16,11 +16,11 @@ const productsCollection = defineCollection({
 		})
 });
 const designsCollection = defineCollection({
-	type: 'content',
+	type: "content",
 	schema: ({ image }) =>
 		z.object({
 			title: z.string(),
-			thumbnail: image(),
+			cover: image(),
 			order: z.number(),
 			production_rate: z.number().optional(),
 			model: z.string().optional(),
@@ -31,6 +31,6 @@ const designsCollection = defineCollection({
 
 // 3. Export a single `collections` object to register your collection(s)
 export const collections = {
-	productss: productsCollection,
+	products: productsCollection,
 	designs: designsCollection
 };

@@ -1,0 +1,45 @@
+---
+export const prerender = true;
+import Goback from "@components/Goback.astro";
+import ProductHead from "@components/ProductHead.astro";
+import ScrollToTop from "@components/ScrollToTop.astro";
+import ContentLayout from "@layouts/ContentLayout.astro";
+
+import Layout from "@layouts/Layout.astro";
+import { getCollection, getEntryBySlug } from "astro:content";
+
+export async function getStaticPaths() {
+	const productEntries = await getCollection("products", ({ slug }) => {
+		return !slug.startsWith("en/");
+	});
+	return productEntries.map((entry) => ({
+		params: { product: entry.slug }
+	}));
+}
+const { product } = Astro.params;
+
+const entry = await getEntryBySlug("products", product);
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title}>
+	<Goback />
+	<div class="w-11/12 p-[2rem] max-w-[1000px] mx-auto overflow-x-auto">
+		<ProductHead
+			title={entry.data.title}
+			name={product}
+			model={entry.data.model || "N/A"}
+			prod_rate={entry.data.production_rate}
+		/>
+	</div>
+	<ScrollToTop />
+
+	<article
+		dir="rtl"
+		class="w-11/12 p-[2rem] max-w-[1000px] mx-auto overflow-x-auto rounded-lg mb-[4rem]"
+	>
+		<ContentLayout>
+			<Content />
+		</ContentLayout>
+	</article>
+</Layout>

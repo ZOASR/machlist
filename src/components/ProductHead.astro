@@ -1,0 +1,59 @@
+---
+import { getLocaleByPath } from "astro:i18n";
+
+interface Props {
+	prod_rate: number | undefined;
+	title: string;
+	name: string;
+	model: string;
+}
+
+const { prod_rate, title, model } = Astro.props;
+const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
+---
+
+{
+	locale == "en" ? (
+		<div
+			dir="ltr"
+			style={{
+				"border-bottom": "10px solid hsla(var(--color-accent), 0.2)"
+			}}
+			class="rounded-xl md:w-max w-full mx-auto py-12 md:px-[10rem] px-4 bg-gradient-to-b from-skin-accent to-skin-accent-1 my-[2rem] text-center"
+		>
+			<h1 dir="ltr" class="text-[4rem] font-bold">
+				{title}
+			</h1>
+			{prod_rate && (
+				<p dir="ltr">
+					Production rate: <span class="font-bold">{prod_rate}</span>{" "}
+					Kg/hr
+				</p>
+			)}
+			<p>
+				Model: <span class="font-bold">{model}</span>
+			</p>
+		</div>
+	) : (
+		<div
+			dir="rtl"
+			style={{
+				"border-bottom": "10px solid hsla(var(--color-accent), 0.2)"
+			}}
+			class="rounded-xl md:w-max w-full mx-auto py-12 md:px-[10rem] px-4 bg-gradient-to-b from-skin-accent to-skin-accent-1 my-[2rem] text-center"
+		>
+			<h1 dir="rtl" class="text-[4rem] font-bold">
+				{title}
+			</h1>
+			{prod_rate && (
+				<p dir="rtl">
+					معدل الإنتاج: <span class="font-bold">{prod_rate}</span>{" "}
+					كجم/ساعة
+				</p>
+			)}
+			<p>
+				موديل: <span class="font-bold">{model}</span>
+			</p>
+		</div>
+	)
+}
