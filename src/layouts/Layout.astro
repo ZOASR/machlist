@@ -16,11 +16,16 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 <html lang={locale}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Machlist" />
+		<meta
+			name="description"
+			content={locale === 'en'
+				? 'Machlist is an Egyptian company established at 2005 in Cairo for machines and production lines.'
+				: 'تأسست شركة " ماك-ليســـت " عام 2005 بالقاهرة وتعمل في مجال ماكينات وخطوط الإنتاج المختلفة'}
+		/>
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Machlist - {title}</title>
+		<title>{locale === 'en' ? 'Machlist' : 'ماك-ليست'} - {title}</title>
 	</head>
 	<body class="text-skin-base" dir={locale === 'en' ? 'ltr' : 'rtl'}>
 		<Header />
