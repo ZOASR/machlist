@@ -1,23 +1,35 @@
 ---
-import type { Tab } from "@utils/utils";
+import { type Tab, getLocaledName } from "@utils/utils";
+import { getCollection } from "astro:content";
 import { getLocaleByPath } from "astro:i18n";
-type Props = {
-	activeId: number;
-	tabs: Tab[];
-	old?: boolean;
-};
-
-const { activeId, tabs, old } = Astro.props;
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
+
+const page = await getCollection("products", ({ data, slug }) => {
+	const urlSlug = Astro.params.product || Astro.params.design || "";
+	const isSlug = slug.split("/")[1] === urlSlug.split("/")[1];
+	const isLocaled = slug.split("/")[0] === locale;
+	return data.nested && isSlug && isLocaled;
+});
+const tabs: Tab[] = page.map((p, idx) => {
+	const tabSlug = p.slug.split("/").pop() || "";
+	return {
+		id: idx + 1,
+		name: {
+			en: getLocaledName(tabSlug, locale),
+			ar: getLocaledName(tabSlug, locale)
+		},
+		slug: tabSlug
+	};
+});
+
+const collection = Astro.params.product || Astro.params.design;
+const activeId = tabs.find((t) => collection?.endsWith(t.slug))?.id;
 ---
 
 <div>
 	<ul class="flex list-none mx-auto justify-center w-max">
 		{
 			tabs.map((tab) => {
-				const tabLink = old
-					? `/${locale}/designs/${locale}${tab.link}`
-					: `/${locale}/products/${locale}${tab.link}`;
 				return (
 					<li
 						class:list={[
@@ -32,7 +44,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 								"5px solid hsl(var(--color-accent-1))"
 						}}
 					>
-						<a href={tabLink}>
+						<a href={`./${tab.slug}`}>
 							{locale == "en" ? tab.name.en : tab.name.ar}
 						</a>
 					</li>
