@@ -1,5 +1,5 @@
 ---
-import { getLocaleByPath } from "astro:i18n";
+import LocaledContent from "./LocaledContent.astro";
 
 interface Props {
 	prod_rate: number | undefined;
@@ -9,11 +9,10 @@ interface Props {
 }
 
 const { prod_rate, title, model } = Astro.props;
-const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
 
-{
-	locale == "en" ? (
+<LocaledContent>
+	<Fragment slot="en">
 		<div
 			dir="ltr"
 			style={{
@@ -24,17 +23,20 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 			<h1 dir="ltr" class="text-[4rem] font-bold">
 				{title}
 			</h1>
-			{prod_rate && (
-				<p dir="ltr">
-					Production rate: <span class="font-bold">{prod_rate}</span>{" "}
-					Kg/hr
-				</p>
-			)}
+			{
+				prod_rate && (
+					<p dir="ltr">
+						Production rate:{" "}
+						<span class="font-bold">{prod_rate}</span> Kg/hr
+					</p>
+				)
+			}
 			<p>
 				Model: <span class="font-bold">{model}</span>
 			</p>
 		</div>
-	) : (
+	</Fragment>
+	<Fragment slot="ar">
 		<div
 			dir="rtl"
 			style={{
@@ -45,15 +47,17 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 			<h1 dir="rtl" class="text-[4rem] font-bold">
 				{title}
 			</h1>
-			{prod_rate && (
-				<p dir="rtl">
-					معدل الإنتاج: <span class="font-bold">{prod_rate}</span>{" "}
-					كجم/ساعة
-				</p>
-			)}
+			{
+				prod_rate && (
+					<p dir="rtl">
+						معدل الإنتاج: <span class="font-bold">{prod_rate}</span>{" "}
+						كجم/ساعة
+					</p>
+				)
+			}
 			<p>
 				موديل: <span class="font-bold">{model}</span>
 			</p>
 		</div>
-	)
-}
+	</Fragment>
+</LocaledContent>

@@ -1,5 +1,6 @@
 ---
 import { getLocaleByPath } from "astro:i18n";
+import LocaledContent from "./LocaledContent.astro";
 
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
@@ -10,13 +11,12 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 	dir={locale == "ar" ? "rtl" : "ltr"}
 	onclick="history.back()"
 >
-	<span class="">
-		{
-			locale == "en" ? (
-				<>&larr; Go back to previous page</>
-			) : (
-				<>&rarr; العودة للصفحة السابقة</>
-			)
-		}
-	</span>
+	<LocaledContent>
+		<Fragment slot="en">
+			<span> &larr; Go back to previous page </span>
+		</Fragment>
+		<Fragment slot="ar">
+			<span> &rarr; العودة للصفحة السابقة </span>
+		</Fragment>
+	</LocaledContent>
 </button>

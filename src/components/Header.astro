@@ -1,42 +1,42 @@
 ---
-import { getLocaleByPath, getRelativeLocaleUrl } from 'astro:i18n';
-import HeaderLink from './HeaderLink.astro';
-import { Icon } from 'astro-icon/components';
-import LanguageSelector from './svelte/LanguageSelector.svelte';
+import { getLocaleByPath, getRelativeLocaleUrl } from "astro:i18n";
+import HeaderLink from "./HeaderLink.astro";
+import { Icon } from "astro-icon/components";
+import LanguageSelector from "./svelte/LanguageSelector.svelte";
 
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 
 // localed
-const productsURL = getRelativeLocaleUrl(locale, 'products');
-const aboutURL = getRelativeLocaleUrl(locale, 'about');
-const contactURL = getRelativeLocaleUrl(locale, 'contact');
-const designsURL = getRelativeLocaleUrl(locale, 'designs');
-const homeURL = getRelativeLocaleUrl(locale, '/');
+const productsURL = getRelativeLocaleUrl(locale, "products");
+const aboutURL = getRelativeLocaleUrl(locale, "about");
+const contactURL = getRelativeLocaleUrl(locale, "contact");
+const designsURL = getRelativeLocaleUrl(locale, "designs");
+const homeURL = getRelativeLocaleUrl(locale, "/");
 const currentPath = Astro.url.pathname;
 
 const items = [
 	{
-		label: 'English',
-		value: 'en',
-		href: currentPath.replace(/\/(en|ar)/g, '/en')
+		label: "English",
+		value: "en",
+		href: currentPath.replace(/\/(en|ar)/g, "/en")
 	},
 	{
-		label: 'العربية',
-		value: 'ar',
-		href: currentPath.replace(/\/(en|ar)/g, '/ar')
+		label: "العربية",
+		value: "ar",
+		href: currentPath.replace(/\/(en|ar)/g, "/ar")
 	}
 ];
 ---
 
 <header
 	class="flex flex-row-reverse gap-8 w-full justify-between items-center p-8 border-b-2 border-skin-base relative shadow-2xl"
-	dir={locale === 'en' ? 'ltr' : 'rtl'}
+	dir={locale === "en" ? "ltr" : "rtl"}
 	id="header"
 >
 	<!-- <img src="/" alt="Machlist logo" /> -->
 
 	{
-		locale === 'en' ? (
+		locale === "en" ? (
 			<>
 				<a href="/en" class="text-[3rem] min-w-max">
 					Machlist
@@ -186,7 +186,7 @@ const items = [
 		);
 	}
 	header::before {
-		content: '';
+		content: "";
 		background-image: url(/grain.png);
 		background-size: contain;
 		filter: brightness(10%);

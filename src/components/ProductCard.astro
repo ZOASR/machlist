@@ -1,6 +1,7 @@
 ---
-import { getLocaleByPath, getRelativeLocaleUrl } from "astro:i18n";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import { Image } from "astro:assets";
+import LocaledContent from "./LocaledContent.astro";
 
 interface Props {
 	title: string;
@@ -10,18 +11,16 @@ interface Props {
 	model?: string;
 }
 const { title, slug, cover, production_rate, model } = Astro.props;
-const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
 
-{
-	locale == "ar" ? (
+<LocaledContent>
+	<Fragment slot="ar">
 		<a
 			href={getRelativeLocaleUrl("ar", slug)}
 			aria-label={title}
 			class="product-card p-8 pb-24 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-4 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
 							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsl(var(--color-neutral))]
-							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsl(var(--color-neutral))] focus:outline-dashed
-							"
+							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsl(var(--color-neutral))] focus:outline-dashed"
 		>
 			<Image
 				class="w-full h-1/2 object-cover rounded-lg"
@@ -31,27 +30,29 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 			<h2 class="text-[2.8rem]" dir="rtl">
 				{title}
 			</h2>
-			{production_rate && (
-				<p class="text-[2.2rem]">
-					معدل الإنتاج:{" "}
-					<span class="underline font-bold">
-						{production_rate} كغ/ساعة
-					</span>
-				</p>
-			)}
+			{
+				production_rate && (
+					<p class="text-[2.2rem]">
+						معدل الإنتاج:{" "}
+						<span class="underline font-bold">
+							{production_rate} كغ/ساعة
+						</span>
+					</p>
+				)
+			}
 
 			<p class="text-[2.2rem]">
 				الموديل: <span class="underline font-bold">{model}</span>
 			</p>
 		</a>
-	) : (
+	</Fragment>
+	<Fragment slot="en">
 		<a
 			href={getRelativeLocaleUrl("en", slug)}
 			aria-label={title}
 			class="product-card p-8 pb-24 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-4 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
 							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsl(var(--color-neutral))]
-							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsl(var(--color-neutral))] focus:outline-dashed
-							"
+							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsl(var(--color-neutral))] focus:outline-dashed"
 		>
 			<Image
 				class="w-full h-1/2 object-cover rounded-lg"
@@ -59,21 +60,23 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 				alt={title}
 			/>
 			<h2 class="text-[2.8rem]">{title}</h2>
-			{production_rate && (
-				<p class="text-[2.2rem]">
-					Production rate:{" "}
-					<span class="underline font-bold">
-						{production_rate} kg/h
-					</span>
-				</p>
-			)}
+			{
+				production_rate && (
+					<p class="text-[2.2rem]">
+						Production rate:{" "}
+						<span class="underline font-bold">
+							{production_rate} kg/h
+						</span>
+					</p>
+				)
+			}
 
 			<p class="text-[2.2rem]">
 				Model: <span class="underline font-bold">{model}</span>
 			</p>
 		</a>
-	)
-}
+	</Fragment>
+</LocaledContent>
 
 <style>
 	.product-card {

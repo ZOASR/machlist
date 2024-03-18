@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 
 import heroImg from "@assets/hero_image.png";
 import { getLocaleByPath } from "astro:i18n";
+import LocaledContent from "@components/LocaledContent.astro";
 
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
@@ -14,12 +15,14 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 		class="h-full grid md:grid-cols-2 md:grid-rows-1 grid-rows-2 gap-6"
 		dir={locale === "en" ? "ltr" : "rtl"}
 	>
-		{
-			locale === "en" ? (
+		<LocaledContent>
+			<Fragment slot="en">
 				<div class="flex flex-col gap-8 justify-center">
 					<h1 class="text-[clamp(5rem,10dvw,10rem)]">
 						We design,
-						<span class="bg-clip-text text-transparent animated-gradient font-bold [text-shadow:_0_2px_0_#fff2]">
+						<span
+							class="bg-clip-text text-transparent animated-gradient font-bold [text-shadow:_0_2px_0_#fff2]"
+						>
 							you profit
 						</span>
 					</h1>
@@ -27,18 +30,20 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 						From design ideas to working production lines. we power
 						your industrial lines and machines
 					</p>
-					<div class="flex gap-8 md:flex-row flex-col w-full md:w-fit text-3xl font-bold">
+					<div
+						class="flex gap-8 md:flex-row flex-col w-full md:w-fit text-3xl font-bold"
+					>
 						<a
 							href="/en/products"
 							class="font-bold animated-gradient group rounded-lg text-center px-8 py-4 text-skin-muted transition-all duration-150
-					hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
-					focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
+				hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
+				focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
 						>
 							See our products{" "}
 							<span
 								class="inline-block invisible opacity-0 transition-all duration-150 scale-0
-						group-hover:scale-100 group-hover:opacity-100 group-hover:visible
-						group-focus:scale-100 group-focus:opacity-100 group-focus:visible"
+					group-hover:scale-100 group-hover:opacity-100 group-hover:visible
+					group-focus:scale-100 group-focus:opacity-100 group-focus:visible"
 							>
 								&rarr;
 							</span>
@@ -46,19 +51,22 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 						<a
 							href="/en/contact"
 							class="px-8 py-4 bg-skin-primary/50 rounded-lg text-center relative transition-all duration-150
-					after:absolute after:bottom-0 after:left-0 after:w-0 after:h-2 after:bg-skin-base after:transition-all after:duration-150 after:border-inherit
-					hover:after:w-full hover:underline hover:bg-skin-primary/80
-					focus:after:w-full focus:underline focus:bg-skin-primary/80"
+				after:absolute after:bottom-0 after:left-0 after:w-0 after:h-2 after:bg-skin-base after:transition-all after:duration-150 after:border-inherit
+				hover:after:w-full hover:underline hover:bg-skin-primary/80
+				focus:after:w-full focus:underline focus:bg-skin-primary/80"
 						>
 							Get in touch
 						</a>
 					</div>
 				</div>
-			) : (
+			</Fragment>
+			<Fragment slot="ar">
 				<div class="flex flex-col gap-8 justify-center">
 					<h1 class="text-[clamp(5rem,10dvw,10rem)]">
 						نحن نصمم,
-						<span class="bg-clip-text text-transparent animated-gradient font-bold [text-shadow:_0_2px_0_#fff2]">
+						<span
+							class="bg-clip-text text-transparent animated-gradient font-bold [text-shadow:_0_2px_0_#fff2]"
+						>
 							أنت تربح
 						</span>
 					</h1>
@@ -66,18 +74,20 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 						من تصميمات إلى خطوط إنتاجية . نحن ندعم كافة أنواع
 						الحلول الصناعية
 					</p>
-					<div class="flex gap-8 md:flex-row-reverse flex-col w-full md:w-fit text-3xl font-bold">
+					<div
+						class="flex gap-8 md:flex-row-reverse flex-col w-full md:w-fit text-3xl font-bold"
+					>
 						<a
 							href="/en/products"
 							class="font-bold animated-gradient group rounded-lg text-center px-8 py-4 text-skin-muted transition-all duration-150
-					hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
-					focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
+							hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
+							focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
 						>
 							منتجاتنا{" "}
 							<span
 								class="inline-block invisible opacity-0 transition-all duration-150 scale-0
-						group-hover:scale-100 group-hover:opacity-100 group-hover:visible
-						group-focus:scale-100 group-focus:opacity-100 group-focus:visible"
+								group-hover:scale-100 group-hover:opacity-100 group-hover:visible
+								group-focus:scale-100 group-focus:opacity-100 group-focus:visible"
 							>
 								&larr;
 							</span>
@@ -85,16 +95,16 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 						<a
 							href="/ar/contact"
 							class="px-8 py-4 bg-skin-primary/50 rounded-lg text-center relative transition-all duration-150
-					after:absolute after:bottom-0 after:left-0 after:w-0 after:h-2 after:bg-skin-base after:transition-all after:duration-150 after:border-inherit
-					hover:after:w-full hover:underline hover:bg-skin-primary/80
-					focus:after:w-full focus:underline focus:bg-skin-primary/80"
+							after:absolute after:bottom-0 after:left-0 after:w-0 after:h-2 after:bg-skin-base after:transition-all after:duration-150 after:border-inherit
+							hover:after:w-full hover:underline hover:bg-skin-primary/80
+							focus:after:w-full focus:underline focus:bg-skin-primary/80"
 						>
 							اتصل بنا
 						</a>
 					</div>
 				</div>
-			)
-		}
+			</Fragment>
+		</LocaledContent>
 
 		<div
 			class="rounded-xl shadow-2xl overflow-clip row-start-1 md:col-start-2"

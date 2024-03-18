@@ -1,0 +1,7 @@
+---
+import { getLocaleByPath } from "astro:i18n";
+
+const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
+---
+
+{locale === "en" ? <slot name="en" /> : <slot name="ar" />}
