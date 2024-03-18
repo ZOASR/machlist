@@ -1,14 +1,14 @@
 ---
-import Arrow from '@components/Arrow.astro';
-import StagerredBoxes from '@components/svelte/StagerredBoxes.svelte';
-import SectionLayout from '@layouts/SectionLayout.astro';
-import { getLocaleByPath } from 'astro:i18n';
+import Arrow from "@components/Arrow.astro";
+import StagerredBoxes from "@components/svelte/StagerredBoxes.svelte";
+import SectionLayout from "@layouts/SectionLayout.astro";
+import { getLocaleByPath } from "astro:i18n";
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
 
 <SectionLayout>
 	{
-		locale === 'en' ? (
+		locale === "en" ? (
 			<>
 				<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
 					Where to start?
@@ -22,12 +22,12 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 							and select the perfect one for your needs
 						</p>
 						<a
-							href="/products"
+							href="/en/products"
 							class="font-bold w-max animated-gradient group rounded-lg text-center px-8 py-4 text-skin-muted transition-all duration-150
 					hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
 					focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
 						>
-							See our products{' '}
+							See our products{" "}
 							<span
 								class="inline-block invisible opacity-0 transition-all duration-150 scale-0
 						group-hover:scale-100 group-hover:opacity-100 group-hover:visible
@@ -37,7 +37,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 							</span>
 						</a>
 					</div>
-					<Arrow dir={locale === 'en' ? 'ltr' : 'rtl'} />
+					<Arrow dir={locale === "en" ? "ltr" : "rtl"} />
 
 					<div class="flex flex-col gap-8 flex-1 items-center justify-center h-full">
 						<p class="text-[3rem]">2. Get in touch</p>
@@ -45,13 +45,13 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 							Contact our sales team
 						</p>
 						<a
-							href="/contact"
-							class="hover:underline w-max bg-skin-primary text-white px-8 py-4 rounded-lg text-center hover:bg-skin-primary/80 transition-all duration-150"
+							href="/en/contact"
+							class="hover:underline w-max bg-skin-primary px-8 py-4 rounded-lg text-center hover:bg-skin-primary/80 transition-all duration-150"
 						>
 							Contact us
 						</a>
 					</div>
-					<Arrow dir={locale === 'en' ? 'ltr' : 'rtl'} />
+					<Arrow dir={locale === "en" ? "ltr" : "rtl"} />
 					<div class="flex-1 flex flex-col gap-8 h-full justify-center">
 						<p class="text-[3rem]">3. Get started</p>
 						<p class="text-skin-muted text-[2rem]">
@@ -75,12 +75,12 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 							المنتج المناسب لك
 						</p>
 						<a
-							href="/products"
+							href="/ar/products"
 							class="font-bold w-max animated-gradient group rounded-lg text-center px-8 py-4 text-skin-muted transition-all duration-150
 					hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
 					focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
 						>
-							تصفح منتجاتنا{' '}
+							تصفح منتجاتنا{" "}
 							<span
 								class="inline-block invisible opacity-0 transition-all duration-150 scale-0
 						group-hover:scale-100 group-hover:opacity-100 group-hover:visible
@@ -90,7 +90,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 							</span>
 						</a>
 					</div>
-					<Arrow dir={locale === 'en' ? 'ltr' : 'rtl'} />
+					<Arrow dir={locale === "en" ? "ltr" : "rtl"} />
 
 					<div class="flex flex-col gap-8 flex-1 items-center justify-center h-full">
 						<p class="text-[3rem]">2. تواصل معنا</p>
@@ -98,13 +98,13 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 							تواصل مع فريق المبيعات لدينا
 						</p>
 						<a
-							href="/contact"
-							class="hover:underline w-max bg-skin-primary text-white px-8 py-4 rounded-lg text-center hover:bg-skin-primary/80 transition-all duration-150"
+							href="/ar/contact"
+							class="hover:underline w-max bg-skin-primary px-8 py-4 rounded-lg text-center hover:bg-skin-primary/80 transition-all duration-150"
 						>
 							تواصل معنا
 						</a>
 					</div>
-					<Arrow dir={locale === 'en' ? 'ltr' : 'rtl'} />
+					<Arrow dir={locale === "en" ? "ltr" : "rtl"} />
 					<div class="flex-1 flex flex-col gap-8 h-full justify-center">
 						<p class="text-[3rem]">3. ابدأ</p>
 						<p class="text-skin-muted text-[2rem]">

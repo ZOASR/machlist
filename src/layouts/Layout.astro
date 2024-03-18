@@ -56,6 +56,17 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 		/* --test: hsl(32, 34%, 50%); */
 	}
 
+	::-moz-selection {
+		/* Code for Firefox */
+		color: hsl(var(--color-accent));
+		background: hsl(var(--color-accent-1));
+	}
+
+	::selection {
+		color: hsl(var(--color-accent));
+		background: hsl(var(--color-accent-1));
+	}
+
 	/* CSS RESETS */
 	html,
 	body,

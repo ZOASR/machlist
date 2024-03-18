@@ -1,0 +1,56 @@
+---
+import { Icon } from "astro-icon/components";
+
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="اتصا بنا">
+	<div
+		class="text-center text-[3rem] min-h-[100dvh] py-[10rem] grid place-content-center"
+		dir="rtl"
+	>
+		<p>
+			للحصول علي منتجات الشركة يمكن التواصل بالمكالمات أو الواتس آب علي
+			الأرقام التالية:
+		</p>
+		<div
+			dir="ltr"
+			class="hover:underline flex gap-4 justify-center items-center text-skin-accent-1"
+		>
+			<Icon name="ic:baseline-whatsapp" />
+			<a
+				href="https://wa.me/201000207471"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				+20 100 020 7471
+			</a>
+		</div>
+		<div
+			dir="ltr"
+			class="hover:underline flex gap-4 justify-center items-center text-skin-accent-1"
+		>
+			<Icon name="ic:baseline-whatsapp" />
+			<a
+				href="https://wa.me/201150894307"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				+20 115 089 4307
+			</a>
+		</div>
+		<br />
+		أو المراسلات علي الإيميل التالي:
+		<br />
+		<span
+			dir="ltr"
+			class="flex gap-4 justify-center items-center text-skin-accent-1"
+		>
+			<Icon name="ic:twotone-email" />
+			<a href="mailto:cadshop@cadsoul.com" class="hover:underline">
+				cadshop@cadsoul.com
+			</a>
+		</span>
+		<br />
+	</div>
+</Layout>
