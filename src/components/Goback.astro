@@ -5,18 +5,22 @@ import LocaledContent from "./LocaledContent.astro";
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
 
-<button
-	class="w-full p-8 md:text-[3rem] text-[2rem] font-thin text-start hover:!opacity-100 hover:underline animate-pulse"
-	id="go-back"
+<div
+	class="w-full p-8 md:text-[3rem] text-[2rem] text-start"
 	dir={locale == "ar" ? "rtl" : "ltr"}
-	onclick="history.back()"
 >
-	<LocaledContent>
-		<Fragment slot="en">
-			<span> &larr; Go back to previous page </span>
-		</Fragment>
-		<Fragment slot="ar">
-			<span> &rarr; العودة للصفحة السابقة </span>
-		</Fragment>
-	</LocaledContent>
-</button>
+	<button
+		class="w-max p-8hover:!opacity-100 hover:underline hover:!opacity-100 animate-pulse"
+		id="go-back"
+		onclick="history.back()"
+	>
+		<LocaledContent>
+			<Fragment slot="en">
+				<span> &larr; Go back to previous page </span>
+			</Fragment>
+			<Fragment slot="ar">
+				<span> &rarr; العودة للصفحة السابقة </span>
+			</Fragment>
+		</LocaledContent>
+	</button>
+</div>
