@@ -3,12 +3,13 @@ import LocaledContent from "./LocaledContent.astro";
 
 interface Props {
 	prod_rate: number | undefined;
+	prod_unit: "Kg/h" | "m/min" | "كغ/ساعة" | "متر/دقيقة" | undefined;
 	title: string;
 	name: string;
 	model: string;
 }
 
-const { prod_rate, title, model } = Astro.props;
+const { prod_rate, prod_unit, title, model } = Astro.props;
 ---
 
 <LocaledContent>
@@ -27,7 +28,8 @@ const { prod_rate, title, model } = Astro.props;
 				prod_rate && (
 					<p dir="ltr" class="text-[2rem]">
 						Production rate:{" "}
-						<span class="font-bold">{prod_rate}</span> Kg/hr
+						<span class="font-bold">{prod_rate}</span>{" "}
+						{prod_unit ? prod_unit : "Kg/h"}
 					</p>
 				)
 			}
@@ -51,7 +53,7 @@ const { prod_rate, title, model } = Astro.props;
 				prod_rate && (
 					<p dir="rtl" class="text-[2rem]">
 						معدل الإنتاج: <span class="font-bold">{prod_rate}</span>{" "}
-						كجم/ساعة
+						{prod_unit ? prod_unit : "كغ/ساعة"}
 					</p>
 				)
 			}

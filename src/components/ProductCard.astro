@@ -8,9 +8,11 @@ interface Props {
 	slug: string;
 	cover: ImageMetadata;
 	production_rate?: number;
+	production_unit?: "Kg/h" | "m/min" | "كغ/ساعة" | "متر/دقيقة";
 	model?: string;
 }
-const { title, slug, cover, production_rate, model } = Astro.props;
+const { title, slug, cover, production_rate, production_unit, model } =
+	Astro.props;
 ---
 
 <LocaledContent>
@@ -35,7 +37,8 @@ const { title, slug, cover, production_rate, model } = Astro.props;
 					<p class="text-[2.2rem] text-center">
 						معدل الإنتاج:{" "}
 						<span class="underline font-bold">
-							{production_rate} كغ/ساعة
+							{production_rate}{" "}
+							{production_unit ? production_unit : "كغ/ساعة"}
 						</span>
 					</p>
 				)
@@ -67,7 +70,8 @@ const { title, slug, cover, production_rate, model } = Astro.props;
 					<p class="text-[2.2rem]">
 						Production rate:{" "}
 						<span class="underline font-bold">
-							{production_rate} kg/h
+							{production_rate}{" "}
+							{production_unit ? production_unit : "Kg/h"}
 						</span>
 					</p>
 				)
