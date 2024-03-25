@@ -10,6 +10,14 @@ const productsCollection = defineCollection({
 			cover: image(),
 			order: z.number(),
 			production_rate: z.number().optional(),
+			production_unit: z
+				.union([
+					z.literal("Kg/h"),
+					z.literal("m/min"),
+					z.literal("كغ/ساعة"),
+					z.literal("متر/دقيقة")
+				])
+				.optional(),
 			model: z.string().optional(),
 			nested: z.boolean().optional(),
 			isLine: z.boolean().optional()
