@@ -18,21 +18,21 @@ const { title, slug, cover, production_rate, model } = Astro.props;
 		<a
 			href={getRelativeLocaleUrl("ar", slug)}
 			aria-label={title}
-			class="product-card p-8 pb-24 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-4 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
-							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsl(var(--color-neutral))]
-							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsl(var(--color-neutral))] focus:outline-dashed"
+			class="product-card text-center p-8 pb-24 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-4 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
+							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsla(var(--color-neutral),0.3)] hover:rounded-lg
+							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsla(var(--color-neutral),0.3)] focus:rounded-lg focus:outline-dashed"
 		>
 			<Image
-				class="w-full h-1/2 object-cover rounded-lg"
+				class="w-full h-[15rem] object-cover rounded-lg"
 				src={cover}
 				alt={title}
 			/>
-			<h2 class="text-[3.5rem]" dir="rtl">
+			<h2 class="text-[clamp(1.5rem,5dvw,3rem)] font-extrabold" dir="rtl">
 				{title}
 			</h2>
 			{
 				production_rate && (
-					<p class="text-[2.2rem]">
+					<p class="text-[2.2rem] text-center">
 						معدل الإنتاج:{" "}
 						<span class="underline font-bold">
 							{production_rate} كغ/ساعة
@@ -50,16 +50,18 @@ const { title, slug, cover, production_rate, model } = Astro.props;
 		<a
 			href={getRelativeLocaleUrl("en", slug)}
 			aria-label={title}
-			class="product-card p-8 pb-24 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-4 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
-							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsl(var(--color-neutral))]
-							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsl(var(--color-neutral))] focus:outline-dashed"
+			class="product-card text-center p-8 pb-24 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-4 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
+							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsla(var(--color-neutral),0.3)] hover:rounded-lg
+							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsla(var(--color-neutral),0.3)] focus:rounded-lg focus:outline-dashed"
 		>
 			<Image
-				class="w-full h-1/2 object-cover rounded-lg"
+				class="w-full h-[15rem] object-cover rounded-lg"
 				src={cover}
 				alt={title}
 			/>
-			<h2 class="text-[3.5rem]">{title}</h2>
+			<h2 class="text-[clamp(1.5rem,5dvw,3rem)] font-extrabold">
+				{title}
+			</h2>
 			{
 				production_rate && (
 					<p class="text-[2.2rem]">

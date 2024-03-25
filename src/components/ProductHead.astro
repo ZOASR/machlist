@@ -25,13 +25,13 @@ const { prod_rate, title, model } = Astro.props;
 			</h1>
 			{
 				prod_rate && (
-					<p dir="ltr">
+					<p dir="ltr" class="text-[2rem]">
 						Production rate:{" "}
 						<span class="font-bold">{prod_rate}</span> Kg/hr
 					</p>
 				)
 			}
-			<p>
+			<p class="text-[2rem]">
 				Model: <span class="font-bold">{model}</span>
 			</p>
 		</div>
@@ -49,13 +49,13 @@ const { prod_rate, title, model } = Astro.props;
 			</h1>
 			{
 				prod_rate && (
-					<p dir="rtl">
+					<p dir="rtl" class="text-[2rem]">
 						معدل الإنتاج: <span class="font-bold">{prod_rate}</span>{" "}
 						كجم/ساعة
 					</p>
 				)
 			}
-			<p>
+			<p class="text-[2rem]">
 				موديل: <span class="font-bold">{model}</span>
 			</p>
 		</div>

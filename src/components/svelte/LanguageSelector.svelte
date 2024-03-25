@@ -68,7 +68,7 @@
 		<slot />
 	</Select.Trigger>
 	<Select.Content
-		class="rounded-xl border-2 border-skin-primary p-2 space-y-4 text-white shadow-xl outline-none bg-skin-neutral"
+		class="rounded-xl p-2 space-y-4 text-white shadow-xl outline-none bg-skin-neutral"
 		transition={fadeAndScale}
 		transitionConfig={{ duration: 100, easing: quintInOut }}
 		style="transform-origin: top center;"
