@@ -10,7 +10,6 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 const productsURL = getRelativeLocaleUrl(locale, "products");
 const aboutURL = getRelativeLocaleUrl(locale, "about");
 const contactURL = getRelativeLocaleUrl(locale, "contact");
-const designsURL = getRelativeLocaleUrl(locale, "designs");
 const homeURL = getRelativeLocaleUrl(locale, "/");
 const currentPath = Astro.url.pathname;
 
@@ -58,15 +57,6 @@ const items = [
 						<span class="flex gap-2">
 							<Icon name="ic:twotone-shopping-cart" />
 							Products
-						</span>
-					</HeaderLink>
-					<HeaderLink
-						highlighted={currentPath.includes(designsURL)}
-						link={designsURL}
-					>
-						<span class="flex gap-2">
-							<Icon name="ic:twotone-design-services" />
-							Designs
 						</span>
 					</HeaderLink>
 					<HeaderLink
@@ -123,15 +113,6 @@ const items = [
 						<span class="flex gap-2">
 							<Icon name="ic:twotone-shopping-cart" />
 							منتجاتنا
-						</span>
-					</HeaderLink>
-					<HeaderLink
-						highlighted={currentPath.includes(designsURL)}
-						link={designsURL}
-					>
-						<span class="flex gap-2">
-							<Icon name="ic:twotone-design-services" />
-							تصميمات
 						</span>
 					</HeaderLink>
 					<HeaderLink
