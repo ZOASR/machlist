@@ -4,7 +4,7 @@
 	article img {
 		width: 100%;
 		max-width: fit-content;
-		margin: 0 auto;
+		margin: 1.5rem auto;
 		object-fit: cover;
 		height: auto;
 		display: block;
@@ -16,11 +16,7 @@
 		box-shadow: 0 0 20px hsla(var(--color-neutral), 0.4);
 		font-size: 120%;
 		text-shadow: 0 0 10px hsla(var(--color-neutral), 0.3);
-		background: linear-gradient(
-			225deg,
-			hsla(var(--color-primary), 0.5),
-			transparent
-		);
+		background: transparent;
 	}
 
 	article li {
@@ -43,7 +39,7 @@
 	article table,
 	article th,
 	article td {
-		border: 2px solid hsl(var(--text-color-base));
+		border: 2px solid hsl(var(--color-text-base));
 		border-collapse: collapse;
 	}
 	article th {
@@ -68,9 +64,12 @@
 	article h2,
 	article h3 {
 		margin: 2rem 0;
-		background: linear-gradient(0deg, hsl(var(--color-primary)), #fff0);
-		filter: drop-shadow(0 0 5px hsl(var(--color-primary)));
-		padding: 0 2rem;
+		background: linear-gradient(
+			0deg,
+			hsla(var(--color-accent-1), 0.8),
+			hsla(var(--color-primary), 0.3)
+		);
+		padding: 1rem 2rem;
 		border-radius: 5px;
 	}
 
@@ -94,7 +93,7 @@
 		text-align: center;
 		margin: 0 auto;
 		width: max-content;
-		color: hsl(var(--text-color-base));
+		color: hsl(var(--color-text-base));
 		font-weight: lighter;
 		text-shadow: 0 0 10px hsl(var(--color-primary));
 		border-end-end-radius: 5px;
@@ -110,7 +109,7 @@
 		text-align: center;
 		color: hsl(var(--color-primary));
 		font-weight: bold;
-		text-shadow: 0 0 10px hsl(var(--text-color-base));
+		text-shadow: 0 0 10px hsl(var(--color-text-base));
 	}
 	article hr {
 		width: 80%;
