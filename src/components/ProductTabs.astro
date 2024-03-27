@@ -33,7 +33,7 @@ const activeId = tabs.find((t) => collection?.endsWith(t.slug))?.id;
 				return (
 					<li
 						class:list={[
-							"p-4 rounded-t-lg font-bold",
+							"p-4 rounded-t-lg font-bold hover:bg-gradient-to-b hover:from-skin-accent/30 hover:to-skin-accent-1/30 transition-all duration-150",
 							{
 								"bg-gradient-to-b from-skin-accent to-skin-accent-1 underline ":
 									tab.id == activeId
