@@ -1,0 +1,11 @@
+---
+title: درفيل مقاطع الصاج
+model: RF011
+cover: "@assets/product_thumbs/roll-former.jpg"
+order: 6
+isLine: false
+nested: false
+---
+import ProductTabs from "@components/ProductTabs.astro";
+
+<ProductTabs />
