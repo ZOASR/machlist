@@ -6,7 +6,10 @@ import fs from "fs/promises";
 const { name, titleen, titlear, model, order, isLine } = yargs(
 	hideBin(process.argv)
 )
-	.demand(["name", "titleen", "titlear", "model", "order", "isLine"])
+	.demand(["name", "titleen", "titlear", "model", "order"])
+	.option("isLine", {
+		demandOption: false
+	})
 	.parse();
 
 const contentEn = `---
@@ -14,7 +17,7 @@ title: ${titleen}
 model: ${model}
 cover: "@assets/product_thumbs/${name}.jpg"
 order: ${order}
-isLine: ${isLine}
+isLine: ${isLine ? isLine : "false"}
 nested: false
 ---
 import ProductTabs from "@components/ProductTabs.astro";
@@ -26,7 +29,7 @@ title: ${titlear}
 model: ${model}
 cover: "@assets/product_thumbs/${name}.jpg"
 order: ${order}
-isLine: ${isLine}
+isLine: ${isLine ? isLine : "false"}
 nested: false
 ---
 import ProductTabs from "@components/ProductTabs.astro";
@@ -38,7 +41,7 @@ title: ${titleen}
 model: ${model}
 cover: "@assets/product_thumbs/${name}.jpg"
 order: ${order}
-isLine: ${isLine}
+isLine: ${isLine ? isLine : "false"}
 nested: true
 ---
 
@@ -51,7 +54,7 @@ title: ${titlear}
 model: ${model}
 cover: "@assets/product_thumbs/${name}.jpg"
 order: ${order}
-isLine: ${isLine}
+isLine: ${isLine ? isLine : "false"}
 nested: true
 ---
 
@@ -83,17 +86,22 @@ const files = [
 	...contentBaseUrlsAr,
 	...contentBaseUrlsEn,
 	thumbUrl,
-	articleUrl,
 	baseFilesUrlAr,
 	baseFilesUrlEn
 ];
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const directories = [
+	articleUrl,
+	...Array.from(
+		new Set(files.map((x) => x.split("/").slice(0, -1).join("/")))
+	).filter((x) => x.includes(name))
+];
 
 (async function () {
-	for (const file of files) {
+	// make files and directories
+	for (const dir of directories) {
 		try {
-			await fs.mkdir(file.split("/").slice(0, -1).join("/"), {
+			await fs.mkdir(dir, {
 				recursive: true
 			});
 		} catch (error) {
@@ -103,8 +111,17 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 	for (const file of files) {
 		await fs.writeFile(file, "");
 	}
-	await sleep(5000);
-	for (const file of files) {
-		await fs.unlink(file);
+
+	// write content
+	for (const file of contentBaseUrlsAr) {
+		await fs.writeFile(file, contentNestedAr);
 	}
+	for (const file of contentBaseUrlsEn) {
+		await fs.writeFile(file, contentNestedEn);
+	}
+	await fs.writeFile(baseFilesUrlAr, contentAr);
+	await fs.writeFile(baseFilesUrlEn, contentEn);
 })();
+
+// Usage :
+// pnpm run create:machine -- --name=[name] --titleen=[titleen] --titlear=[titlear] --model=[model] --order=[order] --isLine=[isLine]
