@@ -9,14 +9,16 @@
 		height: auto;
 		display: block;
 		border-radius: 10px;
-		border: 2px solid hsl(var(--color-neutral));
+		border: 3px solid hsl(var(--color-neutral));
+
+		@apply shadow-xl;
 	}
 	article {
 		text-align: start;
-		box-shadow: 0 0 20px hsla(var(--color-neutral), 0.4);
 		font-size: 120%;
+		border: 2px solid hsl(var(--color-neutral));
 		text-shadow: 0 0 10px hsla(var(--color-neutral), 0.3);
-		background: transparent;
+		background: linear-gradient(hsl(var(--color-accent)), #fff0);
 	}
 
 	article li {

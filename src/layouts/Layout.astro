@@ -29,7 +29,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 	</head>
 	<body class="text-skin-base" dir={locale === "en" ? "ltr" : "rtl"}>
 		<Header />
-		<main>
+		<main class="bg-gradient-to-br from-skin-primary to-white">
 			<slot />
 		</main>
 		<Footer />
@@ -44,7 +44,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 		--color-secondary: 0, 0%, 30%; /* hsl(0, 0%, 30%) */
 		--color-accent: 51, 100%, 50%; /* hsl(51, 80%, 50%) */
 		--color-accent-1: 12, 100%, 50%; /* hsl(12, 100%, 50%) */
-		--color-accent-2: 49, 90%, 40%; /* hsl(49, 90%, 40%) */
+		--color-accent-2: 49, 90%, 40%; /* hsl(49, 90%, 50%) */
 		--color-accent-3: 145, 63%, 49%; /* hsl(145, 63%, 49%) */
 		--color-background: 0, 0%, 95%; /* hsl(0, 0%, 95%) */
 		--color-purple: 277, 70%, 35%; /* hsl(277, 70%, 35%) */
