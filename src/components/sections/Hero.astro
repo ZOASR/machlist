@@ -5,6 +5,8 @@ import { Image } from "astro:assets";
 import heroImg from "@assets/hero_image.png";
 import { getLocaleByPath } from "astro:i18n";
 import LocaledContent from "@components/LocaledContent.astro";
+import ContactUsButton from "@components/ContactUsButton.astro";
+import SeeProductsButton from "@components/SeeProductsButton.astro";
 
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 ---
@@ -33,30 +35,8 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 					<div
 						class="flex gap-8 md:flex-row flex-col w-full md:w-fit text-3xl font-bold"
 					>
-						<a
-							href="/en/products"
-							class="font-bold animated-gradient group rounded-lg text-center px-8 py-4 text-skin-muted transition-all duration-150
-				hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
-				focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
-						>
-							See our products{" "}
-							<span
-								class="inline-block invisible opacity-0 transition-all duration-150 scale-0
-					group-hover:scale-100 group-hover:opacity-100 group-hover:visible
-					group-focus:scale-100 group-focus:opacity-100 group-focus:visible"
-							>
-								&rarr;
-							</span>
-						</a>
-						<a
-							href="/en/contact"
-							class="px-8 py-4 bg-skin-primary/50 rounded-lg text-center relative transition-all duration-150
-				after:absolute after:bottom-0 after:left-0 after:w-0 after:h-2 after:bg-skin-base after:transition-all after:duration-150 after:border-inherit
-				hover:after:w-full hover:underline hover:bg-skin-primary/80
-				focus:after:w-full focus:underline focus:bg-skin-primary/80"
-						>
-							Get in touch
-						</a>
+						<SeeProductsButton />
+						<ContactUsButton />
 					</div>
 				</div>
 			</Fragment>
@@ -77,30 +57,8 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 					<div
 						class="flex gap-8 md:flex-row-reverse flex-col w-full md:w-fit text-3xl font-bold"
 					>
-						<a
-							href="/en/products"
-							class="font-bold animated-gradient group rounded-lg text-center px-8 py-4 text-skin-muted transition-all duration-150
-							hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
-							focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
-						>
-							منتجاتنا{" "}
-							<span
-								class="inline-block invisible opacity-0 transition-all duration-150 scale-0
-								group-hover:scale-100 group-hover:opacity-100 group-hover:visible
-								group-focus:scale-100 group-focus:opacity-100 group-focus:visible"
-							>
-								&larr;
-							</span>
-						</a>
-						<a
-							href="/ar/contact"
-							class="px-8 py-4 bg-skin-primary/50 rounded-lg text-center relative transition-all duration-150
-							after:absolute after:bottom-0 after:left-0 after:w-0 after:h-2 after:bg-skin-base after:transition-all after:duration-150 after:border-inherit
-							hover:after:w-full hover:underline hover:bg-skin-primary/80
-							focus:after:w-full focus:underline focus:bg-skin-primary/80"
-						>
-							اتصل بنا
-						</a>
+						<SeeProductsButton />
+						<ContactUsButton />
 					</div>
 				</div>
 			</Fragment>
@@ -119,7 +77,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 	</div>
 </SectionLayout>
 
-<style>
+<style is:global>
 	#hero-bg {
 		position: absolute;
 		inset: 0;

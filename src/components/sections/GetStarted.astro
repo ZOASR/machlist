@@ -1,6 +1,8 @@
 ---
 import Arrow from "@components/Arrow.astro";
+import ContactUsButton from "@components/ContactUsButton.astro";
 import LocaledContent from "@components/LocaledContent.astro";
+import SeeProductsButton from "@components/SeeProductsButton.astro";
 import StagerredBoxes from "@components/svelte/StagerredBoxes.svelte";
 import SectionLayout from "@layouts/SectionLayout.astro";
 ---
@@ -23,21 +25,7 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 						Browse over 50 machine designs and production lines and
 						select the perfect one for your needs
 					</p>
-					<a
-						href="/en/products"
-						class="font-bold w-max animated-gradient group rounded-lg text-center px-8 py-4 text-skin-muted transition-all duration-150
-				hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
-				focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
-					>
-						See our products{" "}
-						<span
-							class="inline-block invisible opacity-0 transition-all duration-150 scale-0
-					group-hover:scale-100 group-hover:opacity-100 group-hover:visible
-					group-focus:scale-100 group-focus:opacity-100 group-focus:visible"
-						>
-							&rarr;
-						</span>
-					</a>
+					<SeeProductsButton />
 				</div>
 				<Arrow dir="ltr" />
 
@@ -48,12 +36,7 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 					<p class="text-skin-muted text-[2rem]">
 						Contact our sales team
 					</p>
-					<a
-						href="/en/contact"
-						class="hover:underline w-max bg-skin-primary px-8 py-4 rounded-lg text-center hover:bg-skin-primary/80 transition-all duration-150 shadow-md hover:shadow-lg"
-					>
-						Contact us
-					</a>
+					<ContactUsButton />
 				</div>
 				<Arrow dir="ltr" />
 				<div class="flex-1 flex flex-col gap-8 h-full justify-center">
@@ -81,21 +64,7 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 						تصفح من بين أكثر من 50 تصميم و خط إنتاج و اختر المنتج
 						المناسب لك
 					</p>
-					<a
-						href="/ar/products"
-						class="font-bold w-max animated-gradient group rounded-lg text-center px-8 py-4 text-skin-muted transition-all duration-150
-				hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base
-				focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
-					>
-						تصفح منتجاتنا{" "}
-						<span
-							class="inline-block invisible opacity-0 transition-all duration-150 scale-0
-					group-hover:scale-100 group-hover:opacity-100 group-hover:visible
-					group-focus:scale-100 group-focus:opacity-100 group-focus:visible"
-						>
-							&larr;
-						</span>
-					</a>
+					<SeeProductsButton />
 				</div>
 				<Arrow dir="rtl" />
 
@@ -106,12 +75,7 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 					<p class="text-skin-muted text-[2rem]">
 						تواصل مع فريق المبيعات لدينا
 					</p>
-					<a
-						href="/ar/contact"
-						class="hover:underline w-max bg-skin-primary px-8 py-4 rounded-lg text-center hover:bg-skin-primary/80 transition-all duration-150 shadow-md hover:shadow-lg"
-					>
-						تواصل معنا
-					</a>
+					<ContactUsButton />
 				</div>
 				<Arrow dir="rtl" />
 				<div class="flex-1 flex flex-col gap-8 h-full justify-center">
