@@ -14,8 +14,10 @@ const productsCollection = defineCollection({
 				.union([
 					z.literal("Kg/h"),
 					z.literal("m/min"),
+					z.literal("pieces/min"),
 					z.literal("كغ/ساعة"),
-					z.literal("متر/دقيقة")
+					z.literal("متر/دقيقة"),
+					z.literal("قطعة/دقيقة")
 				])
 				.optional(),
 			model: z.string().optional(),
