@@ -7,7 +7,8 @@
 		"start": "astro dev",
 		"build": "astro check && astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"create:machine": "node ./scripts/create-machine.mjs "
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.5.6",
@@ -28,9 +29,11 @@
 		"typescript": "^5.4.2"
 	},
 	"devDependencies": {
+		"@types/yargs": "^17.0.32",
 		"prettier": "^3.2.5",
 		"prettier-plugin-astro": "^0.13.0",
 		"prettier-plugin-tailwindcss": "^0.5.12",
-		"sass": "^1.71.1"
+		"sass": "^1.71.1",
+		"yargs": "^17.7.2"
 	}
 }
