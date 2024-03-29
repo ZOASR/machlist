@@ -8,7 +8,13 @@ interface Props {
 	slug: string;
 	cover: ImageMetadata;
 	production_rate?: number;
-	production_unit?: "Kg/h" | "m/min" | "كغ/ساعة" | "متر/دقيقة";
+	production_unit?:
+		| "Kg/h"
+		| "m/min"
+		| "كغ/ساعة"
+		| "متر/دقيقة"
+		| "pieces/min"
+		| "قطعة/دقيقة";
 	model?: string;
 }
 const { title, slug, cover, production_rate, production_unit, model } =
@@ -20,12 +26,12 @@ const { title, slug, cover, production_rate, production_unit, model } =
 		<a
 			href={getRelativeLocaleUrl("ar", slug)}
 			aria-label={title}
-			class="product-card text-center p-8 pb-24 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-4 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
+			class="product-card hover:ring-2 focus:ring-2 ring-skin-neutral/50 text-center p-8 pb-24 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-10 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
 							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsla(var(--color-neutral),0.3)] hover:rounded-lg
 							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsla(var(--color-neutral),0.3)] focus:rounded-lg focus:outline-dashed"
 		>
 			<Image
-				class="w-full h-[15rem] object-cover rounded-lg"
+				class="w-full h-1/2 max-h-[30rem] object-cover rounded-lg"
 				src={cover}
 				alt={title}
 			/>
@@ -34,9 +40,9 @@ const { title, slug, cover, production_rate, production_unit, model } =
 			</h2>
 			{
 				production_rate && (
-					<p class="text-[2.2rem] text-center">
+					<p class="text-center text-skin-muted text-nowrap">
 						معدل الإنتاج:{" "}
-						<span class="underline font-bold">
+						<span class="font-bold bg-skin-neutral p-2 rounded-lg text-skin-accent shadow-lg">
 							{production_rate}{" "}
 							{production_unit ? production_unit : "كغ/ساعة"}
 						</span>
@@ -44,8 +50,11 @@ const { title, slug, cover, production_rate, production_unit, model } =
 				)
 			}
 
-			<p class="text-[2.2rem]">
-				الموديل: <span class="underline font-bold">{model}</span>
+			<p class="text-skin-muted">
+				الموديل: <span
+					class="font-bold bg-skin-neutral px-8 py-2 rounded-lg text-skin-accent shadow-lg"
+					>{model}</span
+				>
 			</p>
 		</a>
 	</Fragment>
@@ -53,12 +62,12 @@ const { title, slug, cover, production_rate, production_unit, model } =
 		<a
 			href={getRelativeLocaleUrl("en", slug)}
 			aria-label={title}
-			class="product-card text-center p-8 pb-24 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-4 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
+			class="product-card hover:ring-2 focus:ring-2 ring-skin-neutral/50 text-center p-8 pb-24 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-10 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
 							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsla(var(--color-neutral),0.3)] hover:rounded-lg
 							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsla(var(--color-neutral),0.3)] focus:rounded-lg focus:outline-dashed"
 		>
 			<Image
-				class="w-full h-[15rem] object-cover rounded-lg"
+				class="w-full h-1/2 max-h-[30rem] object-cover rounded-lg"
 				src={cover}
 				alt={title}
 			/>
@@ -67,9 +76,9 @@ const { title, slug, cover, production_rate, production_unit, model } =
 			</h2>
 			{
 				production_rate && (
-					<p class="text-[2.2rem]">
+					<p class="text-center text-skin-muted text-nowrap">
 						Production rate:{" "}
-						<span class="underline font-bold">
+						<span class="font-bold bg-skin-neutral p-2 rounded-lg text-skin-accent shadow-lg">
 							{production_rate}{" "}
 							{production_unit ? production_unit : "Kg/h"}
 						</span>
@@ -77,8 +86,11 @@ const { title, slug, cover, production_rate, production_unit, model } =
 				)
 			}
 
-			<p class="text-[2.2rem]">
-				Model: <span class="underline font-bold">{model}</span>
+			<p class="text-skin-muted">
+				Model: <span
+					class="font-bold bg-skin-neutral px-8 py-2 rounded-lg text-skin-accent shadow-lg"
+					>{model}</span
+				>
 			</p>
 		</a>
 	</Fragment>
