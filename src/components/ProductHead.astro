@@ -28,15 +28,19 @@ const { prod_rate, prod_unit, title, model } = Astro.props;
 			</h1>
 			{
 				prod_rate && (
-					<p dir="ltr" class="text-[2rem]">
+					<p dir="ltr" class="text-[2rem] my-8">
 						Production rate:{" "}
-						<span class="font-bold">{prod_rate}</span>{" "}
-						{prod_unit ? prod_unit : "Kg/h"}
+						<span class="font-bold bg-skin-neutral py-2 px-4 text-skin-accent rounded-lg shadow-lg">
+							{prod_rate} {prod_unit ? prod_unit : "Kg/h"}
+						</span>
 					</p>
 				)
 			}
-			<p class="text-[2rem]">
-				Model: <span class="font-bold">{model}</span>
+			<p class="text-[2rem] mt-8">
+				Model: <span
+					class="font-bold bg-skin-neutral py-2 px-4 text-skin-accent rounded-lg shadow-lg"
+					>{model}</span
+				>
 			</p>
 		</div>
 	</Fragment>
@@ -55,14 +59,19 @@ const { prod_rate, prod_unit, title, model } = Astro.props;
 			</h1>
 			{
 				prod_rate && (
-					<p dir="rtl" class="text-[2rem]">
-						معدل الإنتاج: <span class="font-bold">{prod_rate}</span>{" "}
-						{prod_unit ? prod_unit : "كغ/ساعة"}
+					<p dir="rtl" class="text-[2rem] mt-8">
+						معدل الإنتاج:{" "}
+						<span class="font-bold bg-skin-neutral py-2 px-4 text-skin-accent rounded-lg shadow-lg">
+							{prod_rate} {prod_unit ? prod_unit : "كغ/ساعة"}
+						</span>
 					</p>
 				)
 			}
-			<p class="text-[2rem]">
-				موديل: <span class="font-bold">{model}</span>
+			<p class="text-[2rem] mt-8">
+				موديل: <span
+					class="font-bold bg-skin-neutral py-2 px-4 text-skin-accent rounded-lg shadow-lg"
+					>{model}</span
+				>
 			</p>
 		</div>
 	</Fragment>
