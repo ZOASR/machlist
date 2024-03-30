@@ -29,7 +29,7 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 	</head>
 	<body class="text-skin-base" dir={locale === "en" ? "ltr" : "rtl"}>
 		<Header />
-		<main class="bg-gradient-to-br from-skin-primary to-white">
+		<main class="relative bg-gradient-to-br from-skin-primary to-white">
 			<slot />
 		</main>
 		<Footer />

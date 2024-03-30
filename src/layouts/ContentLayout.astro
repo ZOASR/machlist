@@ -102,11 +102,17 @@
 		color: hsl(var(--color-text-base));
 		font-weight: lighter;
 		text-shadow: 0 0 10px hsl(var(--color-primary));
-		border-end-end-radius: 5px;
+		border-radius: 5px;
 		padding: 0 2rem;
 		font-size: 80%;
 		border-end-start-radius: 5px;
-		background: linear-gradient(0deg, hsl(var(--color-primary)), #fff0);
+		background: linear-gradient(
+			0deg,
+			hsl(var(--color-accent-1)),
+			hsl(var(--color-primary))
+		);
+
+		@apply shadow-xl;
 	}
 	p:has(img) + p:has(em) {
 		margin-top: -2rem;
