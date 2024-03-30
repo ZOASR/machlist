@@ -3,7 +3,14 @@ import LocaledContent from "./LocaledContent.astro";
 
 interface Props {
 	prod_rate: number | undefined;
-	prod_unit: "Kg/h" | "m/min" | "كغ/ساعة" | "متر/دقيقة" | undefined;
+	prod_unit:
+		| "Kg/h"
+		| "m/min"
+		| "pieces/min"
+		| "كغ/ساعة"
+		| "متر/دقيقة"
+		| "قطعة/دقيقة"
+		| undefined;
 	title: string;
 	name: string;
 	model: string;
