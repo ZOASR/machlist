@@ -28,12 +28,8 @@ const products = await getCollection(
 			.map((product) => {
 				return (
 					<ProductCard
-						title={product.data.title}
-						model={product.data.model}
-						production_rate={product.data.production_rate}
-						production_unit={product.data.production_unit}
-						cover={product.data.cover}
-						slug={`/${collection == "products" ? "products" : "designs"}/${product.slug}`}
+						data={product.data}
+						slug={`/products/${product.slug}`}
 					/>
 				);
 			})

@@ -18,7 +18,7 @@ const { title, cover, production_rate, production_unit, model, isLine } = data;
 		<a
 			href={getRelativeLocaleUrl("ar", slug)}
 			aria-label={title}
-			class="product-card hover:ring-2 focus:ring-2 ring-skin-neutral/50 text-center p-8 pb-24 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-10 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
+			class="product-card hover:ring-2 focus:ring-2 ring-skin-neutral/50 text-start p-8 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-10 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
 							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsla(var(--color-neutral),0.3)] hover:rounded-lg
 							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsla(var(--color-neutral),0.3)] focus:rounded-lg focus:outline-dashed"
 		>
@@ -32,7 +32,7 @@ const { title, cover, production_rate, production_unit, model, isLine } = data;
 			</h2>
 			{
 				production_rate && (
-					<p class="text-center text-skin-muted text-nowrap">
+					<p class="text-skin-muted text-nowrap self-start">
 						معدل الإنتاج:{" "}
 						<span class="font-bold bg-skin-neutral p-2 rounded-lg text-skin-accent shadow-lg">
 							{production_rate}{" "}
@@ -42,19 +42,27 @@ const { title, cover, production_rate, production_unit, model, isLine } = data;
 				)
 			}
 
-			<p class="text-skin-muted">
+			<p class="text-skin-muted self-start">
 				الموديل: <span
 					class="font-bold bg-skin-neutral px-8 py-2 rounded-lg text-skin-accent shadow-lg"
 					>{model}</span
 				>
 			</p>
+			<span
+				class="py-2 px-4 rounded-lg shadow-xl text-2xl font-bold self-start"
+				class:list={isLine
+					? "bg-green-200 text-green-800 ring-2 ring-green-800"
+					: "bg-blue-200 text-blue-800 ring-2 ring-blue-800"}
+			>
+				{isLine ? "خط إنتاج" : "ماكينة إنتاج"}
+			</span>
 		</a>
 	</Fragment>
 	<Fragment slot="en">
 		<a
 			href={getRelativeLocaleUrl("en", slug)}
 			aria-label={title}
-			class="product-card hover:ring-2 focus:ring-2 ring-skin-neutral/50 text-center p-8 pb-24 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-10 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
+			class="product-card hover:ring-2 focus:ring-2 ring-skin-neutral/50 text-start p-8 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-10 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
 							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsla(var(--color-neutral),0.3)] hover:rounded-lg
 							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsla(var(--color-neutral),0.3)] focus:rounded-lg focus:outline-dashed"
 		>
@@ -68,7 +76,7 @@ const { title, cover, production_rate, production_unit, model, isLine } = data;
 			</h2>
 			{
 				production_rate && (
-					<p class="text-center text-skin-muted text-nowrap">
+					<p class="text-skin-muted text-nowrap self-start">
 						Production rate:{" "}
 						<span class="font-bold bg-skin-neutral p-2 rounded-lg text-skin-accent shadow-lg">
 							{production_rate}{" "}
@@ -78,12 +86,20 @@ const { title, cover, production_rate, production_unit, model, isLine } = data;
 				)
 			}
 
-			<p class="text-skin-muted">
+			<p class="text-skin-muted self-start">
 				Model: <span
 					class="font-bold bg-skin-neutral px-8 py-2 rounded-lg text-skin-accent shadow-lg"
 					>{model}</span
 				>
 			</p>
+			<span
+				class="py-2 px-4 rounded-lg shadow-xl text-2xl font-bold self-start"
+				class:list={isLine
+					? "bg-green-200 text-green-800 ring-2 ring-green-800"
+					: "bg-blue-200 text-blue-800 ring-2 ring-blue-800"}
+			>
+				{isLine ? "Production line" : "Machine"}
+			</span>
 		</a>
 	</Fragment>
 </LocaledContent>
