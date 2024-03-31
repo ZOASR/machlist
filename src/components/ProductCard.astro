@@ -2,23 +2,15 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { Image } from "astro:assets";
 import LocaledContent from "./LocaledContent.astro";
+import type { InferEntrySchema } from "astro:content";
 
 interface Props {
-	title: string;
 	slug: string;
-	cover: ImageMetadata;
-	production_rate?: number;
-	production_unit?:
-		| "Kg/h"
-		| "m/min"
-		| "كغ/ساعة"
-		| "متر/دقيقة"
-		| "pieces/min"
-		| "قطعة/دقيقة";
-	model?: string;
+	data: InferEntrySchema<"products">;
 }
-const { title, slug, cover, production_rate, production_unit, model } =
-	Astro.props;
+
+const { data, slug } = Astro.props;
+const { title, cover, production_rate, production_unit, model, isLine } = data;
 ---
 
 <LocaledContent>

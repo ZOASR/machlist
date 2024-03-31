@@ -1,16 +1,10 @@
 ---
+import type { InferEntrySchema } from "astro:content";
 import LocaledContent from "./LocaledContent.astro";
 
 interface Props {
-	prod_rate: number | undefined;
-	prod_unit:
-		| "Kg/h"
-		| "m/min"
-		| "pieces/min"
-		| "كغ/ساعة"
-		| "متر/دقيقة"
-		| "قطعة/دقيقة"
-		| undefined;
+	prod_rate: InferEntrySchema<"products">["production_rate"];
+	prod_unit: InferEntrySchema<"products">["production_unit"];
 	title: string;
 	name: string;
 	model: string;
