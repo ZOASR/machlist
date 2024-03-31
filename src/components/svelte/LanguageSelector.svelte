@@ -58,7 +58,7 @@
 	}}
 >
 	<Select.Trigger
-		class="inline-flex h-input w-full items-center rounded-9px border-2 border-skin-base px-8 transition-colors placeholder:text-skin-base/50 focus:outline-none focus:ring-2 focus:ring-skin-primary focus:ring-offset-2"
+		class="inline-flex justify-center h-input w-full items-center rounded-9px border-2 border-skin-base px-8 transition-colors placeholder:text-skin-base/50 focus:outline-none hover:bg-gradient-to-r from-skin-accent/50 to-skin-accent-1/50 hover:shadow-md rounded-lg py-2"
 		aria-label="Select a language"
 	>
 		<Select.Value
@@ -75,16 +75,15 @@
 	>
 		{#each items as item}
 			<Select.Item
-				class="flex gap-4 h-10 w-full select-none rounded-lg items-center py-8 px-4 text-center outline-none transition-all duration-75 data-[highlighted]:text-skin-base data-[highlighted]:bg-gradient-to-r from-skin-accent to-skin-accent-1 cursor-pointer"
+				class="flex gap-4 h-10 w-full select-none rounded-lg justify-between items-center py-8 px-4 text-center outline-none transition-all duration-75 data-[highlighted]:text-skin-base data-[highlighted]:bg-gradient-to-r from-skin-accent to-skin-accent-1 cursor-pointer"
 				value={item.value}
 				label={item.label}
 			>
 				{item.label}
-				<Select.ItemIndicator class="ml-auto" asChild={false}>
+				<Select.ItemIndicator asChild={false}>
 					<slot name="check" />
 				</Select.ItemIndicator>
 			</Select.Item>
 		{/each}
 	</Select.Content>
-	<Select.Input name="favoriteFruit" />
 </Select.Root>
