@@ -17,12 +17,12 @@ const items = [
 	{
 		label: "English",
 		value: "en",
-		href: currentPath.replace(/\/(en|ar)/g, "/en")
+		href: currentPath.replace(/\/(en|ar)\/?/g, "/en/")
 	},
 	{
 		label: "العربية",
 		value: "ar",
-		href: currentPath.replace(/\/(en|ar)/g, "/ar")
+		href: currentPath.replace(/\/(en|ar)\/?/g, "/ar/")
 	}
 ];
 ---
