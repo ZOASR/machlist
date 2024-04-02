@@ -1,4 +1,3 @@
-//  usage :  node scripts/create-machine.mjs [name] [titleen] [titlear] [model] [order] [isLine]
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import fs from "fs/promises";
@@ -124,4 +123,4 @@ const directories = [
 })();
 
 // Usage :
-// pnpm run create:machine -- --name=[name] --titleen=[titleen] --titlear=[titlear] --model=[model] --order=[order] --isLine=[isLine]
+// pnpm run create:machine --name=[name] --titleen=[titleen] --titlear=[titlear] --model=[model] --order=[order] --isLine=[isLine]
