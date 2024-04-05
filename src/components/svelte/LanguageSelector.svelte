@@ -2,6 +2,7 @@
 	import { Select } from "bits-ui";
 	import { quintInOut } from "svelte/easing";
 	import { navigate } from "astro:transitions/client";
+	import { fadeAndScale } from "./utils";
 
 	export let locale: string = "ar";
 
@@ -17,31 +18,6 @@
 			href: "#"
 		}
 	];
-
-	const fadeAndScale = (
-		node: Element,
-		{
-			duration,
-			delay,
-			easing
-		}: {
-			duration: number;
-			delay?: number;
-			easing: (t: number) => number;
-		}
-	) => {
-		return {
-			delay,
-			duration,
-			css: (t: number) => {
-				const eased = easing(t);
-				return `
-					transform: scale(${eased});
-					opacity: ${eased};
-					`;
-			}
-		};
-	};
 </script>
 
 <Select.Root
@@ -70,7 +46,7 @@
 	<Select.Content
 		class="rounded-xl p-2 space-y-4 text-white shadow-xl outline-none bg-skin-neutral z-40"
 		transition={fadeAndScale}
-		transitionConfig={{ duration: 100, easing: quintInOut }}
+		transitionConfig={{ duration: 150, easing: quintInOut }}
 		style="transform-origin: top center;"
 	>
 		{#each items as item}

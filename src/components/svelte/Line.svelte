@@ -14,7 +14,7 @@
 					transform-origin: 50% 0%;
 					transform: scaleY(${eased});
 					`;
-			},
+			}
 		};
 	}
 
@@ -31,7 +31,7 @@
 			style="transform-origin: 50% 0%"
 			in:grow={{
 				duration: 1000,
-				easing: quintInOut,
+				easing: quintInOut
 			}}
 		></div>
 	</ShowOnEnter>
@@ -39,7 +39,7 @@
 	<ShowOnEnter classes="md:self-start">
 		<BulletPoint
 			dir="right"
-			title={locale === "en" ? "We design" : "اختر "}
+			title={locale === "en" ? "You Choose" : "اختر "}
 			order={1}
 			description={locale === "en"
 				? "Choose from a wide collection of machine designs"
@@ -52,7 +52,7 @@
 			style="transform-origin: 50% 0%"
 			in:grow={{
 				duration: 1000,
-				easing: quintInOut,
+				easing: quintInOut
 			}}
 		></div>
 	</ShowOnEnter>
@@ -72,7 +72,7 @@
 			style="transform-origin: 50% 0%"
 			in:grow={{
 				duration: 1000,
-				easing: quintInOut,
+				easing: quintInOut
 			}}
 		></div>
 	</ShowOnEnter>
