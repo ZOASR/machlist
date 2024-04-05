@@ -11,7 +11,7 @@ const pages = await getCollection("products", ({ data, slug }) => {
 	return data.nested && isSlug && isLocaled;
 });
 
-const collection = Astro.params.product || Astro.params.design;
+const collection = Astro.params.product;
 const tabs: Tab[] = pages.map((p, idx) => {
 	const urlParts = p.slug.split("/");
 	const tabSlug = p.slug.split("/").pop() || "";
@@ -21,10 +21,11 @@ const tabs: Tab[] = pages.map((p, idx) => {
 			en: getLocaledName(tabSlug, locale),
 			ar: getLocaledName(tabSlug, locale)
 		},
-		slug: `/${locale}/products/${locale}/${urlParts[urlParts.length - 2]}/${tabSlug}`
+		slug: `/${locale}/products/${locale}/${urlParts[urlParts.length - 2]}/${tabSlug}`,
+		tabSlug
 	};
 });
-const activeId = tabs.find((t) => collection?.endsWith(t.slug))?.id;
+const activeId = tabs.find((t) => collection?.endsWith(t.tabSlug))?.id;
 ---
 
 <div>
