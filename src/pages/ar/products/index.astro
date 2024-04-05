@@ -1,9 +1,11 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import FilteredProducts from "@components/FilteredProducts.astro";
+import ScrollToTop from "@components/ScrollToTop.astro";
 ---
 
 <Layout title="منتجاتنا">
 	<h1 class="w-full mt-8 md:text-[5rem] text-[3rem] text-center">منتجاتنا</h1>
 	<FilteredProducts collection="products" />
+	<ScrollToTop />
 </Layout>

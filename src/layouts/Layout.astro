@@ -27,7 +27,10 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 		<meta name="generator" content={Astro.generator} />
 		<title>{locale === "en" ? "Machlist" : "ماك-ليست"} - {title}</title>
 	</head>
-	<body class="text-skin-base" dir={locale === "en" ? "ltr" : "rtl"}>
+	<body
+		class="text-skin-base bg-skin-primary"
+		dir={locale === "en" ? "ltr" : "rtl"}
+	>
 		<Header />
 		<main class="relative bg-gradient-to-br from-skin-primary to-white">
 			<slot />
@@ -54,6 +57,9 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 		--color-text-muted: var(--color-secondary);
 
 		/* --test: hsl(32, 34%, 50%); */
+
+		--bounce-distance: 10%;
+		--bounce-timing: 2s;
 	}
 
 	::-moz-selection {

@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import FilteredProducts from "@components/FilteredProducts.astro";
+import ScrollToTop from "@components/ScrollToTop.astro";
 ---
 
 <Layout title="Products">
@@ -8,4 +9,5 @@ import FilteredProducts from "@components/FilteredProducts.astro";
 		Our Products
 	</h1>
 	<FilteredProducts collection="products" />
+	<ScrollToTop />
 </Layout>

@@ -1,7 +1,20 @@
-<button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
-	<div
-		class="flex items-center justify-center text-center font-black animate-bounce cursor-pointer p-8 rounded-full size-[5rem] text-[3rem] ring-2 ring-skin-neutral bg-gradient-to-b from-skin-accent to-skin-accent-1 shadow-lg z-20 fixed bottom-10 right-10"
+<div class="flex flex-col gap-8 fixed bottom-[3rem] right-10">
+	<button
+		onclick="window.scrollTo({ top: document.querySelector('main').offsetTop, behavior: 'smooth' })"
 	>
-		&uarr;
-	</div>
-</button>
+		<div
+			class="flex items-center justify-center text-center font-black animate-bounce-up cursor-pointer p-8 rounded-full size-[5rem] text-[3rem] ring-2 ring-skin-neutral bg-gradient-to-b from-skin-accent to-skin-accent-1 shadow-lg z-20"
+		>
+			&uarr;
+		</div>
+	</button>
+	<button
+		onclick="window.scrollTo({ top: document.querySelector('main').offsetTop + document.querySelector('main').offsetHeight - window.innerHeight,behavior: 'smooth' })"
+	>
+		<div
+			class="flex items-center justify-center text-center font-black animate-bounce-down cursor-pointer p-8 rounded-full size-[5rem] text-[3rem] ring-2 ring-skin-neutral bg-gradient-to-b from-skin-accent to-skin-accent-1 shadow-lg z-20"
+		>
+			&darr;
+		</div>
+	</button>
+</div>
