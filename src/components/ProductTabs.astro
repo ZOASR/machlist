@@ -4,13 +4,16 @@ import { getCollection } from "astro:content";
 import { getLocaleByPath } from "astro:i18n";
 const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 
-const page = await getCollection("products", ({ data, slug }) => {
+const pages = await getCollection("products", ({ data, slug }) => {
 	const urlSlug = Astro.params.product || Astro.params.design || "";
 	const isSlug = slug.split("/")[1] === urlSlug.split("/")[1];
 	const isLocaled = slug.split("/")[0] === locale;
 	return data.nested && isSlug && isLocaled;
 });
-const tabs: Tab[] = page.map((p, idx) => {
+
+const collection = Astro.params.product || Astro.params.design;
+const tabs: Tab[] = pages.map((p, idx) => {
+	const urlParts = p.slug.split("/");
 	const tabSlug = p.slug.split("/").pop() || "";
 	return {
 		id: idx + 1,
@@ -18,11 +21,9 @@ const tabs: Tab[] = page.map((p, idx) => {
 			en: getLocaledName(tabSlug, locale),
 			ar: getLocaledName(tabSlug, locale)
 		},
-		slug: tabSlug
+		slug: `/${locale}/products/${locale}/${urlParts[urlParts.length - 2]}/${tabSlug}`
 	};
 });
-
-const collection = Astro.params.product || Astro.params.design;
 const activeId = tabs.find((t) => collection?.endsWith(t.slug))?.id;
 ---
 
@@ -44,7 +45,7 @@ const activeId = tabs.find((t) => collection?.endsWith(t.slug))?.id;
 								"5px solid hsl(var(--color-accent-1))"
 						}}
 					>
-						<a href={`./${tab.slug}`}>
+						<a href={tab.slug}>
 							{locale == "en" ? tab.name.en : tab.name.ar}
 						</a>
 					</li>
