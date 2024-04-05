@@ -1,71 +1,56 @@
 ---
-import LocaledContent from "@components/LocaledContent.astro";
 import SectionLayout from "@layouts/SectionLayout.astro";
+import { getLangFromUrl, useTranslations } from "src/i18n/utils";
+
+const locale = getLangFromUrl(Astro.url);
+
+const t = useTranslations(locale);
 ---
 
 <SectionLayout>
 	<div
 		class="flex flex-col gap-8 justify-items-start self-start w-full overflow-clip"
 	>
-		<LocaledContent>
-			<Fragment slot="en">
-				<h1
-					class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start"
-				>
-					What we offer
-				</h1>
-				<p class="md:text-[3rem] text-skin-muted">
-					We offer over 50 machine designs crafted with over 20 years
-					of experience
-				</p>
-			</Fragment>
-			<Fragment slot="ar">
-				<h1
-					class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start"
-				>
-					ما نقدمه
-				</h1>
-				<p class="md:text-[3rem] text-skin-muted">
-					نحن نقدم ما يعادي الـ50 تصميم للماكينات و خطوط الإنتاج تم
-					تصميمها و بعناية بمساعدة خبراتنا التي تفوق ال 20 عاماً في
-					مجال التصنيع
-				</p>
-			</Fragment>
-		</LocaledContent>
-		<div class="gallery" data-aos="fade-right">
-			<div class="image"><img src="/stats_image_1.jpg" alt="" /></div>
-			<div class="image"><img src="/stats_image_2.jpg" alt="" /></div>
-			<div class="image"><img src="/stats_image_3.jpg" alt="" /></div>
-			<div class="image"><img src="/stats_image_4.jpg" alt="" /></div>
-			<div class="image"><img src="/stats_image_5.jpg" alt="" /></div>
-			<div class="image"><img src="/stats_image_6.jpg" alt="" /></div>
-			<div class="image"><img src="/stats_image_7.jpg" alt="" /></div>
-			<div class="image"><img src="/stats_image_8.jpg" alt="" /></div>
+		<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
+			{t("stats.title")}
+		</h1>
+	</div>
+	<p class="md:text-[3rem] text-skin-muted">
+		{t("stats.description")}
+	</p>
+	<div class="gallery" data-aos="fade-right">
+		<div class="image"><img src="/stats_image_1.jpg" alt="" /></div>
+		<div class="image"><img src="/stats_image_2.jpg" alt="" /></div>
+		<div class="image"><img src="/stats_image_3.jpg" alt="" /></div>
+		<div class="image"><img src="/stats_image_4.jpg" alt="" /></div>
+		<div class="image"><img src="/stats_image_5.jpg" alt="" /></div>
+		<div class="image"><img src="/stats_image_6.jpg" alt="" /></div>
+		<div class="image"><img src="/stats_image_7.jpg" alt="" /></div>
+		<div class="image"><img src="/stats_image_8.jpg" alt="" /></div>
 
-			<div class="image faded">
-				<img src="/stats_image_1.jpg" alt="" />
-			</div>
-			<div class="image faded">
-				<img src="/stats_image_2.jpg" alt="" />
-			</div>
-			<div class="image faded">
-				<img src="/stats_image_3.jpg" alt="" />
-			</div>
-			<div class="image faded">
-				<img src="/stats_image_4.jpg" alt="" />
-			</div>
-			<div class="image faded">
-				<img src="/stats_image_5.jpg" alt="" />
-			</div>
-			<div class="image faded">
-				<img src="/stats_image_6.jpg" alt="" />
-			</div>
-			<div class="image faded">
-				<img src="/stats_image_7.jpg" alt="" />
-			</div>
-			<div class="image faded">
-				<img src="/stats_image_8.jpg" alt="" />
-			</div>
+		<div class="image faded">
+			<img src="/stats_image_1.jpg" alt="" />
+		</div>
+		<div class="image faded">
+			<img src="/stats_image_2.jpg" alt="" />
+		</div>
+		<div class="image faded">
+			<img src="/stats_image_3.jpg" alt="" />
+		</div>
+		<div class="image faded">
+			<img src="/stats_image_4.jpg" alt="" />
+		</div>
+		<div class="image faded">
+			<img src="/stats_image_5.jpg" alt="" />
+		</div>
+		<div class="image faded">
+			<img src="/stats_image_6.jpg" alt="" />
+		</div>
+		<div class="image faded">
+			<img src="/stats_image_7.jpg" alt="" />
+		</div>
+		<div class="image faded">
+			<img src="/stats_image_8.jpg" alt="" />
 		</div>
 	</div>
 </SectionLayout>

@@ -3,106 +3,64 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import { Image } from "astro:assets";
 import LocaledContent from "./LocaledContent.astro";
 import type { InferEntrySchema } from "astro:content";
+import { getLangFromUrl, useTranslations } from "src/i18n/utils";
 
 interface Props {
 	slug: string;
 	data: InferEntrySchema<"products">;
 }
 
+const locale = getLangFromUrl(Astro.url);
+const t = useTranslations(locale);
+
 const { data, slug } = Astro.props;
 const { title, cover, production_rate, production_unit, model, isLine } = data;
 ---
 
-<LocaledContent>
-	<Fragment slot="ar">
-		<a
-			href={getRelativeLocaleUrl("ar", slug)}
-			aria-label={title}
-			class="product-card hover:ring-4 focus:ring-4 ring-skin-neutral text-start p-8 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-10 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
+<a
+	href={getRelativeLocaleUrl(locale, slug)}
+	aria-label={title}
+	class="product-card hover:ring-4 focus:ring-4 ring-skin-neutral text-start p-8 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-10 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
 							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsla(var(--color-neutral),0.3)] hover:rounded-lg
 							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsla(var(--color-neutral),0.3)] focus:rounded-lg focus:outline-dashed"
-		>
-			<Image
-				class="w-full h-1/2 max-h-[30rem] object-cover rounded-lg"
-				src={cover}
-				alt={title}
-			/>
-			<h2 class="text-[clamp(1.5rem,5dvw,3rem)] font-extrabold" dir="rtl">
-				{title}
-			</h2>
-			{
-				production_rate && (
-					<p class=" text-nowrap ">
-						معدل الإنتاج:{" "}
-						<span class="font-bold bg-skin-neutral p-2 rounded-lg text-skin-accent shadow-lg">
-							{production_rate}{" "}
-							{production_unit ? production_unit : "كغ/ساعة"}
-						</span>
-					</p>
-				)
-			}
-
-			<p class="">
-				الموديل: <span
-					class="font-bold bg-skin-neutral px-8 py-2 rounded-lg text-skin-accent shadow-lg text-nowrap"
-					>{model}</span
-				>
+>
+	<Image
+		class="w-full h-1/2 max-h-[30rem] object-cover rounded-lg"
+		src={cover}
+		alt={title}
+	/>
+	<h2 class="text-[clamp(1.5rem,5dvw,3rem)] font-extrabold" dir="rtl">
+		{title}
+	</h2>
+	{
+		production_rate && (
+			<p class=" text-nowrap ">
+				{t("product.productionRate")}:
+				<span class="font-bold bg-skin-neutral p-2 rounded-lg text-skin-accent shadow-lg">
+					{production_rate}{" "}
+					{production_unit
+						? production_unit
+						: t("product.productionUnit")}
+				</span>
 			</p>
-			<span
-				class="py-2 px-4 rounded-lg shadow-xl text-base font-bold self-start"
-				class:list={isLine
-					? "bg-green-200 text-green-800 ring-2 ring-green-800"
-					: "bg-blue-200 text-blue-800 ring-2 ring-blue-800"}
-			>
-				{isLine ? "خط إنتاج" : "ماكينة إنتاج"}
-			</span>
-		</a>
-	</Fragment>
-	<Fragment slot="en">
-		<a
-			href={getRelativeLocaleUrl("en", slug)}
-			aria-label={title}
-			class="product-card hover:ring-4 focus:ring-4 ring-skin-neutral text-start p-8 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-10 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
-							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsla(var(--color-neutral),0.3)] hover:rounded-lg
-							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsla(var(--color-neutral),0.3)] focus:rounded-lg focus:outline-dashed"
-		>
-			<Image
-				class="w-full h-1/2 max-h-[30rem] object-cover rounded-lg"
-				src={cover}
-				alt={title}
-			/>
-			<h2 class="text-[clamp(1.5rem,5dvw,3rem)] font-extrabold">
-				{title}
-			</h2>
-			{
-				production_rate && (
-					<p class="text-nowrap ">
-						Production rate:{" "}
-						<span class="font-bold bg-skin-neutral p-2 rounded-lg text-skin-accent shadow-lg">
-							{production_rate}{" "}
-							{production_unit ? production_unit : "Kg/h"}
-						</span>
-					</p>
-				)
-			}
+		)
+	}
 
-			<p class="">
-				Model: <span
-					class="font-bold bg-skin-neutral px-8 py-2 rounded-lg text-skin-accent shadow-lg text-nowrap"
-					>{model}</span
-				>
-			</p>
-			<span
-				class="py-1 px-4 rounded-lg shadow-xl text-base font-bold self-start"
-				class:list={isLine
-					? "bg-green-200 text-green-800 ring-2 ring-green-800"
-					: "bg-blue-200 text-blue-800 ring-2 ring-blue-800"}
-			>
-				{isLine ? "Production line" : "Machine"}
-			</span>
-		</a>
-	</Fragment>
-</LocaledContent>
+	<p class="">
+		{t("product.model")}: <span
+			class="font-bold bg-skin-neutral px-8 py-2 rounded-lg text-skin-accent shadow-lg text-nowrap"
+			>{model}</span
+		>
+	</p>
+	<span
+		class="py-2 px-4 rounded-lg shadow-xl text-base font-bold self-start"
+		class:list={isLine
+			? "bg-green-200 text-green-800 ring-2 ring-green-800"
+			: "bg-blue-200 text-blue-800 ring-2 ring-blue-800"}
+	>
+		{isLine ? t("product.line") : t("product.machine")}
+	</span>
+</a>
 
 <style>
 	.product-card {

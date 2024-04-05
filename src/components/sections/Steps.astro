@@ -1,22 +1,15 @@
 ---
 import SectionLayout from "@layouts/SectionLayout.astro";
 import Line from "@components/svelte/Line.svelte";
-import LocaledContent from "@components/LocaledContent.astro";
+import { getLangFromUrl, useTranslations } from "src/i18n/utils";
+
+const locale = getLangFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 
 <SectionLayout>
-	<LocaledContent>
-		<Fragment slot="en">
-			<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
-				How we do it?
-				<Line client:only locale={"en"} />
-			</h1>
-		</Fragment>
-		<Fragment slot="ar">
-			<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
-				كيف تصلك خدماتنا
-			</h1>
-			<Line client:only locale={"ar"} />
-		</Fragment>
-	</LocaledContent>
+	<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
+		{t("steps.title")}
+		<Line client:only locale={locale} />
+	</h1>
 </SectionLayout>

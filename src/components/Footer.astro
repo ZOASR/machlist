@@ -1,204 +1,108 @@
 ---
 import { Icon } from "astro-icon/components";
-import { getLocaleByPath } from "astro:i18n";
-const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
+import { getLangFromUrl, useTranslations } from "src/i18n/utils";
+const locale = getLangFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 
-{
-	locale === "en" ? (
-		<footer class="w-full mt-auto h-max p-8 flex flex-col gap-8 md:flex-row justify-between items-center md:items-start">
-			<a href="/en" class="text-[5rem] self-center text-center">
-				Machlist
+<footer
+	class="w-full mt-auto h-max p-8 flex flex-col gap-8 md:flex-row justify-between items-center md:items-start"
+>
+	<a href={`/${locale}/`} class="text-[5rem] self-center text-center">
+		{t("header.title")}
+	</a>
+	<nav
+		class="flex flex-col gap-4 items-center justify-center text-center text-nowrap"
+	>
+		<h1 class="text-[2rem]">{t("footer.nav")}</h1>
+		<a
+			class="hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
+			href={`/${locale}/`}
+		>
+			{t("nav.home")}
+		</a>
+		<a
+			class="hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
+			href={`/${locale}/products`}
+		>
+			{t("nav.products")}
+		</a>
+		<a
+			class="hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
+			href={`/${locale}/contact`}
+		>
+			{t("nav.contact")}
+		</a>
+		<a
+			class="hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
+			href={`/${locale}/about`}
+		>
+			{t("nav.about")}
+		</a>
+	</nav>
+	<div class="h-full flex flex-col gap-8 justify-between items-center">
+		<h1 class="text-[2rem] text-center">{t("footer.social")}</h1>
+		<div class="w-full flex justify-center flex-wrap">
+			<a
+				href="https://www.facebook.com/Recyclink20"
+				aria-label="Facebook"
+				class="text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
+			>
+				<Icon class="size-16" name="ic:baseline-facebook" />
 			</a>
-			<nav class="flex flex-col gap-4 items-center justify-center text-center text-nowrap">
-				<h1 class="text-[2rem]">Website</h1>
-				<a
-					class="hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					href="/en/"
-				>
-					Homepage
-				</a>
-				<a
-					class="hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					href="/en/products"
-				>
-					Products
-				</a>
-				<a
-					class="hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					href="/en/contact"
-				>
-					Contact Us
-				</a>
-				<a
-					class="hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					href="/en/about"
-				>
-					About Us
-				</a>
-			</nav>
-			<div class="h-full flex flex-col gap-8 justify-between items-center">
-				<h1 class="text-[2rem] text-center">Social Media</h1>
-				<div class="w-full flex justify-center flex-wrap">
-					<a
-						href="https://www.facebook.com/Recyclink20"
-						aria-label="Facebook"
-						class="text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					>
-						<Icon class="size-16" name="ic:baseline-facebook" />
-					</a>
-					<a
-						href="https://www.linkedin.com/company/recyclink308/"
-						aria-label="Linked In"
-						class="text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					>
-						<Icon class="size-16" name="ri:linkedin-box-fill" />
-					</a>
-				</div>
-			</div>
-			<div class="h-full flex flex-col gap-12 justify-between items-center">
-				<h1 class="text-[2rem]">Location</h1>
-				<div class="flex flex-col gap-8">
-					<a
-						target="_blank"
-						href="#"
-						class="flex items-center gap-4 text-start focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					>
-						<Icon name="ic:baseline-location-on" />
-						<p>18 Omar Ibn El-khattab St. - Faisal - Giza</p>
-					</a>
-				</div>
-			</div>
-			<div class="h-full flex flex-col gap-8 justify-between items-center">
-				<h1 class="text-[2rem]">Contact</h1>
-				<div class="flex flex-col items-center gap-8">
-					<a
-						class="text-[2rem] flex items-center gap-4 flex-wrap justify-center focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-						href="https://wa.me/201000207471"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<Icon name="ic:baseline-whatsapp" />
-						+20 100 020 7471
-					</a>
-					<a
-						class="text-[2rem] flex items-center gap-4 flex-wrap justify-center focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-						href="https://wa.me/201150894307"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<Icon name="ic:baseline-whatsapp" />
-						+20 115 089 4307
-					</a>
-					<a
-						href="mailto:cadshop@cadsoul.com"
-						class="flex items-center gap-4 text-center focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					>
-						<Icon name="ic:twotone-email" />
-						cadshop@cadsoul.com
-					</a>
-				</div>
-			</div>
-		</footer>
-	) : (
-		<footer class="w-full mt-auto h-max p-8 flex flex-col gap-8 md:flex-row justify-between items-center md:items-start">
-			<a href="/ar" class="text-[5rem] self-center text-center">
-				ماك-ليست
+			<a
+				href="https://www.linkedin.com/company/recyclink308/"
+				aria-label="Linked In"
+				class="text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
+			>
+				<Icon class="size-16" name="ri:linkedin-box-fill" />
 			</a>
-			<nav class="flex flex-col gap-4 items-center justify-center text-center text-nowrap">
-				<h1 class="text-[2rem]">تصفح الموقع</h1>
-				<a
-					class="hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					href="/ar/"
-				>
-					الصفحة الرئيسية
-				</a>
-				<a
-					class="hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					href="/ar/products"
-				>
-					منتجاتنا
-				</a>
-				<a
-					class="hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					href="/ar/contact"
-				>
-					اتصل بنا
-				</a>
-				<a
-					class="hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					href="/ar/about"
-				>
-					عنّا
-				</a>
-			</nav>
-			<div class="h-full flex flex-col gap-8 justify-between items-center">
-				<h1 class="text-[2rem] text-center">صفحات التواصل الإجتماعي</h1>
-				<div class="w-full flex justify-center flex-wrap">
-					<a
-						href="https://www.facebook.com/Recyclink20"
-						aria-label="Facebook"
-						class="text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					>
-						<Icon class="size-16" name="ic:baseline-facebook" />
-					</a>
-					<a
-						href="https://www.linkedin.com/company/recyclink308/"
-						aria-label="Linked In"
-						class="text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					>
-						<Icon class="size-16" name="ri:linkedin-box-fill" />
-					</a>
-				</div>
-			</div>
-			<div class="h-full flex flex-col gap-8 justify-between items-center">
-				<h1 class="text-[2rem]">موقعنا</h1>
-				<div class="flex flex-col gap-8">
-					<a
-						target="_blank"
-						href="#"
-						class="flex items-center gap-4 text-start focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					>
-						<Icon name="ic:baseline-location-on" />
-						<p>١٨ ش عمر ابن الخطاب - فيصل - الجيزة</p>
-					</a>
-				</div>
-			</div>
-			<div class="h-full flex flex-col gap-8 justify-between items-center">
-				<h1 class="text-[2rem]">اتصل بنا</h1>
-				<div class="flex flex-col items-center">
-					<a
-						class="text-[2rem] flex items-center gap-4 flex-wrap justify-center focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-						href="https://wa.me/201000207471"
-						target="_blank"
-						rel="noopener noreferrer"
-						dir="ltr"
-					>
-						<Icon name="ic:baseline-whatsapp" />
-						+20 100 020 7471
-					</a>
-					<a
-						class="text-[2rem] flex items-center gap-4 flex-wrap justify-center focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-						href="https://wa.me/201150894307"
-						target="_blank"
-						rel="noopener noreferrer"
-						dir="ltr"
-					>
-						<Icon name="ic:baseline-whatsapp" />
-						+20 115 089 4307
-					</a>
-					<a
-						href="mailto:cadshop@cadsoul.com"
-						class="flex items-center gap-4 text-center focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
-					>
-						<Icon name="ic:twotone-email" />
-						cadshop@cadsoul.com
-					</a>
-				</div>
-			</div>
-		</footer>
-	)
-}
+		</div>
+	</div>
+	<div class="h-full flex flex-col gap-12 justify-between items-center">
+		<h1 class="text-[2rem]">{t("footer.location")}</h1>
+		<div class="flex flex-col gap-8">
+			<a
+				target="_blank"
+				href="#"
+				class="flex items-center gap-4 text-start focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
+			>
+				<Icon name="ic:baseline-location-on" />
+				<p>{t("footer.location.address")}</p>
+			</a>
+		</div>
+	</div>
+	<div class="h-full flex flex-col gap-8 justify-between items-center">
+		<h1 class="text-[2rem]">{t("footer.contact")}</h1>
+		<div class="flex flex-col items-center gap-8">
+			<a
+				class="text-[2rem] flex items-center gap-4 flex-wrap justify-center focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
+				href="https://wa.me/201000207471"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<Icon name="ic:baseline-whatsapp" />
+				+20 100 020 7471
+			</a>
+			<a
+				class="text-[2rem] flex items-center gap-4 flex-wrap justify-center focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
+				href="https://wa.me/201150894307"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<Icon name="ic:baseline-whatsapp" />
+				+20 115 089 4307
+			</a>
+			<a
+				href="mailto:cadshop@cadsoul.com"
+				class="flex items-center gap-4 text-center focus:underline hover:underline text-skin-base/50 focus:text-skin-base hover:text-skin-base transition-all duration-150"
+			>
+				<Icon name="ic:twotone-email" />
+				cadshop@cadsoul.com
+			</a>
+		</div>
+	</div>
+</footer>
 
 <style>
 	footer {

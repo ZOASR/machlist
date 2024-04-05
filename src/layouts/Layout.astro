@@ -3,36 +3,35 @@ import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
 import "@fontsource-variable/el-messiri";
 import { getLocaleByPath } from "astro:i18n";
+import { getLangFromUrl, useTranslations } from "src/i18n/utils";
 
 interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
-const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
+const locale = getLangFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 
 <!doctype html>
 <html lang={locale}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta
-			name="description"
-			content={locale === "en"
-				? "Machlist is an Egyptian company established at 2005 in Cairo for machines and production lines."
-				: 'تأسست شركة " ماك-ليســـت " عام 2005 بالقاهرة وتعمل في مجال ماكينات وخطوط الإنتاج المختلفة'}
-		/>
+		<meta name="description" content={t("meta.description")} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{locale === "en" ? "Machlist" : "ماك-ليست"} - {title}</title>
+		<title>{t("meta.title")} - {title}</title>
 	</head>
 	<body
 		class="text-skin-base bg-skin-primary"
 		dir={locale === "en" ? "ltr" : "rtl"}
 	>
 		<Header />
-		<main class="relative bg-gradient-to-br from-skin-primary to-white">
+		<main
+			class="relative bg-gradient-to-br from-skin-primary to-white flex-1"
+		>
 			<slot />
 		</main>
 		<Footer />

@@ -5,117 +5,77 @@ import LocaledContent from "@components/LocaledContent.astro";
 import SeeProductsButton from "@components/SeeProductsButton.astro";
 import StagerredBoxes from "@components/svelte/StagerredBoxes.svelte";
 import SectionLayout from "@layouts/SectionLayout.astro";
+import { getLangFromUrl, useTranslations } from "src/i18n/utils";
+
+const locale = getLangFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 
 <SectionLayout>
-	<LocaledContent>
-		<Fragment slot="en">
-			<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
-				Where to start?
-			</h1>
-			<StagerredBoxes client:only dir="left" />
-			<div
-				class="w-full flex md:flex-row flex-col justify-center items-center gap-[5rem] h-full text-center"
-			>
-				<div
-					class="flex flex-col items-center gap-8 flex-1 h-full justify-center"
-				>
-					<p class="text-[3rem]">1. Browse our products</p>
-					<p class="text-skin-muted text-[2rem]">
-						Browse over 50 machine designs and production lines and
-						select the perfect one for your needs
-					</p>
-					<SeeProductsButton />
-				</div>
-				<Arrow dir="ltr" />
+	<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
+		{t("getStarted.title")}
+	</h1>
+	<StagerredBoxes client:only dir={locale === "en" ? "left" : "right"} />
+	<div
+		class="w-full flex md:flex-row flex-col justify-center items-center gap-[5rem] h-full text-center"
+	>
+		<div
+			class="flex flex-col items-center gap-8 flex-1 h-full justify-center"
+		>
+			<p class="text-[3rem]">{t("getStarted.first.title")}</p>
+			<p class="text-skin-muted text-[2rem]">
+				{t("getStarted.first.description")}
+			</p>
+			<SeeProductsButton />
+		</div>
+		<Arrow dir={locale === "en" ? "ltr" : "rtl"} />
 
-				<div
-					class="flex flex-col gap-8 flex-1 w-full items-center justify-center h-full"
-				>
-					<p class="text-[3rem]">2. Get in touch</p>
-					<p class="text-skin-muted text-[2rem]">
-						Contact our sales team
-					</p>
-					<ContactUsButton />
-				</div>
-				<Arrow dir="ltr" />
-				<div class="flex-1 flex flex-col gap-8 h-full justify-center">
-					<p class="text-[3rem]">3. Get started</p>
-					<p class="text-skin-muted text-[2rem]">
-						Start integrating your perfect production line with us
-					</p>
-				</div>
-			</div>
-		</Fragment>
+		<div
+			class="flex flex-col gap-8 flex-1 w-full items-center justify-center h-full"
+		>
+			<p class="text-[3rem]">{t("getStarted.second.title")}</p>
+			<p class="text-skin-muted text-[2rem]">
+				{t("getStarted.second.description")}
+			</p>
+			<ContactUsButton />
+		</div>
+		<Arrow dir={locale === "en" ? "ltr" : "rtl"} />
+		<div class="flex-1 flex flex-col gap-8 h-full justify-center">
+			<p class="text-[3rem]">{t("getStarted.third.title")}</p>
+			<p class="text-skin-muted text-[2rem]">
+				{t("getStarted.third.description")}
+			</p>
+		</div>
+	</div>
+</SectionLayout>
 
-		<Fragment slot="ar">
-			<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
-				من أين أبدأ؟
-			</h1>
-			<StagerredBoxes client:only dir="right" />
-			<div
-				class="w-full flex md:flex-row flex-col justify-center items-center gap-[5rem] h-full text-center"
-			>
-				<div
-					class="flex flex-col items-center gap-8 flex-1 h-full justify-center"
-				>
-					<p class="text-[3rem]">1. تصفح منتجاتنا</p>
-					<p class="text-skin-muted text-[2rem]">
-						تصفح من بين أكثر من 50 تصميم و خط إنتاج و اختر المنتج
-						المناسب لك
-					</p>
-					<SeeProductsButton />
-				</div>
-				<Arrow dir="rtl" />
-
-				<div
-					class="flex flex-col gap-8 flex-1 items-center justify-center h-full"
-				>
-					<p class="text-[3rem]">2. تواصل معنا</p>
-					<p class="text-skin-muted text-[2rem]">
-						تواصل مع فريق المبيعات لدينا
-					</p>
-					<ContactUsButton />
-				</div>
-				<Arrow dir="rtl" />
-				<div class="flex-1 flex flex-col gap-8 h-full justify-center">
-					<p class="text-[3rem]">3. ابدأ</p>
-					<p class="text-skin-muted text-[2rem]">
-						ابدأ بتشغيل خط الانتاج الخاص بك
-					</p>
-				</div>
-			</div>
-		</Fragment>
-	</LocaledContent>
-
-	<style>
-		@keyframes gradientAnimation {
-			0% {
-				background-position: 0% 50%;
-			}
-			50% {
-				background-position: 100% 50%;
-			}
-			100% {
-				background-position: 0% 50%;
-			}
+<style>
+	@keyframes gradientAnimation {
+		0% {
+			background-position: 0% 50%;
 		}
+		50% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
+	}
 
-		.animated-gradient {
+	.animated-gradient {
+		background-image: linear-gradient(
+			to right,
+			hsla(var(--color-accent), 0.7),
+			hsla(var(--color-accent-1), 0.7)
+		);
+		background-size: 200% auto;
+		animation: gradientAnimation 4s infinite;
+		&:hover {
 			background-image: linear-gradient(
 				to right,
-				hsla(var(--color-accent), 0.7),
-				hsla(var(--color-accent-1), 0.7)
+				hsla(var(--color-accent), 1),
+				hsla(var(--color-accent-1), 1)
 			);
-			background-size: 200% auto;
-			animation: gradientAnimation 4s infinite;
-			&:hover {
-				background-image: linear-gradient(
-					to right,
-					hsla(var(--color-accent), 1),
-					hsla(var(--color-accent-1), 1)
-				);
-			}
 		}
-	</style>
-</SectionLayout>
+	}
+</style>

@@ -3,12 +3,13 @@ import SectionLayout from "@layouts/SectionLayout.astro";
 import { Image } from "astro:assets";
 
 import heroImg from "@assets/hero_image.png";
-import { getLocaleByPath } from "astro:i18n";
-import LocaledContent from "@components/LocaledContent.astro";
 import ContactUsButton from "@components/ContactUsButton.astro";
 import SeeProductsButton from "@components/SeeProductsButton.astro";
+import { getLangFromUrl, useTranslations } from "src/i18n/utils";
 
-const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
+const locale = getLangFromUrl(Astro.url);
+
+const t = useTranslations(locale);
 ---
 
 <SectionLayout>
@@ -17,52 +18,25 @@ const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
 		class="h-full grid md:grid-cols-2 md:grid-rows-1 grid-rows-2 gap-6"
 		dir={locale === "en" ? "ltr" : "rtl"}
 	>
-		<LocaledContent>
-			<Fragment slot="en">
-				<div class="flex flex-col gap-8 justify-center">
-					<h1 class="text-[clamp(5rem,10dvw,10rem)]">
-						We design,
-						<span
-							class="bg-clip-text text-transparent animated-gradient font-bold [text-shadow:_0_2px_0_#fff2]"
-						>
-							you profit
-						</span>
-					</h1>
-					<p class="text-[3rem]">
-						From design ideas to working production lines. we power
-						your industrial lines and machines
-					</p>
-					<div
-						class="flex gap-8 md:flex-row flex-col w-full md:w-fit text-3xl font-bold"
-					>
-						<SeeProductsButton />
-						<ContactUsButton />
-					</div>
-				</div>
-			</Fragment>
-			<Fragment slot="ar">
-				<div class="flex flex-col gap-8 justify-center">
-					<h1 class="text-[clamp(5rem,10dvw,10rem)]">
-						نحن نصمم,
-						<span
-							class="bg-clip-text text-transparent animated-gradient font-bold [text-shadow:_0_2px_0_#fff2]"
-						>
-							أنت تربح
-						</span>
-					</h1>
-					<p class="text-[3rem]">
-						من تصميمات إلى خطوط إنتاجية . نحن ندعم كافة أنواع
-						الحلول الصناعية
-					</p>
-					<div
-						class="flex gap-8 md:flex-row-reverse flex-col w-full md:w-fit text-3xl font-bold"
-					>
-						<SeeProductsButton />
-						<ContactUsButton />
-					</div>
-				</div>
-			</Fragment>
-		</LocaledContent>
+		<div class="flex flex-col gap-8 justify-center">
+			<h1 class="text-[clamp(5rem,10dvw,10rem)]">
+				{t("hero.slogan")}
+				<span
+					class="bg-clip-text text-transparent animated-gradient font-bold [text-shadow:_0_2px_0_#fff2]"
+				>
+					{t("hero.subtitle")}
+				</span>
+			</h1>
+			<p class="text-[3rem]">
+				{t("hero.description")}
+			</p>
+			<div
+				class="flex gap-8 md:flex-row flex-col w-full md:w-fit text-3xl font-bold"
+			>
+				<SeeProductsButton />
+				<ContactUsButton />
+			</div>
+		</div>
 
 		<div
 			class="rounded-xl shadow-2xl overflow-clip row-start-1 md:col-start-2"

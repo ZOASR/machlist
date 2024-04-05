@@ -3,14 +3,16 @@ import { getLocaleByPath, getRelativeLocaleUrl } from "astro:i18n";
 import HeaderLink from "./HeaderLink.astro";
 import { Icon } from "astro-icon/components";
 import LanguageSelector from "./svelte/LanguageSelector.svelte";
+import { getLangFromUrl, useTranslations } from "src/i18n/utils";
 
-const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 // localed
-const productsURL = getRelativeLocaleUrl(locale, "products");
-const aboutURL = getRelativeLocaleUrl(locale, "about");
-const contactURL = getRelativeLocaleUrl(locale, "contact");
-const homeURL = getRelativeLocaleUrl(locale, "/");
+const productsURL = getRelativeLocaleUrl(lang, "products");
+const aboutURL = getRelativeLocaleUrl(lang, "about");
+const contactURL = getRelativeLocaleUrl(lang, "contact");
+const homeURL = getRelativeLocaleUrl(lang, "/");
 const currentPath = Astro.url.pathname;
 
 const items = [
@@ -29,126 +31,61 @@ const items = [
 
 <header
 	class="flex flex-row-reverse gap-8 w-full justify-between items-center p-8 border-b-2 border-skin-base shadow-2xl z-20 filter backdrop-blur-lg sticky top-0"
-	dir={locale === "en" ? "ltr" : "rtl"}
+	dir={lang === "en" ? "ltr" : "rtl"}
 	id="header"
 >
 	<!-- <img src="/" alt="Machlist logo" /> -->
 
-	{
-		locale === "en" ? (
-			<>
-				<a href="/en" class="text-[3rem] min-w-max">
-					Machlist
-				</a>
-				<nav class="w-max flex py-4 px-2 gap-4 justify-start items-center overflow-x-auto overflow-y-visible whitespace-nowrap">
-					<HeaderLink
-						highlighted={currentPath == homeURL}
-						link={homeURL}
-					>
-						<span class="flex gap-2">
-							<Icon name="ic:twotone-home" />
-							Homepage
-						</span>
-					</HeaderLink>
-					<HeaderLink
-						highlighted={currentPath.includes(productsURL)}
-						link={productsURL}
-					>
-						<span class="flex gap-2">
-							<Icon name="ic:twotone-shopping-cart" />
-							Products
-						</span>
-					</HeaderLink>
-					<HeaderLink
-						highlighted={currentPath.includes(aboutURL)}
-						link={aboutURL}
-					>
-						<span class="flex gap-2">
-							<Icon name="ic:twotone-info" />
-							About Us
-						</span>
-					</HeaderLink>
-					<HeaderLink
-						highlighted={currentPath.includes(contactURL)}
-						link={contactURL}
-					>
-						<span class="flex gap-2">
-							<Icon name="ic:twotone-contact-support" />
-							Contact us
-						</span>
-					</HeaderLink>
-					<div class="px-4 py-2 w-[15rem] text-3xl text-nowrap min-w-[13rem] rounded-md transition-all duration-150">
-						<LanguageSelector
-							client:visible
-							locale={locale}
-							items={items}
-						>
-							<span slot="check">
-								<Icon name="ic:round-check" />
-							</span>
-							<Icon name="ic:outline-keyboard-double-arrow-down" />
-						</LanguageSelector>
-					</div>
-				</nav>
-			</>
-		) : (
-			<>
-				<a href="/ar" class="text-[3rem] min-w-max">
-					ماك-ليست
-				</a>
-				<nav class="w-max flex py-4 px-2 gap-4 justify-start items-center overflow-x-auto overflow-y-visible whitespace-nowrap">
-					<HeaderLink
-						highlighted={currentPath == homeURL}
-						link={homeURL}
-					>
-						<span class="flex gap-2">
-							<Icon name="ic:twotone-home" />
-							الصفحة الرئيسية
-						</span>
-					</HeaderLink>
-					<HeaderLink
-						highlighted={currentPath.includes(productsURL)}
-						link={productsURL}
-					>
-						<span class="flex gap-2">
-							<Icon name="ic:twotone-shopping-cart" />
-							منتجاتنا
-						</span>
-					</HeaderLink>
-					<HeaderLink
-						highlighted={currentPath.includes(aboutURL)}
-						link={aboutURL}
-					>
-						<span class="flex gap-2">
-							<Icon name="ic:twotone-info" />
-							عنّا
-						</span>
-					</HeaderLink>
-					<HeaderLink
-						highlighted={currentPath.includes(contactURL)}
-						link={contactURL}
-					>
-						<span class="flex gap-2">
-							<Icon name="ic:twotone-contact-support" />
-							اتصل بنا
-						</span>
-					</HeaderLink>
-					<div class="px-4 py-2 text-3xl text-nowrap min-w-max rounded-md transition-all duration-150">
-						<LanguageSelector
-							client:visible
-							locale={locale}
-							items={items}
-						>
-							<span slot="check">
-								<Icon name="ic:round-check" />
-							</span>
-							<Icon name="ic:outline-keyboard-double-arrow-down" />
-						</LanguageSelector>
-					</div>
-				</nav>
-			</>
-		)
-	}
+	<a href={`/${lang}`} class="text-[3rem] min-w-max">
+		{t("header.title")}
+	</a>
+	<nav
+		class="w-max flex py-4 px-2 gap-4 justify-start items-center overflow-x-auto overflow-y-visible whitespace-nowrap"
+	>
+		<HeaderLink highlighted={currentPath == homeURL} link={homeURL}>
+			<span class="flex gap-2">
+				<Icon name="ic:twotone-home" />
+				{t("nav.home")}
+			</span>
+		</HeaderLink>
+		<HeaderLink
+			highlighted={currentPath.includes(productsURL)}
+			link={productsURL}
+		>
+			<span class="flex gap-2">
+				<Icon name="ic:twotone-shopping-cart" />
+				{t("nav.products")}
+			</span>
+		</HeaderLink>
+		<HeaderLink
+			highlighted={currentPath.includes(aboutURL)}
+			link={aboutURL}
+		>
+			<span class="flex gap-2">
+				<Icon name="ic:twotone-info" />
+				{t("nav.about")}
+			</span>
+		</HeaderLink>
+		<HeaderLink
+			highlighted={currentPath.includes(contactURL)}
+			link={contactURL}
+		>
+			<span class="flex gap-2">
+				<Icon name="ic:twotone-contact-support" />
+				{t("nav.contact")}
+			</span>
+		</HeaderLink>
+		<div
+			class="px-4 py-2 w-[15rem] text-3xl text-nowrap min-w-[13rem] rounded-md transition-all duration-150"
+		>
+			<LanguageSelector client:visible locale={lang} items={items}>
+				<span slot="check">
+					<Icon name="ic:round-check" />
+				</span>
+				<Icon name="ic:outline-keyboard-double-arrow-down" />
+			</LanguageSelector>
+		</div>
+	</nav>
 </header>
 
 <script is:inline>
