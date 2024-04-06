@@ -9,9 +9,9 @@ const { highlighted, link } = Astro.props;
 <a
 	class:list={[
 		{
-			'bg-gradient-to-r from-skin-accent to-skin-accent-1 shadow-md bg-gradient-to-r shadow-md':
+			"bg-gradient-to-r from-skin-accent to-skin-accent-1 shadow-md bg-gradient-to-r shadow-md dark:text-skin-text-dark":
 				highlighted,
-			'hover:bg-gradient-to-r from-skin-accent/50 to-skin-accent-1/50 hover:shadow-md focus:bg-gradient-to-r focus:shadow-md':
+			"hover:bg-gradient-to-r from-skin-accent/50 to-skin-accent-1/50 hover:shadow-md focus:bg-gradient-to-r focus:shadow-md":
 				!highlighted
 		}
 	]}

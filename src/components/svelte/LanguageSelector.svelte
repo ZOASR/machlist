@@ -44,14 +44,14 @@
 		<slot />
 	</Select.Trigger>
 	<Select.Content
-		class="rounded-xl p-2 space-y-4 text-white shadow-xl outline-none bg-skin-neutral z-40"
+		class="rounded-xl p-2 space-y-4 dark:text-skin-text-dark text-white shadow-xl outline-none bg-skin-neutral z-40"
 		transition={fadeAndScale}
 		transitionConfig={{ duration: 150, easing: quintInOut }}
 		style="transform-origin: top center;"
 	>
 		{#each items as item}
 			<Select.Item
-				class="flex gap-4 h-10 w-full select-none rounded-lg justify-between items-center py-8 px-4 text-center outline-none transition-all duration-75 data-[highlighted]:text-skin-base data-[highlighted]:bg-gradient-to-r from-skin-accent to-skin-accent-1 cursor-pointer"
+				class="flex gap-4 h-10 w-full select-none rounded-lg justify-between items-center py-8 px-4 text-center outline-none transition-all duration-75 data-[highlighted]:text-skin-base dark:data-[highlighted]:text-skin-text-dark data-[highlighted]:bg-gradient-to-r from-skin-accent to-skin-accent-1 cursor-pointer"
 				value={item.value}
 				label={item.label}
 			>

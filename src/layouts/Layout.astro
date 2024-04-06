@@ -25,19 +25,21 @@ const t = useTranslations(locale);
 		<title>{t("meta.title")} - {title}</title>
 	</head>
 	<body
-		class="text-skin-base bg-skin-primary"
+		class="text-skin-base bg-skin-primary/80"
 		dir={locale === "en" ? "ltr" : "rtl"}
 	>
 		<Header />
-		<main
-			class="relative bg-gradient-to-br from-skin-primary to-white flex-1"
-		>
+		<main class="relative flex-1">
 			<slot />
 		</main>
 		<Footer />
 	</body>
 </html>
 <script src="../js/aos"></script>
+<script defer>
+	const theme = localStorage.getItem("theme");
+	if (theme) document.documentElement.setAttribute("data-theme", theme);
+</script>
 
 <style is:global>
 	:root {
@@ -59,6 +61,41 @@ const t = useTranslations(locale);
 
 		--bounce-distance: 10%;
 		--bounce-timing: 2s;
+	}
+	:root[data-theme="dark"] {
+		--color-neutral: 0, 0%, 87%; /* hsl(0, 0%, 87%) */
+		--color-primary: 213, 100%, 15%; /* hsl(213, 100%, 15%) */
+		--color-secondary: 0, 0%, 80%; /* hsl(0, 0%, 70%) */
+		--color-accent: 51, 100%, 50%; /* hsl(51, 80%, 50%) */
+		--color-accent-1: 12, 100%, 50%; /* hsl(12, 100%, 50%) */
+		--color-accent-2: 49, 90%, 50%; /* hsl(49, 90%, 50%) */
+		--color-accent-3: 145, 63%, 49%; /* hsl(145, 63%, 49%) */
+		--color-background: 0, 0%, 13%; /* hsl(0, 0%, 13%) */
+		--color-purple: 277, 70%, 35%; /* hsl(277, 70%, 35%) */
+		--color-teal: 180, 100%, 25%; /* hsl(180, 100%, 25%) */
+		--color-magenta: 326, 100%, 50%; /* hsl(326, 100%, 50%) */
+		--color-text-base: 213, 34%, 85%; /* hsl(213, 34%, 95%) */
+		--color-text-dark: 213, 34%, 15%; /* hsl(213, 34%, 15%) */
+		--color-text-muted: var(--color-secondary);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root:not([data-theme]) {
+			--color-neutral: 0, 0%, 87%; /* hsl(0, 0%, 87%) */
+			--color-primary: 213, 100%, 15%; /* hsl(213, 100%, 15%) */
+			--color-secondary: 0, 0%, 80%; /* hsl(0, 0%, 70%) */
+			--color-accent: 51, 100%, 50%; /* hsl(51, 80%, 50%) */
+			--color-accent-1: 12, 100%, 50%; /* hsl(12, 100%, 50%) */
+			--color-accent-2: 49, 90%, 50%; /* hsl(49, 90%, 50%) */
+			--color-accent-3: 145, 63%, 49%; /* hsl(145, 63%, 49%) */
+			--color-background: 0, 0%, 13%; /* hsl(0, 0%, 13%) */
+			--color-purple: 277, 70%, 35%; /* hsl(277, 70%, 35%) */
+			--color-teal: 180, 100%, 25%; /* hsl(180, 100%, 25%) */
+			--color-magenta: 326, 100%, 50%; /* hsl(326, 100%, 50%) */
+			--color-text-base: 213, 34%, 85%; /* hsl(213, 34%, 95%) */
+			--color-text-dark: 213, 34%, 15%; /* hsl(213, 34%, 15%) */
+			--color-text-muted: var(--color-secondary);
+		}
 	}
 
 	::-moz-selection {
@@ -130,7 +167,7 @@ const t = useTranslations(locale);
 	hr {
 		border: none;
 		height: 2px;
-		background-color: hsla(var(--color-primary), 0.5);
+		background-color: hsla(var(--color-neutral), 0.5);
 		border-radius: 5px;
 	}
 </style>

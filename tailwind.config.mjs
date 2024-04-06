@@ -10,6 +10,11 @@ function withOpacity(varName) {
 }
 export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+	darkMode: [
+		"variant",
+		// "&:not([data-theme='light'] *)",
+		"@media (prefers-color-scheme: dark){ &:not([data-theme='light'] *) }"
+	],
 	theme: {
 		extend: {
 			keyframes: {
@@ -57,6 +62,7 @@ export default {
 					magenta: withOpacity("--color-magenta"),
 					background: withOpacity("--color-background"),
 					base: withOpacity("--color-text-base"),
+					"text-dark": withOpacity("--color-text-dark"),
 					muted: withOpacity("--color-text-muted")
 				}
 			}

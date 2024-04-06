@@ -13,9 +13,9 @@
 </script>
 
 <a
-	href={getRelativeLocaleUrl(locale, slug)}
+	href={`/${locale}${slug}`}
 	aria-label={title}
-	class="product-card hover:ring-4 focus:ring-4 ring-skin-neutral text-start p-8 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-10 justify-between items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
+	class="product-card hover:ring-4 focus:ring-4 ring-skin-neutral text-start p-8 flex flex-col max-h-[500px] w-full max-w-[400px] mx-auto gap-10 justify-between text-skin-text-dark items-center bg-gradient-to-br from-skin-accent to-skin-accent-1 shadow-md transition-all duration-150 \
 							hover:-translate-y-4 hover:shadow-lg hover:shadow-[hsla(var(--color-neutral),0.3)] hover:rounded-lg
 							focus:-translate-y-4 focus:shadow-lg focus:shadow-[hsla(var(--color-neutral),0.3)] focus:rounded-lg focus:outline-dashed"
 >
@@ -24,7 +24,10 @@
 		src={cover}
 		alt={title}
 	/>
-	<h2 class="text-[clamp(1.5rem,5dvw,3rem)] font-extrabold" dir="rtl">
+	<h2
+		class="text-[clamp(1.5rem,5dvw,3rem)] font-extrabold"
+		dir={locale === "ar" ? "rtl" : "ltr"}
+	>
 		{title}
 	</h2>
 
@@ -32,7 +35,7 @@
 		<p class=" text-nowrap">
 			{t("product.productionRate")}:
 			<span
-				class="font-bold bg-skin-neutral p-2 rounded-lg text-skin-accent shadow-lg"
+				class="font-bold bg-skin-neutral p-2 rounded-lg text-skin-accent shadow-lg dark:text-skin-text-dark"
 			>
 				{production_rate}{" "}
 				{production_unit
@@ -44,7 +47,7 @@
 	<p class="">
 		{t("product.model")}:
 		<span
-			class="font-bold bg-skin-neutral px-8 py-2 rounded-lg text-skin-accent shadow-lg text-nowrap"
+			class="font-bold bg-skin-neutral px-8 py-2 rounded-lg text-skin-accent shadow-lg text-nowrap dark:text-skin-text-dark"
 			>{model}</span
 		>
 	</p>

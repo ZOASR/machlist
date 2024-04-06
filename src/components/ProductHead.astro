@@ -22,7 +22,7 @@ const { prod_rate, prod_unit, title, model } = Astro.props;
 		"border-block-end": "10px solid hsla(var(--color-neutral), 1)",
 		"box-shadow": "0 0 10px hsla(var(--color-neutral), 0.3)"
 	}}
-	class="rounded-xl md:w-max w-full mx-auto py-12 md:px-[10rem] px-4 bg-gradient-to-b from-skin-accent to-skin-accent-1 my-[2rem] text-center shadow-xl"
+	class="rounded-xl dark:text-skin-text-dark md:w-max w-full mx-auto py-12 md:px-[10rem] px-4 bg-gradient-to-b from-skin-accent to-skin-accent-1 my-[2rem] text-center shadow-xl"
 >
 	<h1 class="text-[4rem] font-bold">
 		{title}
@@ -31,7 +31,7 @@ const { prod_rate, prod_unit, title, model } = Astro.props;
 		prod_rate && (
 			<p class="text-[2rem] my-8">
 				{t("product.productionRate")}:{" "}
-				<span class="font-bold bg-skin-neutral py-2 px-4 text-skin-accent rounded-lg shadow-lg">
+				<span class="font-bold bg-skin-neutral py-2 px-4 text-skin-accent rounded-lg shadow-lg dark:text-skin-text-dark">
 					{prod_rate}{" "}
 					{prod_unit ? prod_unit : t("product.productionUnit")}
 				</span>
@@ -40,7 +40,7 @@ const { prod_rate, prod_unit, title, model } = Astro.props;
 	}
 	<p class="text-[2rem] mt-8">
 		{t("product.model")}: <span
-			class="font-bold bg-skin-neutral py-2 px-4 text-skin-accent rounded-lg shadow-lg"
+			class="font-bold bg-skin-neutral py-2 px-4 text-skin-accent rounded-lg shadow-lg dark:text-skin-text-dark"
 			>{model}</span
 		>
 	</p>

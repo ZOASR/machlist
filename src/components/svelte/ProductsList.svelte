@@ -66,13 +66,13 @@
 </script>
 
 <form
-	class="flex flex-col md:flex-row flex-wrap gap-8 overflow-auto justify-center items-center w-11/12 max-w-[1200px] mx-auto rounded-lg shadow-lg px-10 py-8 font-semibold bg-gradient-to-r from-skin-accent to-skin-accent-1"
+	class="flex flex-col md:flex-row flex-wrap gap-8 overflow-auto justify-center items-center w-11/12 max-w-[1200px] mx-auto rounded-lg shadow-lg px-10 py-8 font-semibold bg-gradient-to-r from-skin-accent to-skin-accent-1 dark:text-skin-text-dark"
 	on:submit={(event) => event.preventDefault()}
 >
 	<h1 class="text-4xl">{t("filter.search")}...</h1>
 
 	<label
-		class="flex items-center justify-between rounded-lg p-4 bg-skin-primary has-[:focus]:ring-4 has-[:focus]:ring-black/20 transition-all shadow-xl"
+		class="flex items-center justify-between rounded-lg text-skin-base p-4 bg-skin-primary has-[:focus]:ring-4 has-[:focus]:ring-black/20 transition-all shadow-xl"
 	>
 		<input
 			type="text"
@@ -84,7 +84,7 @@
 	</label>
 
 	<span
-		class="bg-skin-neutral/50 rounded-full size-4 ring-2 ring-skin-neutral/60"
+		class="bg-skin-text-dark/50 rounded-full size-4 ring-2 ring-skin-text-dark/60"
 	></span>
 
 	<RadioGroup.Root
@@ -108,7 +108,7 @@
 	</RadioGroup.Root>
 
 	<span
-		class="bg-skin-neutral/50 rounded-full size-4 ring-2 ring-skin-neutral/60"
+		class="bg-skin-text-dark/50 rounded-full size-4 ring-2 ring-skin-text-dark/60"
 	></span>
 
 	<div class="flex gap-4 items-center">
@@ -118,7 +118,7 @@
 			onSelectedChange={(item) => setFilters("model", item?.value)}
 		>
 			<Select.Trigger
-				class="flex justify-between w-[20rem] bg-skin-primary py-4 px-8 rounded-lg shadow-xl data-[escapee]:ring-4 data-[escapee]:ring-black/20 transition-all"
+				class="flex justify-between w-[20rem] bg-skin-primary text-skin-base py-4 px-8 rounded-lg shadow-xl data-[escapee]:ring-4 data-[escapee]:ring-black/20 transition-all"
 			>
 				<Select.Value placeholder={t("filter.emptyModel")} />
 				<slot name="caret-icon" />
@@ -133,7 +133,7 @@
 					<Select.Item
 						value={model}
 						label={model}
-						class="flex w-full select-none justify-center text-center font-bold items-center px-8 py-4 cursor-pointer rounded-lg outline-none transition-all duration-75 data-[highlighted]:bg-skin-primary text-white data-[highlighted]:text-skin-base"
+						class="flex w-full select-none justify-center text-center font-bold items-center px-8 py-4 cursor-pointer rounded-lg outline-none transition-all duration-75 data-[highlighted]:bg-skin-primary text-white dark:text-skin-text-dark data-[highlighted]:text-skin-base dark:data-[highlighted]:text-skin-base"
 					>
 						{model}
 					</Select.Item>

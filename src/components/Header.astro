@@ -4,6 +4,7 @@ import HeaderLink from "./HeaderLink.astro";
 import { Icon } from "astro-icon/components";
 import LanguageSelector from "./svelte/LanguageSelector.svelte";
 import { getLangFromUrl, useTranslations } from "src/i18n/utils";
+import ThemSwitcher from "./svelte/ThemSwitcher.svelte";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -85,6 +86,14 @@ const items = [
 				<Icon name="ic:outline-keyboard-double-arrow-down" />
 			</LanguageSelector>
 		</div>
+		<ThemSwitcher client:only>
+			<Fragment slot="light">
+				<Icon name="radix-icons:sun" />
+			</Fragment>
+			<Fragment slot="dark">
+				<Icon name="radix-icons:moon" />
+			</Fragment>
+		</ThemSwitcher>
 	</nav>
 </header>
 

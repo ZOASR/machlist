@@ -44,6 +44,9 @@ dependencies:
   bits-ui:
     specifier: ^0.19.7
     version: 0.19.7(svelte@4.2.12)
+  clsx:
+    specifier: ^2.1.0
+    version: 2.1.0
   sharp:
     specifier: ^0.33.2
     version: 0.33.2
