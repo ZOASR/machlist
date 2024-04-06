@@ -4,7 +4,6 @@
 	import { onDestroy, onMount } from "svelte";
 
 	const changeTheme = (checked: boolean) => {
-		console.log("hello", checked);
 		isChecked = checked;
 		document.documentElement.dataset.theme = checked ? "dark" : "light";
 		localStorage.setItem("theme", checked ? "dark" : "light");
