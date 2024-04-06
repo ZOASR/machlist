@@ -1,12 +1,13 @@
 ---
-import { getLocaleByPath } from "astro:i18n";
+import { getLangFromUrl } from "src/i18n/utils";
 
-const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
+const locale = getLangFromUrl(Astro.url);
 ---
 
 <section
 	class="md:px-[3rem] px-[1rem] py-[5rem] grid items-center relative md:min-h-[100dvh] md:h-max"
-	data-aos="fade-down"
+	data-aos={`${locale === "en" ? "fade-right" : "fade-left"}`}
+	data-aos-duration="300"
 	dir={locale === "en" ? "ltr" : "rtl"}
 >
 	<slot />
