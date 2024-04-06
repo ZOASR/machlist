@@ -8,12 +8,14 @@
 	export let locale: "en" | "ar";
 
 	export let ui: uiObject;
-
-	let lineFilter = "all";
-	let modelFilter: string | unknown = "";
-	let textFilter: string;
-
 	const t = (key: string) => ui[locale][key];
+
+	type Filters = [
+		"all" | "machine" | "line" | undefined,
+		string | undefined,
+		string | undefined
+	];
+	let filters: Filters = ["all", "", ""];
 
 	const models = products.map((product) => product.model);
 	const types = [
@@ -24,31 +26,47 @@
 
 	let filteredProducts = products.sort((a, b) => a.order - b.order);
 
-	$: if (lineFilter === "machine")
-		filteredProducts = products.filter((product) => !product.isLine);
-	$: if (lineFilter === "line")
-		filteredProducts = products.filter((product) => product.isLine);
-	$: if (lineFilter === "all") filteredProducts = products;
-	$: if (modelFilter)
-		filteredProducts = products.filter(
-			(product) => product.model === modelFilter
-		);
-	$: if (textFilter)
-		filteredProducts = products.filter((product) =>
-			textFilter !== "" || textFilter === undefined
-				? product.title
-						.toLowerCase()
-						.includes(textFilter.toLowerCase()) ||
-					product.model
-						?.toLowerCase()
-						.includes(textFilter.toLowerCase())
-				: true
-		);
-	$: if (textFilter) console.log(textFilter);
+	const setFilters = (
+		key: "type" | "model" | "search",
+		value: Filters[0] | Filters[1] | Filters[2]
+	) => {
+		if (key === "type")
+			filters = [value as Filters[0], filters[1], filters[2]];
+		if (key === "model") filters = [filters[0], value, filters[2]];
+		if (key === "search") filters = [filters[0], filters[1], value];
+	};
+
+	const changeProducts = (filters: Filters) => {
+		const [type, model, search] = filters;
+		filteredProducts = products.filter((product) => {
+			const isValidModel = model ? product.model === model : true;
+			const isValidType =
+				type === "all" || !type
+					? true
+					: type === "machine"
+						? !product.isLine
+						: type === "line"
+							? product.isLine
+							: true;
+			const isValidSearch = search
+				? product.model?.toLowerCase().includes(search.toLowerCase()) ||
+					product.title.toLowerCase().includes(search.toLowerCase())
+				: true;
+
+			return isValidModel && isValidType && isValidSearch;
+		});
+	};
+
+	const handleInputChange = (event: Event) => {
+		const { value } = event.target as HTMLInputElement;
+		setFilters("search", value);
+	};
+
+	$: if (filters) changeProducts(filters);
 </script>
 
 <form
-	class="flex flex-col md:flex-row flex-wrap gap-8 justify-center items-center w-11/12 max-w-[1200px] mx-auto rounded-lg shadow-lg px-10 py-8 font-semibold bg-gradient-to-r from-skin-accent to-skin-accent-1"
+	class="flex flex-col md:flex-row flex-wrap gap-8 overflow-auto justify-center items-center w-11/12 max-w-[1200px] mx-auto rounded-lg shadow-lg px-10 py-8 font-semibold bg-gradient-to-r from-skin-accent to-skin-accent-1"
 	on:submit={(event) => event.preventDefault()}
 >
 	<h1 class="text-4xl">{t("filter.search")}...</h1>
@@ -58,8 +76,8 @@
 	>
 		<input
 			type="text"
-			bind:value={textFilter}
-			placeholder={t("filter.search")}
+			on:input={handleInputChange}
+			placeholder={t("filter.placeholder")}
 			class="bg-transparent outline-none placeholder:text-skin-base/50"
 		/>
 		<slot name="search-icon" />
@@ -70,8 +88,8 @@
 	></span>
 
 	<RadioGroup.Root
-		class="flex gap-8 text-[2rem] items-center font-medium"
-		onValueChange={(value) => (lineFilter = value)}
+		class="flex flex-wrap gap-8 text-[2rem] justify-center items-center font-medium"
+		onValueChange={(value) => setFilters("type", value)}
 	>
 		{#each types as type}
 			<div
@@ -80,9 +98,9 @@
 				<RadioGroup.Item
 					id={type.value}
 					value={type.value}
-					class="size-10 shrink-0 cursor-default rounded-full border border-solid border-skin-primary/50 bg-slate-800 transition-all duration-100 ease-in-out hover:border-skin-primary data-[state='checked']:border-8 data-[state='checked']:border-skin-primary"
+					class="size-10 shrink-0  rounded-full border cursor-pointer border-solid border-skin-primary/50 bg-slate-800 transition-all duration-100 ease-in-out hover:border-skin-primary data-[state='checked']:border-8 data-[state='checked']:border-skin-primary"
 				/>
-				<Label.Root for={type.value} class="pl-3">
+				<Label.Root for={type.value} class="cursor-pointer">
 					{type.label}
 				</Label.Root>
 			</div>
@@ -97,7 +115,7 @@
 		<span>{t("product.model")}:</span>
 		<Select.Root
 			preventScroll={false}
-			onSelectedChange={(value) => (modelFilter = value?.value)}
+			onSelectedChange={(item) => setFilters("model", item?.value)}
 		>
 			<Select.Trigger
 				class="flex justify-between w-[20rem] bg-skin-primary py-4 px-8 rounded-lg shadow-xl data-[escapee]:ring-4 data-[escapee]:ring-black/20 transition-all"
