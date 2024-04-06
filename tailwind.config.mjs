@@ -12,8 +12,12 @@ export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	darkMode: [
 		"variant",
-		// "&:not([data-theme='light'] *)",
-		"@media (prefers-color-scheme: dark){ &:not([data-theme='light'] *) }"
+		[
+			"&:where([data-theme='dark'], [data-theme='dark'] *) ",
+			"@media (prefers-color-scheme: dark){ &:not([data-theme='light'] *) }"
+		]
+		// "selector",
+		// "[data-theme='dark']"
 	],
 	theme: {
 		extend: {
