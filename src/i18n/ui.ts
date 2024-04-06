@@ -76,7 +76,7 @@ export const ui = {
 		"header.title": "ماك-ليست",
 		"nav.home": "الصفحة الرئيسية",
 		"nav.about": "عنّا",
-		"nav.products": "متجاتنا",
+		"nav.products": "منتجاتنا",
 		"nav.contact": "اتصل بنا",
 		// Hero
 		"hero.slogan": "نحن نصمم,",
@@ -101,7 +101,7 @@ export const ui = {
 		"getStarted.third.title": "3. ابدأ",
 		"getStarted.third.description": "ابدأ بتشغيل خط الانتاج الخاص بك",
 		// Feedback
-		"feedback.title": "هل أنت عميل؟",
+		"feedback.title": "هل أنت عميل بالفعل؟",
 		"feedback.description": "نريد أن نسمع آرائك",
 		name: "الاسم",
 		email: "عنوان البريد الإلكتروني:",
