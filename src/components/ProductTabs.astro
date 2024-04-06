@@ -1,8 +1,10 @@
 ---
-import { type Tab, getLocaledName } from "@utils/utils";
+import { type Tab } from "@utils/utils";
 import { getCollection } from "astro:content";
-import { getLocaleByPath } from "astro:i18n";
-const locale = Astro.currentLocale || getLocaleByPath(Astro.url.pathname);
+import { getLangFromUrl, useTranslations } from "src/i18n/utils";
+
+const locale = getLangFromUrl(Astro.url);
+const t = useTranslations(locale);
 
 const pages = await getCollection("products", ({ data, slug }) => {
 	const urlSlug = Astro.params.product || Astro.params.design || "";
@@ -14,12 +16,12 @@ const pages = await getCollection("products", ({ data, slug }) => {
 const collection = Astro.params.product;
 const tabs: Tab[] = pages.map((p, idx) => {
 	const urlParts = p.slug.split("/");
-	const tabSlug = p.slug.split("/").pop() || "";
+	const tabSlug = (p.slug.split("/").pop() as Tab["tabSlug"]) || "";
 	return {
 		id: idx + 1,
 		name: {
-			en: getLocaledName(tabSlug, locale),
-			ar: getLocaledName(tabSlug, locale)
+			en: t(`product.${tabSlug}`),
+			ar: t(`product.${tabSlug}`)
 		},
 		slug: `/${locale}/products/${locale}/${urlParts[urlParts.length - 2]}/${tabSlug}`,
 		tabSlug

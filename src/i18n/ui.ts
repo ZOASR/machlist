@@ -60,11 +60,17 @@ export const ui = {
 		"product.productionUnit": "Kg/h",
 		"product.machine": "Machine",
 		"product.line": "Production line",
+		"product.catalog": "Catalog",
+		"product.design": "Design",
+		"product.drawings": "Drawings",
+		"product.gallery": "Gallery",
+
 		// Filter
 		"filter.all": "All",
 		"filter.machine": "Machines only",
 		"filter.line": "Production lines only",
 		"filter.search": "Search",
+		"filter.placeholder": "Machine name or model",
 		"filter.emptyModel": "Select a model...",
 		"filter.noProducts": "No products found for this search"
 	},
@@ -121,12 +127,17 @@ export const ui = {
 		"product.productionUnit": "كج/ساعة",
 		"product.machine": "ماكينة",
 		"product.line": "خط انتاج",
+		"product.catalog": "كاتالوج",
+		"product.design": "تصميم",
+		"product.drawings": "رسومات",
+		"product.gallery": "الصور",
 		// Filter
 
 		"filter.all": "الكل",
 		"filter.machine": "الماكينات فقط",
 		"filter.line": "خطوط الإنتاج فقط",
 		"filter.search": "البحث",
+		"filter.placeholder": "اسم او موديل الماكينة",
 		"filter.emptyModel": "اختر موديل...",
 		"filter.noProducts": "لا توجد منتجات لهذا البحث"
 	}

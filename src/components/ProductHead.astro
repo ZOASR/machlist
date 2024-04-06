@@ -1,6 +1,6 @@
 ---
 import type { InferEntrySchema } from "astro:content";
-import LocaledContent from "./LocaledContent.astro";
+import { getLangFromUrl, useTranslations } from "src/i18n/utils";
 
 interface Props {
 	prod_rate: InferEntrySchema<"products">["production_rate"];
@@ -9,71 +9,39 @@ interface Props {
 	name: string;
 	model: string;
 }
+const locale = getLangFromUrl(Astro.url);
+const t = useTranslations(locale);
 
 const { prod_rate, prod_unit, title, model } = Astro.props;
 ---
 
-<LocaledContent>
-	<Fragment slot="en">
-		<div
-			dir="ltr"
-			style={{
-				border: "2px solid hsla(var(--color-neutral), 0.8)",
-				"border-block-end": "10px solid hsla(var(--color-neutral), 1)",
-				"box-shadow": "0 0 10px hsla(var(--color-neutral), 0.3)"
-			}}
-			class="rounded-xl md:w-max w-full mx-auto py-12 md:px-[10rem] px-4 bg-gradient-to-b from-skin-accent to-skin-accent-1 my-[2rem] text-center shadow-xl"
-		>
-			<h1 dir="ltr" class="text-[4rem] font-bold">
-				{title}
-			</h1>
-			{
-				prod_rate && (
-					<p dir="ltr" class="text-[2rem] my-8">
-						Production rate:{" "}
-						<span class="font-bold bg-skin-neutral py-2 px-4 text-skin-accent rounded-lg shadow-lg">
-							{prod_rate} {prod_unit ? prod_unit : "Kg/h"}
-						</span>
-					</p>
-				)
-			}
-			<p class="text-[2rem] mt-8">
-				Model: <span
-					class="font-bold bg-skin-neutral py-2 px-4 text-skin-accent rounded-lg shadow-lg"
-					>{model}</span
-				>
+<div
+	dir={locale == "ar" ? "rtl" : "ltr"}
+	style={{
+		border: "2px solid hsla(var(--color-neutral), 0.8)",
+		"border-block-end": "10px solid hsla(var(--color-neutral), 1)",
+		"box-shadow": "0 0 10px hsla(var(--color-neutral), 0.3)"
+	}}
+	class="rounded-xl md:w-max w-full mx-auto py-12 md:px-[10rem] px-4 bg-gradient-to-b from-skin-accent to-skin-accent-1 my-[2rem] text-center shadow-xl"
+>
+	<h1 class="text-[4rem] font-bold">
+		{title}
+	</h1>
+	{
+		prod_rate && (
+			<p class="text-[2rem] my-8">
+				{t("product.productionRate")}:{" "}
+				<span class="font-bold bg-skin-neutral py-2 px-4 text-skin-accent rounded-lg shadow-lg">
+					{prod_rate}{" "}
+					{prod_unit ? prod_unit : t("product.productionUnit")}
+				</span>
 			</p>
-		</div>
-	</Fragment>
-	<Fragment slot="ar">
-		<div
-			dir="rtl"
-			style={{
-				border: "2px solid hsla(var(--color-neutral), 0.8)",
-				"border-block-end": "10px solid hsla(var(--color-neutral), 1)",
-				"box-shadow": "0 0 10px hsla(var(--color-neutral), 0.3)"
-			}}
-			class="rounded-xl md:w-max w-full mx-auto py-12 md:px-[10rem] px-4 bg-gradient-to-b from-skin-accent to-skin-accent-1 my-[2rem] text-center shadow-xl"
+		)
+	}
+	<p class="text-[2rem] mt-8">
+		{t("product.model")}: <span
+			class="font-bold bg-skin-neutral py-2 px-4 text-skin-accent rounded-lg shadow-lg"
+			>{model}</span
 		>
-			<h1 dir="rtl" class="text-[4rem] font-bold">
-				{title}
-			</h1>
-			{
-				prod_rate && (
-					<p dir="rtl" class="text-[2rem] mt-8">
-						معدل الإنتاج:{" "}
-						<span class="font-bold bg-skin-neutral py-2 px-4 text-skin-accent rounded-lg shadow-lg">
-							{prod_rate} {prod_unit ? prod_unit : "كغ/ساعة"}
-						</span>
-					</p>
-				)
-			}
-			<p class="text-[2rem] mt-8">
-				موديل: <span
-					class="font-bold bg-skin-neutral py-2 px-4 text-skin-accent rounded-lg shadow-lg"
-					>{model}</span
-				>
-			</p>
-		</div>
-	</Fragment>
-</LocaledContent>
+	</p>
+</div>
