@@ -102,8 +102,8 @@
 					value={type.value}
 					class={clsx(
 						"size-10 shrink-0 rounded-full border cursor-pointer border-solid border-skin-primary/50 bg-slate-800 transition-all duration-100 ease-in-out",
-						"hover:border-skin-primary data-[state='checked']:border-8 data-[state='checked']:border-skin-primary",
-						"dark:data-[state='checked']:border-skin-base dark:bg-skin-primary"
+						"hover:border-skin-primary data-[state='checked']:border-8 data-[state='checked']:border-skin-primary data-[state='checked']:ring-4 data-[state='checked']:ring-black/20",
+						"data-[state='checked']:dark:border-skin-base dark:bg-skin-primary hover:dark:border-skin-base dark:border-skin-base/50"
 					)}
 				/>
 				<Label.Root for={type.value} class="cursor-pointer">
