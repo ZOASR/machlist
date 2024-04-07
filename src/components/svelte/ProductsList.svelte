@@ -103,7 +103,7 @@
 					class={clsx(
 						"size-10 shrink-0 rounded-full border cursor-pointer border-solid border-skin-primary/50 bg-slate-800 transition-all duration-100 ease-in-out",
 						"hover:border-skin-primary data-[state='checked']:border-8 data-[state='checked']:border-skin-primary",
-						"dark:border-skin-base dark:bg-skin-primary"
+						"dark:data-[state='checked']:border-skin-base dark:bg-skin-primary"
 					)}
 				/>
 				<Label.Root for={type.value} class="cursor-pointer">
