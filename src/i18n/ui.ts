@@ -67,6 +67,7 @@ export const ui = {
 
 		// Filter
 		"filter.all": "All",
+		"filter.allModels": "All Models",
 		"filter.machine": "Machines only",
 		"filter.line": "Production lines only",
 		"filter.search": "Search",
@@ -134,6 +135,7 @@ export const ui = {
 		// Filter
 
 		"filter.all": "الكل",
+		"filter.allModels": "كل الموديلات",
 		"filter.machine": "الماكينات فقط",
 		"filter.line": "خطوط الإنتاج فقط",
 		"filter.search": "البحث",

@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { Select, RadioGroup, Label } from "bits-ui";
+	import { Select, RadioGroup, Label, type Selected } from "bits-ui";
 	import { quintInOut } from "svelte/easing";
 	import ProductCard from "./ProductCard.svelte";
 	import { fadeAndScale, type Product, type uiObject } from "./utils";
+	import clsx from "clsx";
 
 	export let products: Product[];
 	export let locale: "en" | "ar";
@@ -10,11 +11,7 @@
 	export let ui: uiObject;
 	const t = (key: string) => ui[locale][key];
 
-	type Filters = [
-		"all" | "machine" | "line" | undefined,
-		string | undefined,
-		string | undefined
-	];
+	type Filters = ["all" | "machine" | "line", string, string];
 	let filters: Filters = ["all", "", ""];
 
 	const models = products.map((product) => product.model);
@@ -39,7 +36,8 @@
 	const changeProducts = (filters: Filters) => {
 		const [type, model, search] = filters;
 		filteredProducts = products.filter((product) => {
-			const isValidModel = model ? product.model === model : true;
+			const isValidModel =
+				model && !(model === "all") ? product.model === model : true;
 			const isValidType =
 				type === "all" || !type
 					? true
@@ -60,6 +58,10 @@
 	const handleInputChange = (event: Event) => {
 		const { value } = event.target as HTMLInputElement;
 		setFilters("search", value);
+	};
+
+	const handleSelectedCahnge = (item: Selected<Filters[1]> | undefined) => {
+		setFilters("model", item?.value || "all");
 	};
 
 	$: if (filters) changeProducts(filters);
@@ -98,7 +100,11 @@
 				<RadioGroup.Item
 					id={type.value}
 					value={type.value}
-					class="size-10 shrink-0  rounded-full border cursor-pointer border-solid border-skin-primary/50 bg-slate-800 transition-all duration-100 ease-in-out hover:border-skin-primary data-[state='checked']:border-8 data-[state='checked']:border-skin-primary"
+					class={clsx(
+						"size-10 shrink-0 rounded-full border cursor-pointer border-solid border-skin-primary/50 bg-slate-800 transition-all duration-100 ease-in-out",
+						"hover:border-skin-primary data-[state='checked']:border-8 data-[state='checked']:border-skin-primary",
+						"dark:border-skin-base dark:bg-skin-primary"
+					)}
 				/>
 				<Label.Root for={type.value} class="cursor-pointer">
 					{type.label}
@@ -115,7 +121,7 @@
 		<span>{t("product.model")}:</span>
 		<Select.Root
 			preventScroll={false}
-			onSelectedChange={(item) => setFilters("model", item?.value)}
+			onSelectedChange={handleSelectedCahnge}
 		>
 			<Select.Trigger
 				class="flex justify-between w-[20rem] bg-skin-primary text-skin-base py-4 px-8 rounded-lg shadow-xl data-[escapee]:ring-4 data-[escapee]:ring-black/20 transition-all"
@@ -129,13 +135,13 @@
 				transition={fadeAndScale}
 				transitionConfig={{ duration: 250, easing: quintInOut }}
 			>
-				{#each models as model}
+				{#each ["all", ...models] as model}
 					<Select.Item
 						value={model}
-						label={model}
+						label={model === "all" ? t("filter.allModels") : model}
 						class="flex w-full select-none justify-center text-center font-bold items-center px-8 py-4 cursor-pointer rounded-lg outline-none transition-all duration-75 data-[highlighted]:bg-skin-primary text-white dark:text-skin-text-dark data-[highlighted]:text-skin-base dark:data-[highlighted]:text-skin-base"
 					>
-						{model}
+						{model === "all" ? t("filter.allModels") : model}
 					</Select.Item>
 				{/each}
 
