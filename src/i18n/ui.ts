@@ -111,8 +111,8 @@ export const ui = {
 		"feedback.title": "هل أنت عميل بالفعل؟",
 		"feedback.description": "نريد أن نسمع آرائك",
 		name: "الاسم",
-		email: "عنوان البريد الإلكتروني:",
-		phone: "رقم الهاتف:",
+		email: "عنوان البريد الإلكتروني",
+		phone: "رقم الهاتف",
 		message: "رأيك",
 		submit: "ارسال",
 		// Footer
