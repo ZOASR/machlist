@@ -1,10 +1,8 @@
 ---
-import ProductCard from "@components/ProductCard.astro";
 import { getCollection } from "astro:content";
 import ProductsList from "./svelte/ProductsList.svelte";
 import { Icon } from "astro-icon/components";
-import { getLangFromUrl, useTranslations } from "src/i18n/utils";
-import { ui } from "src/i18n/ui";
+import { getLangFromUrl } from "src/i18n/utils";
 import { getImage } from "astro:assets";
 
 interface Props {
@@ -12,7 +10,6 @@ interface Props {
 }
 
 const locale = getLangFromUrl(Astro.url);
-const t = useTranslations(locale);
 
 const { collection } = Astro.props;
 
@@ -46,7 +43,6 @@ const productsWithOptimizedImages = mappedProducts.map((product, index) => ({
 
 <ProductsList
 	products={productsWithOptimizedImages}
-	ui={ui}
 	locale={locale}
 	client:only
 >

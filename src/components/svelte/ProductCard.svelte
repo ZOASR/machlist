@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { useTranslations } from "@i18n/utils";
 	import type { ProductData } from "./utils";
 
 	export let data: ProductData;
 	export let slug: string;
-	export let t: (key: string) => string;
 
 	export let locale: "en" | "ar";
+	const t = useTranslations(locale);
 
 	const { title, cover, production_rate, production_unit, model, isLine } =
 		data;
