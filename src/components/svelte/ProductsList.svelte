@@ -2,15 +2,14 @@
 	import { Select, RadioGroup, Label, type Selected } from "bits-ui";
 	import { quintInOut } from "svelte/easing";
 	import ProductCard from "./ProductCard.svelte";
-	import { fadeAndScale, type Product, type uiObject } from "./utils";
+	import { fadeAndScale, type Product } from "./utils";
+	import { useTranslations } from "@i18n/utils";
 	import clsx from "clsx";
-	import type { defaultLang } from "src/i18n/ui";
 
 	export let products: Product[];
 	export let locale: "en" | "ar";
 
-	export let ui: uiObject;
-	const t = (key: keyof (typeof ui)[typeof defaultLang]) => ui[locale][key];
+	const t = useTranslations(locale);
 
 	type Filters = ["all" | "machine" | "line", string, string];
 	let filters: Filters = ["all", "", ""];
@@ -173,7 +172,6 @@
 			<ProductCard
 				data={{ ...product.data }}
 				{locale}
-				{t}
 				slug={`/products/${product.slug}`}
 			/>
 		{/key}
