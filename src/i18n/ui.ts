@@ -10,7 +10,7 @@ export const ui = {
 		"meta.title": "Machlist",
 		"meta.description":
 			"Machlist is an Egyptian company established at 2005 in Cairo for machines and production lines.",
-		"mata.keywords":
+		"meta.keywords":
 			"Machlist, machines, production lines, industrial lines",
 		// Header
 		"header.title": "Machlist",
