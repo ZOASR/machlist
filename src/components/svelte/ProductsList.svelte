@@ -4,24 +4,25 @@
 	import ProductCard from "./ProductCard.svelte";
 	import { fadeAndScale, type Product, type uiObject } from "./utils";
 	import clsx from "clsx";
+	import type { defaultLang } from "src/i18n/ui";
 
 	export let products: Product[];
 	export let locale: "en" | "ar";
 
 	export let ui: uiObject;
-	const t = (key: string) => ui[locale][key];
+	const t = (key: keyof (typeof ui)[typeof defaultLang]) => ui[locale][key];
 
 	type Filters = ["all" | "machine" | "line", string, string];
 	let filters: Filters = ["all", "", ""];
 
-	const models = products.map((product) => product.model);
+	const models = products.map((product) => product.data.model);
 	const types = [
 		{ label: t("filter.all"), value: "all" },
 		{ label: t("filter.machine"), value: "machine" },
 		{ label: t("filter.line"), value: "line" }
 	];
 
-	let filteredProducts = products.sort((a, b) => a.order - b.order);
+	let filteredProducts = products.sort((a, b) => a.data.order - b.data.order);
 
 	const setFilters = (
 		key: "type" | "model" | "search",
@@ -37,18 +38,24 @@
 		const [type, model, search] = filters;
 		filteredProducts = products.filter((product) => {
 			const isValidModel =
-				model && !(model === "all") ? product.model === model : true;
+				model && !(model === "all")
+					? product.data.model === model
+					: true;
 			const isValidType =
 				type === "all" || !type
 					? true
 					: type === "machine"
-						? !product.isLine
+						? !product.data.isLine
 						: type === "line"
-							? product.isLine
+							? product.data.isLine
 							: true;
 			const isValidSearch = search
-				? product.model?.toLowerCase().includes(search.toLowerCase()) ||
-					product.title.toLowerCase().includes(search.toLowerCase())
+				? product.data.model
+						?.toLowerCase()
+						.includes(search.toLowerCase()) ||
+					product.data.title
+						.toLowerCase()
+						.includes(search.toLowerCase())
 				: true;
 
 			return isValidModel && isValidType && isValidSearch;
@@ -164,7 +171,7 @@
 	{#each filteredProducts as product}
 		{#key product.slug}
 			<ProductCard
-				data={{ ...product }}
+				data={{ ...product.data }}
 				{locale}
 				{t}
 				slug={`/products/${product.slug}`}

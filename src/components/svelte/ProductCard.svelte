@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { getRelativeLocaleUrl } from "astro:i18n";
-	import type { Product } from "./utils";
+	import type { ProductData } from "./utils";
 
-	export let data: Product;
+	export let data: ProductData;
 	export let slug: string;
 	export let t: (key: string) => string;
 
@@ -21,7 +20,7 @@
 >
 	<img
 		class="w-full h-1/2 max-h-[30rem] object-cover rounded-lg"
-		src={cover}
+		src={cover.src}
 		alt={title}
 	/>
 	<h2
