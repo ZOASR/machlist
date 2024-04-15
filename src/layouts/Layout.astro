@@ -132,6 +132,38 @@ const t = useTranslations(locale);
 				}
 			}
 
+			/* width */
+			::-webkit-scrollbar {
+				width: 10px;
+				height: 10px;
+				transition: all 0.3s ease-in-out;
+			}
+
+			/* Track */
+			::-webkit-scrollbar-track {
+				background: hsl(var(--color-primary));
+			}
+
+			/* Handle */
+			::-webkit-scrollbar-thumb {
+				border-radius: 5px;
+				background: linear-gradient(
+					90deg,
+					hsla(var(--color-accent), 0.5),
+					hsla(var(--color-accent-1), 0.5)
+				);
+				@apply cursor-pointer shadow-lg;
+			}
+
+			/* Handle on hover */
+			::-webkit-scrollbar-thumb:hover {
+				background: linear-gradient(
+					90deg,
+					hsla(var(--color-accent), 1),
+					hsla(var(--color-accent-1), 1)
+				);
+			}
+
 			::-moz-selection {
 				/* Code for Firefox */
 				color: hsl(var(--color-accent));
