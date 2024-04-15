@@ -13,67 +13,104 @@ const t = useTranslations(locale);
 	<p class="md:text-[3rem] text-skin-muted">
 		{t("feedback.description")}
 	</p>
-	<form class="flex flex-col justify-center items-center gap-4 w-full">
+	<form
+		class="flex flex-col justify-center items-center gap-4 w-full"
+		id="form-feedback"
+	>
 		<label
 			class="flex gap-4 flex-col items-center justify-center md:flex-row w-full"
 		>
-			{t("name")}
+			{t("name")}:
 			<input
 				placeholder={t("name")}
 				class="bg-skin-base/20 border-none flex-1"
 				type="text"
-				name="Name"
+				name="name"
 				required
 			/>
 		</label>
 		<label
 			class="flex gap-4 flex-col items-center justify-center md:flex-row w-full"
 		>
-			{t("email")}
+			{t("email")}:
 			<input
 				placeholder="example@example.com"
 				class="bg-skin-base/20 border-none flex-1"
 				type="email"
-				name="Email"
+				name="email"
 				required
 			/>
 		</label>
 		<label
 			class="flex gap-4 flex-col items-center justify-center md:flex-row w-full"
 		>
-			{t("phone")}
+			{t("phone")}:
 			<input
 				class="bg-skin-base/20 border-none flex-1"
-				type="text"
-				name={t("phone")}
-				pattern="\+[0-9][0-9]{9}"
-				placeholder="+2012345678"
+				type="tel"
+				name="phone"
+				pattern="^[\\+][0-9]{2}[\\-\\s\\.]?[\\(]?[0-9]{3}[\\)]?[\\-\\s\\.]?[0-9]{3}[\\-\\s\\.]?[0-9]{4,6}$"
+				placeholder="+20 123 456 7891"
 			/>
 		</label>
 		<div class="flex flex-col md:flex-row items-center gap-4 w-full">
-			<label for="">{t("message")}</label>
+			<label for="feedback">{t("message")}:</label>
 			<textarea
+				id="feedback"
 				placeholder={t("message")}
 				class="bg-skin-base/20 border-none text-4xl flex-1 h-auto"
-				name="Feedback"
+				name="feedback"
 				required
-				id=""
 				cols="30"
 				rows="10"></textarea>
 		</div>
+		<button
+			class="bg-gradient-to-r from-skin-accent to-skin-accent-1 dark:text-skin-text-dark ring-2 ring-skin-base/20 py-4 px-8 rounded-lg transition-all shadow w-full text-[2.5rem] font-bold"
+			class:list={[
+				"hover:shadow-lg hover:ring-4 hover:ring-skin-base hover:bg-skin-primary",
+				"focus:shadow-lg focus:ring-4 focus:ring-skin-base focus:bg-skin-primary outline-none",
+				"md:w-fit self-end"
+			]}
+			type="submit">{t("submit")}</button
+		>
 	</form>
 </SectionLayout>
 
+<script is:inline>
+	const formEl = document.querySelector("#form-feedback");
+	formEl.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const formData = new FormData(formEl);
+		const formObj = Object.fromEntries(formData.entries());
+		fetch("https://cadsoul-emails.recyclin.workers.dev/send/machlist", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(formObj)
+		}).then(() => {
+			formEl.reset();
+		});
+	});
+</script>
 <!-- -->
 
 <style>
 	textarea,
 	input {
+		position: relative;
 		font-family: inherit;
 		outline: none;
 		border-bottom: 2px solid hsl(var(--color-neutral));
 		border-radius: 5px;
 		transition: border 150ms ease-in-out;
+	}
+	textarea:invalid,
+	input:invalid {
+		border: 1px solid hsl(var(--color-accent-1));
+		box-shadow: 0 0 5px hsl(var(--color-accent-1));
+	}
+
+	label {
+		position: relative;
 	}
 	textarea:focus,
 	input:focus {

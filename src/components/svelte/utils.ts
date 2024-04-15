@@ -1,3 +1,5 @@
+import type { GetImageResult } from "astro";
+
 export type AnimationProps = {
 	duration: number;
 	delay?: number;
@@ -7,10 +9,15 @@ export type AnimationProps = {
 
 export type Product = {
 	slug: string;
+	data: ProductData;
+};
+
+export type ProductData = {
 	title: string;
-	cover: string;
+	cover: GetImageResult;
+	production_rate?: number;
 	model?: string;
-	production_rate?: number | undefined;
+	order: number;
 	production_unit?:
 		| "Kg/h"
 		| "m/min"
@@ -19,7 +26,6 @@ export type Product = {
 		| "متر/دقيقة"
 		| "قطعة/دقيقة"
 		| undefined;
-	order: number;
 	nested?: boolean;
 	isLine?: boolean;
 };
