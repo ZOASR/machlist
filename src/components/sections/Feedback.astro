@@ -77,17 +77,16 @@ const t = useTranslations(locale);
 </SectionLayout>
 
 <script is:inline>
-	const formEl = document.querySelector("#form-feedback");
-	formEl.addEventListener("submit", (e) => {
+	document.querySelector("#form-feedback").addEventListener("submit", (e) => {
 		e.preventDefault();
-		const formData = new FormData(formEl);
+		const formData = new FormData(document.querySelector("#form-feedback"));
 		const formObj = Object.fromEntries(formData.entries());
 		fetch("https://cadsoul-emails.recyclin.workers.dev/send/machlist", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(formObj)
 		}).then(() => {
-			formEl.reset();
+			document.querySelector("#form-feedback").reset();
 		});
 	});
 </script>
