@@ -10,6 +10,8 @@ export const ui = {
 		"meta.title": "Machlist",
 		"meta.description":
 			"Machlist is an Egyptian company established at 2005 in Cairo for machines and production lines.",
+		"mata.keywords":
+			"Machlist, machines, production lines, industrial lines",
 		// Header
 		"header.title": "Machlist",
 		"nav.home": "Home",
@@ -79,6 +81,8 @@ export const ui = {
 		"meta.title": "ماك-ليست",
 		"meta.description":
 			'تأسست شركة " ماك-ليســـت " عام 2005 بالقاهرة وتعمل في مجال ماكينات وخطوط الإنتاج المختلفة',
+		"meta.keywords":
+			"ماك-ليست, ماكينات, خطوط الإنتاج, ماكينات مختلفة, ماكينات مختلفة",
 		// Header
 		"header.title": "ماك-ليست",
 		"nav.home": "الصفحة الرئيسية",

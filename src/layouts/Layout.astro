@@ -3,12 +3,15 @@ import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
 import "@fontsource-variable/el-messiri";
 import { getLangFromUrl, useTranslations } from "src/i18n/utils";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
 	title: string;
+	image?: string;
+	desc?: string;
 }
 
-const { title } = Astro.props;
+const { title, image, desc } = Astro.props;
 const locale = getLangFromUrl(Astro.url);
 const t = useTranslations(locale);
 ---
@@ -16,157 +19,191 @@ const t = useTranslations(locale);
 <!doctype html>
 <html lang={locale}>
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={t("meta.description")} />
+		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{t("meta.title")} - {title}</title>
+		<link rel="shortcut icon" href="/logo.svg" type="image/x-icon" />
+		<meta
+			property="og:image"
+			content={image ? image : `/preview-${locale}.jpg`}
+		/>
+		<meta property="og:title" content={`${t("meta.title")} - ${title}`} />
+		<meta
+			property="og:description"
+			content={desc ? desc : t("meta.description")}
+		/>
+		<meta
+			name="description"
+			content={desc ? desc : t("meta.description")}
+		/>
+		<meta name="keywords" content={t("meta.keywords")} />
+		<meta name="author" content={t("meta.title")} />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>
+			{`${t("meta.title")} - ${title}`}
+		</title>
+		<ViewTransitions />
 	</head>
 	<body
 		class="text-skin-base bg-skin-primary/80"
 		dir={locale === "en" ? "ltr" : "rtl"}
 	>
 		<Header />
-		<main class="relative flex-1">
+		<main class="relative flex-1" transition:animate="slide">
 			<slot />
 		</main>
 		<Footer />
+		<script src="../js/aos"></script>
+		<script defer>
+			const theme = localStorage.getItem("theme");
+			if (theme)
+				document.documentElement.setAttribute("data-theme", theme);
+		</script>
+		<script is:inline>
+			function setDarkMode(document) {
+				let theme =
+					localStorage.getItem("theme") === "dark" ? "dark" : "light";
+				document.documentElement.dataset.theme = theme;
+			}
+
+			setDarkMode(document);
+
+			document.addEventListener("astro:before-swap", (ev) => {
+				// Pass the incoming document to set the theme on it
+				setDarkMode(ev.newDocument);
+			});
+		</script>
+
+		<style is:global>
+			:root {
+				--color-neutral: 0, 0%, 13%; /* hsl(0, 0%, 13%) */
+				--color-primary: 213, 100%, 85%; /* hsl(213, 100%, 85%) */
+				--color-secondary: 0, 0%, 30%; /* hsl(0, 0%, 30%) */
+				--color-accent: 51, 100%, 50%; /* hsl(51, 80%, 50%) */
+				--color-accent-1: 12, 100%, 50%; /* hsl(12, 100%, 50%) */
+				--color-accent-2: 49, 90%, 40%; /* hsl(49, 90%, 50%) */
+				--color-accent-3: 145, 63%, 49%; /* hsl(145, 63%, 49%) */
+				--color-background: 0, 0%, 95%; /* hsl(0, 0%, 95%) */
+				--color-purple: 277, 70%, 35%; /* hsl(277, 70%, 35%) */
+				--color-teal: 180, 100%, 25%; /* hsl(180, 100%, 25%) */
+				--color-magenta: 326, 100%, 50%; /* hsl(326, 100%, 50%) */
+				--color-text-base: 213, 34%, 15%;
+				--color-text-muted: var(--color-secondary);
+
+				/* --test: hsl(32, 34%, 50%); */
+
+				--bounce-distance: 10%;
+				--bounce-timing: 2s;
+			}
+			:root[data-theme="dark"] {
+				--color-neutral: 0, 0%, 87%; /* hsl(0, 0%, 87%) */
+				--color-primary: 213, 100%, 15%; /* hsl(213, 100%, 15%) */
+				--color-secondary: 0, 0%, 80%; /* hsl(0, 0%, 70%) */
+				--color-accent: 51, 100%, 50%; /* hsl(51, 80%, 50%) */
+				--color-accent-1: 12, 100%, 50%; /* hsl(12, 100%, 50%) */
+				--color-accent-2: 49, 90%, 50%; /* hsl(49, 90%, 50%) */
+				--color-accent-3: 145, 63%, 49%; /* hsl(145, 63%, 49%) */
+				--color-background: 0, 0%, 13%; /* hsl(0, 0%, 13%) */
+				--color-purple: 277, 70%, 35%; /* hsl(277, 70%, 35%) */
+				--color-teal: 180, 100%, 25%; /* hsl(180, 100%, 25%) */
+				--color-magenta: 326, 100%, 50%; /* hsl(326, 100%, 50%) */
+				--color-text-base: 213, 34%, 85%; /* hsl(213, 34%, 95%) */
+				--color-text-dark: 213, 34%, 15%; /* hsl(213, 34%, 15%) */
+				--color-text-muted: var(--color-secondary);
+			}
+
+			@media (prefers-color-scheme: dark) {
+				:root:not([data-theme]) {
+					--color-neutral: 0, 0%, 87%; /* hsl(0, 0%, 87%) */
+					--color-primary: 213, 100%, 15%; /* hsl(213, 100%, 15%) */
+					--color-secondary: 0, 0%, 80%; /* hsl(0, 0%, 70%) */
+					--color-accent: 51, 100%, 50%; /* hsl(51, 80%, 50%) */
+					--color-accent-1: 12, 100%, 50%; /* hsl(12, 100%, 50%) */
+					--color-accent-2: 49, 90%, 50%; /* hsl(49, 90%, 50%) */
+					--color-accent-3: 145, 63%, 49%; /* hsl(145, 63%, 49%) */
+					--color-background: 0, 0%, 13%; /* hsl(0, 0%, 13%) */
+					--color-purple: 277, 70%, 35%; /* hsl(277, 70%, 35%) */
+					--color-teal: 180, 100%, 25%; /* hsl(180, 100%, 25%) */
+					--color-magenta: 326, 100%, 50%; /* hsl(326, 100%, 50%) */
+					--color-text-base: 213, 34%, 85%; /* hsl(213, 34%, 95%) */
+					--color-text-dark: 213, 34%, 15%; /* hsl(213, 34%, 15%) */
+					--color-text-muted: var(--color-secondary);
+				}
+			}
+
+			::-moz-selection {
+				/* Code for Firefox */
+				color: hsl(var(--color-accent));
+				background: hsl(var(--color-accent-1));
+			}
+
+			::selection {
+				color: hsl(var(--color-accent));
+				background: hsl(var(--color-accent-1));
+			}
+
+			/* CSS RESETS */
+			html,
+			body,
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				line-height: 1.4;
+				font-size: 1.6em;
+				min-height: 100dvh;
+				background-color: hsl(var(--color-background));
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+
+			html {
+				font-family: "El Messiri Variable", Helvetica, sans-serif;
+				font-size: 62.5%;
+				scroll-behavior: smooth;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				text-rendering: optimizeLegibility;
+			}
+
+			button,
+			input[type="submit"],
+			input[type="button"] {
+				cursor: pointer;
+				background-color: transparent;
+				border: none;
+				font-family: inherit;
+				color: inherit;
+			}
+
+			*,
+			*::after,
+			*::before {
+				min-width: 0px;
+				box-sizing: border-box;
+			}
+
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+
+			ul,
+			ol {
+				list-style: none;
+			}
+			/* CSS RESETS */
+
+			hr {
+				border: none;
+				height: 2px;
+				background-color: hsla(var(--color-neutral), 0.5);
+				border-radius: 5px;
+			}
+		</style>
 	</body>
 </html>
-<script src="../js/aos"></script>
-<script defer>
-	const theme = localStorage.getItem("theme");
-	if (theme) document.documentElement.setAttribute("data-theme", theme);
-</script>
-
-<style is:global>
-	:root {
-		--color-neutral: 0, 0%, 13%; /* hsl(0, 0%, 13%) */
-		--color-primary: 213, 100%, 85%; /* hsl(213, 100%, 85%) */
-		--color-secondary: 0, 0%, 30%; /* hsl(0, 0%, 30%) */
-		--color-accent: 51, 100%, 50%; /* hsl(51, 80%, 50%) */
-		--color-accent-1: 12, 100%, 50%; /* hsl(12, 100%, 50%) */
-		--color-accent-2: 49, 90%, 40%; /* hsl(49, 90%, 50%) */
-		--color-accent-3: 145, 63%, 49%; /* hsl(145, 63%, 49%) */
-		--color-background: 0, 0%, 95%; /* hsl(0, 0%, 95%) */
-		--color-purple: 277, 70%, 35%; /* hsl(277, 70%, 35%) */
-		--color-teal: 180, 100%, 25%; /* hsl(180, 100%, 25%) */
-		--color-magenta: 326, 100%, 50%; /* hsl(326, 100%, 50%) */
-		--color-text-base: 213, 34%, 15%;
-		--color-text-muted: var(--color-secondary);
-
-		/* --test: hsl(32, 34%, 50%); */
-
-		--bounce-distance: 10%;
-		--bounce-timing: 2s;
-	}
-	:root[data-theme="dark"] {
-		--color-neutral: 0, 0%, 87%; /* hsl(0, 0%, 87%) */
-		--color-primary: 213, 100%, 15%; /* hsl(213, 100%, 15%) */
-		--color-secondary: 0, 0%, 80%; /* hsl(0, 0%, 70%) */
-		--color-accent: 51, 100%, 50%; /* hsl(51, 80%, 50%) */
-		--color-accent-1: 12, 100%, 50%; /* hsl(12, 100%, 50%) */
-		--color-accent-2: 49, 90%, 50%; /* hsl(49, 90%, 50%) */
-		--color-accent-3: 145, 63%, 49%; /* hsl(145, 63%, 49%) */
-		--color-background: 0, 0%, 13%; /* hsl(0, 0%, 13%) */
-		--color-purple: 277, 70%, 35%; /* hsl(277, 70%, 35%) */
-		--color-teal: 180, 100%, 25%; /* hsl(180, 100%, 25%) */
-		--color-magenta: 326, 100%, 50%; /* hsl(326, 100%, 50%) */
-		--color-text-base: 213, 34%, 85%; /* hsl(213, 34%, 95%) */
-		--color-text-dark: 213, 34%, 15%; /* hsl(213, 34%, 15%) */
-		--color-text-muted: var(--color-secondary);
-	}
-
-	@media (prefers-color-scheme: dark) {
-		:root:not([data-theme]) {
-			--color-neutral: 0, 0%, 87%; /* hsl(0, 0%, 87%) */
-			--color-primary: 213, 100%, 15%; /* hsl(213, 100%, 15%) */
-			--color-secondary: 0, 0%, 80%; /* hsl(0, 0%, 70%) */
-			--color-accent: 51, 100%, 50%; /* hsl(51, 80%, 50%) */
-			--color-accent-1: 12, 100%, 50%; /* hsl(12, 100%, 50%) */
-			--color-accent-2: 49, 90%, 50%; /* hsl(49, 90%, 50%) */
-			--color-accent-3: 145, 63%, 49%; /* hsl(145, 63%, 49%) */
-			--color-background: 0, 0%, 13%; /* hsl(0, 0%, 13%) */
-			--color-purple: 277, 70%, 35%; /* hsl(277, 70%, 35%) */
-			--color-teal: 180, 100%, 25%; /* hsl(180, 100%, 25%) */
-			--color-magenta: 326, 100%, 50%; /* hsl(326, 100%, 50%) */
-			--color-text-base: 213, 34%, 85%; /* hsl(213, 34%, 95%) */
-			--color-text-dark: 213, 34%, 15%; /* hsl(213, 34%, 15%) */
-			--color-text-muted: var(--color-secondary);
-		}
-	}
-
-	::-moz-selection {
-		/* Code for Firefox */
-		color: hsl(var(--color-accent));
-		background: hsl(var(--color-accent-1));
-	}
-
-	::selection {
-		color: hsl(var(--color-accent));
-		background: hsl(var(--color-accent-1));
-	}
-
-	/* CSS RESETS */
-	html,
-	body,
-	* {
-		margin: 0;
-		padding: 0;
-	}
-
-	body {
-		line-height: 1.4;
-		font-size: 1.6em;
-		min-height: 100dvh;
-		background-color: hsl(var(--color-background));
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-	}
-
-	html {
-		font-family: "El Messiri Variable", Helvetica, sans-serif;
-		font-size: 62.5%;
-		scroll-behavior: smooth;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		text-rendering: optimizeLegibility;
-	}
-
-	button,
-	input[type="submit"],
-	input[type="button"] {
-		cursor: pointer;
-		background-color: transparent;
-		border: none;
-		font-family: inherit;
-		color: inherit;
-	}
-
-	*,
-	*::after,
-	*::before {
-		min-width: 0px;
-		box-sizing: border-box;
-	}
-
-	a {
-		color: inherit;
-		text-decoration: none;
-	}
-
-	ul,
-	ol {
-		list-style: none;
-	}
-	/* CSS RESETS */
-
-	hr {
-		border: none;
-		height: 2px;
-		background-color: hsla(var(--color-neutral), 0.5);
-		border-radius: 5px;
-	}
-</style>

@@ -22,7 +22,14 @@ const entry = await getEntryBySlug("products", product);
 const { Content } = await entry.render();
 ---
 
-<Layout title={entry.data.title}>
+<Layout
+	title={entry.data.title}
+	image={entry.data.cover.src}
+	desc={entry.data.title +
+		" - " +
+		entry.data.model +
+		`${entry.data.production_rate ? ` - ${entry.data.production_rate} ${entry.data.production_unit ? entry.data.production_unit : "Kg/hr"}` : ``}`}
+>
 	<Goback />
 	<div class="w-11/12 p-[2rem] max-w-[1000px] mx-auto overflow-x-auto">
 		<ProductHead
