@@ -19,7 +19,7 @@
 				return `
 					transform: translateX(${dir === "left" ? "" : "-"}${100 - eased * 100}%);
 					`;
-			},
+			}
 		};
 	}
 </script>
@@ -31,7 +31,7 @@
 	in:slide={{
 		duration: 1000,
 		easing: quintInOut,
-		dir,
+		dir
 	}}
 >
 	<div
@@ -55,17 +55,29 @@
 	</div>
 </div>
 
-<style>
-	.order-1 {
-		@apply bg-skin-accent-1;
-		box-shadow: 0 0 0 10px hsla(var(--color-accent-1), 0.5);
-	}
-	.order-2 {
-		@apply bg-skin-accent-2;
-		box-shadow: 0 0 0 10px hsla(var(--color-accent-2), 0.5);
-	}
-	.order-3 {
-		@apply bg-skin-accent-3;
-		box-shadow: 0 0 0 10px hsla(var(--color-accent-3), 0.5);
+<style lang="scss">
+	@for $i from 1 to 4 {
+		.order-#{$i} {
+			box-shadow:
+				0 0 0 10px hsla(var(--color-accent-#{$i}), 0.5),
+				0 0 0 20px hsla(var(--color-accent-#{$i}), 0.25);
+			animation: pulsate-#{$i} 3s infinite both ease-in-out;
+			background-color: hsl(var(--color-accent-#{$i}));
+		}
+
+		@keyframes pulsate-#{$i} {
+			0%,
+			100% {
+				box-shadow:
+					0 0 0 10px hsla(var(--color-accent-#{$i}), 0.5),
+					0 0 0 20px hsla(var(--color-accent-#{$i}), 0.25);
+			}
+
+			50% {
+				box-shadow:
+					0 0 0 5px hsla(var(--color-accent-#{$i}), 0.5),
+					0 0 0 10px hsla(var(--color-accent-#{$i}), 0.25);
+			}
+		}
 	}
 </style>

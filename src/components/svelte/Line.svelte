@@ -25,8 +25,7 @@
 </script>
 
 <div
-	class="relative mt-[5rem] flex flex-col items-center justify-center w-full md:w-[69rem] mx-auto overflow-x-clip
-	[mask-image:linear-gradient(90deg,_#0005_0%,_#000_10%,_#000_50%,_#000_90%,_#0005_100%)]"
+	class="relative mt-[5rem] flex flex-col items-center justify-center w-full md:w-[69rem] mx-auto overflow-x-clip"
 >
 	<ShowOnEnter>
 		<div
