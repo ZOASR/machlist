@@ -3,6 +3,11 @@
 	import { quintInOut } from "svelte/easing";
 	import ShowOnEnter from "./ShowOnEnter.svelte";
 	import type { AnimationProps } from "./utils";
+	import { useTranslations } from "@i18n/utils";
+
+	export let locale: "en" | "ar" = "en";
+
+	const t = useTranslations(locale);
 
 	function grow(node: Element, { duration, delay, easing }: AnimationProps) {
 		return {
@@ -17,8 +22,6 @@
 			}
 		};
 	}
-
-	export let locale: string = "en";
 </script>
 
 <div
@@ -39,11 +42,9 @@
 	<ShowOnEnter classes="md:self-start">
 		<BulletPoint
 			dir="right"
-			title={locale === "en" ? "You Choose" : "اختر "}
+			title={t("steps.first.title")}
 			order={1}
-			description={locale === "en"
-				? "Choose from a wide collection of machine designs"
-				: "اختر من مجموعة من تصميمات الماكينات و خطوط الإنتاج"}
+			description={t("steps.first.description")}
 		/>
 	</ShowOnEnter>
 	<ShowOnEnter>
@@ -59,11 +60,9 @@
 	<ShowOnEnter classes="md:self-end">
 		<BulletPoint
 			dir="left"
-			title={locale === "en" ? "We design" : "نحن نصمم"}
+			title={t("steps.second.title")}
 			order={2}
-			description={locale == "en"
-				? "With over 20 years of experience in the industry, we can help you create the design that meets your needs"
-				: "مع مهارات عالية من الخبرة في الصناعة، يمكننا مساعدتك على انشاء التصميم الذي يلبي  احتياجك"}
+			description={t("steps.second.description")}
 		/>
 	</ShowOnEnter>
 	<ShowOnEnter>
@@ -79,11 +78,9 @@
 	<ShowOnEnter classes="md:self-start">
 		<BulletPoint
 			dir="right"
-			title={locale === "en" ? "You profit" : "ابدأ بالكسب"}
+			title={t("steps.third.title")}
 			order={3}
-			description={locale === "en"
-				? "With an effecient machine design, you can profit from the time and money you save"
-				: "مع تصميم ذو كفائة عالية لماكيناتنا، يمكن تحقيق أرباح من الوقت والمال الذي توفره"}
+			description={t("steps.third.description")}
 		/>
 	</ShowOnEnter>
 </div>

@@ -1,20 +1,27 @@
 ---
+import clsx from "clsx";
 import { getLangFromUrl, useTranslations } from "src/i18n/utils";
 
 const locale = getLangFromUrl(Astro.url);
 
 const t = useTranslations(locale);
-
-const buttonStyles =
-	"font-bold flex items-center justify-center animated-gradient w-full md:w-max group rounded-lg text-center px-8 py-4 text-skin-muted transition-all duration-150 hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base";
 ---
 
-<a href={`/${locale}/products`} class={buttonStyles}>
+<a
+	href={`/${locale}/products`}
+	class:list={[
+		"font-bold flex items-center justify-center animated-gradient w-full md:w-max group rounded-lg text-center px-8 py-4 text-skin-muted dark:text-skin-text-dark transition-all duration-150",
+		"hover:px-12 hover:shadow-lg hover:underline hover:text-skin-base",
+		"focus:px-12 focus:shadow-lg focus:underline focus:text-skin-base"
+	]}
+>
 	{t("hero.buttons.seeProducts")}
 	<span
-		class="inline-block invisible opacity-0 transition-all duration-150 scale-0
-					group-hover:scale-100 group-hover:opacity-100 group-hover:visible
-					group-focus:scale-100 group-focus:opacity-100 group-focus:visible"
+		class:list={[
+			"inline-block invisible opacity-0 transition-all duration-150 scale-0",
+			"group-hover:scale-100 group-hover:opacity-100 group-hover:visible",
+			"group-focus:scale-100 group-focus:opacity-100 group-focus:visible"
+		]}
 	>
 		{locale == "en" ? <span>&rarr;</span> : <span>&larr;</span>}
 	</span>

@@ -32,7 +32,7 @@
 <div class="flex items-center space-x-3">
 	<Switch.Root
 		class={clsx(
-			"inline-flex h-[2.6rem] min-h-[2.6rem] w-[6rem] shrink-0 cursor-pointer items-center rounded-full px-[3px] transition-all mx-5",
+			"inline-flex h-[2.6rem] min-h-[2.6rem] w-[6rem] shrink-0 cursor-pointer items-center rounded-full px-[3px] transition-all",
 			"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50",
 			"data-[state=checked]:bg-white data-[state=unchecked]:bg-black/30 shadow-[inset_0_0_5px_#0008] dark:data-[state=checked]:bg-white",
 			"hover:ring-4 ring-black/50 dark:hover:ring-white/50"
