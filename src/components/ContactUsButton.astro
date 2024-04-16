@@ -3,10 +3,15 @@ import { getLangFromUrl, useTranslations } from "src/i18n/utils";
 const locale = getLangFromUrl(Astro.url);
 
 const t = useTranslations(locale);
-const buttonStyles =
-	"flex items-center justify-center font-bold w-full md:w-max px-8 py-4 bg-skin-accent/50 rounded-lg text-center relative transition-all duration-150 shadow-md after:absolute after:bottom-0 after:left-0 after:w-0 after:h-2 after:bg-skin-base after:transition-all after:duration-150 after:border-inherit hover:after:w-full hover:underline hover:bg-skin-accent-1/80 hover:shadow-lg focus:after:w-full focus:underline focus:bg-skin-accent-1/80 focus:shadow-lg";
 ---
 
-<a href={`/${locale}/contact`} class={buttonStyles}>
+<a
+	href={`/${locale}/contact`}
+	class:list={[
+		"flex items-center justify-center font-bold w-full md:w-max px-8 py-4 bg-skin-base/70 dark:text-skin-text-dark text-skin-primary rounded-lg text-center relative transition-all duration-150 shadow-lg",
+		"after:absolute after:bottom-0 after:left-0 after:w-0 after:h-2 after:bg-skin-primary after:transition-all after:duration-150 after:border-inherit",
+		"hover:after:w-full hover:underline hover:bg-skin-base hover:shadow-lg focus:after:w-full focus:underline focus:bg-skin-accent-1/80 focus:shadow-lg"
+	]}
+>
 	{t("hero.buttons.contactUs")}
 </a>

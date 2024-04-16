@@ -35,7 +35,7 @@
 	preventScroll={false}
 >
 	<Select.Trigger
-		class="flex justify-center h-input w-max shrink-0 items-center rounded-9px border-2 border-skin-base px-8 transition-colors placeholder:text-skin-base/50 focus:outline-none hover:bg-gradient-to-r from-skin-accent/50 to-skin-accent-1/50 hover:shadow-md rounded-lg py-2"
+		class="flex justify-center w-max shrink-0 items-center rounded-lg border-2 border-skin-base px-8 transition-colors placeholder:text-skin-base/50 focus:outline-none hover:bg-gradient-to-r from-skin-accent/50 to-skin-accent-1/50 hover:shadow-md py-2"
 		aria-label="Select a language"
 	>
 		<Select.Value

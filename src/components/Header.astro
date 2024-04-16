@@ -79,7 +79,7 @@ const items = [
 			</span>
 		</HeaderLink>
 		<div
-			class="px-4 py-2 w-[15rem] text-3xl text-nowrap min-w-[13rem] rounded-md transition-all duration-150"
+			class="px-4 py-2 text-3xl text-nowrap min-w-[10rem] rounded-md transition-all duration-150 flex-shrink-0"
 		>
 			<LanguageSelector client:visible locale={lang} items={items}>
 				<span slot="check">
@@ -88,14 +88,18 @@ const items = [
 				<Icon name="radix-icons:double-arrow-down" />
 			</LanguageSelector>
 		</div>
-		<ThemSwitcher client:only>
-			<Fragment slot="light">
-				<Icon name="radix-icons:sun" />
-			</Fragment>
-			<Fragment slot="dark">
-				<Icon name="radix-icons:moon" />
-			</Fragment>
-		</ThemSwitcher>
+		<div
+			class="w-[7rem] rounded-md transition-all duration-150 flex-shrink-0"
+		>
+			<ThemSwitcher client:only>
+				<Fragment slot="light">
+					<Icon name="radix-icons:sun" />
+				</Fragment>
+				<Fragment slot="dark">
+					<Icon name="radix-icons:moon" />
+				</Fragment>
+			</ThemSwitcher>
+		</div>
 	</nav>
 </header>
 
