@@ -36,9 +36,11 @@ const items = [
 	id="header"
 	transition:animate={"slide"}
 >
-	<!-- <img src="/" alt="Machlist logo" /> -->
-
-	<a href={`/${lang}`} class="text-[3rem] min-w-max">
+	<a
+		href={`/${lang}`}
+		class="text-[3rem] min-w-max flex flex-col justify-center items-center"
+	>
+		<img src="/machlist-logo.png" alt="Machlist logo" />
 		{t("header.title")}
 	</a>
 	<div class="h-[5rem] w-2 rounded-lg bg-skin-base shadow-lg"></div>
