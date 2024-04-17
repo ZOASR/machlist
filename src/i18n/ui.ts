@@ -24,7 +24,7 @@ export const ui = {
 		"hero.slogan": "We Build,",
 		"hero.subtitle": "You Profit",
 		"hero.description":
-			"From machines to working production lines. we power your industrial lines and machines",
+			"Empowering your industrial production! Our solutions drive machines and streamline production lines, making your manufacturing processes efficient and effective",
 		"hero.buttons.seeProducts": "See our Products",
 		"hero.buttons.contactUs": "Contact Us",
 
@@ -112,7 +112,7 @@ export const ui = {
 		"hero.slogan": "نحن نصنع,",
 		"hero.subtitle": "أنت تربح",
 		"hero.description":
-			"من ماكينات إلى خطوط إنتاجية . نحن ندعم كافة أنواع	الحلول الصناعية",
+			"تعمل حلولنا على تشغيل الماكينات وتبسيط خطوط الإنتاج، مما يجعل عمليات التصنيع تتسم بالكفاءة والفعالية.",
 		"hero.buttons.seeProducts": "تصفح منتجاتنا",
 		"hero.buttons.contactUs": "اتصل بنا",
 
