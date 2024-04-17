@@ -8,7 +8,11 @@ const t = useTranslations(locale);
 <footer
 	class="w-full mt-auto h-max p-8 flex flex-col gap-8 md:flex-row justify-between items-center md:items-start"
 >
-	<a href={`/${locale}/`} class="text-[5rem] self-center text-center">
+	<a
+		href={`/${locale}/`}
+		class="text-[3rem] text-nowrap self-center text-center"
+	>
+		<img src="/machlist-logo.png" alt="Machlist logo" />
 		{t("header.title")}
 	</a>
 	<nav
