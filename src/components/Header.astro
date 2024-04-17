@@ -31,17 +31,23 @@ const items = [
 ---
 
 <header
-	class="flex flex-row-reverse gap-8 w-full justify-between items-center p-8 border-b-2 border-skin-base shadow-2xl z-20 filter backdrop-blur-lg sticky top-0"
+	class="flex flex-row-reverse gap-4 w-full justify-between items-center p-8 border-b-2 border-skin-base shadow-2xl z-20 filter backdrop-blur-lg sticky top-0"
 	dir={lang === "en" ? "ltr" : "rtl"}
 	id="header"
 	transition:animate={"slide"}
 >
 	<a
 		href={`/${lang}`}
-		class="text-[3rem] min-w-max flex flex-col justify-center items-center"
+		class="flex flex-col justify-center items-center md:w-[15rem] w-[10rem]"
 	>
-		<img src="/machlist-logo.png" alt="Machlist logo" />
-		{t("header.title")}
+		<img
+			src="/machlist-logo.png"
+			alt="Machlist logo"
+			class="object-cover block w-[clamp(10rem,10vw,15rem)]"
+		/>
+		<span class="text-[clamp(1.5rem,3vw,3rem)] w-full text-center">
+			{t("header.title")}
+		</span>
 	</a>
 	<div class="h-[5rem] w-2 rounded-lg bg-skin-base shadow-lg"></div>
 	<nav
