@@ -40,16 +40,8 @@ export type uiObject = {
 };
 
 export const fadeAndScale = (
-	node: Element,
-	{
-		duration,
-		delay,
-		easing
-	}: {
-		duration: number;
-		delay?: number;
-		easing: (t: number) => number;
-	}
+	_: Element,
+	{ duration, delay, easing }: Omit<AnimationProps, "dir">
 ) => {
 	return {
 		delay,

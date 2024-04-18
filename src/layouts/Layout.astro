@@ -60,14 +60,14 @@ const t = useTranslations(locale);
 		</main>
 		<Footer />
 		<script src="../js/aos"></script>
-		<script defer>
+		<script is:inline>
 			const theme = localStorage.getItem("theme");
 			if (theme)
 				document.documentElement.setAttribute("data-theme", theme);
 		</script>
 		<script is:inline>
 			function setDarkMode(document) {
-				let theme =
+				const theme =
 					localStorage.getItem("theme") === "dark" ? "dark" : "light";
 				document.documentElement.dataset.theme = theme;
 			}

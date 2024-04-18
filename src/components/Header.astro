@@ -1,5 +1,5 @@
 ---
-import { getLocaleByPath, getRelativeLocaleUrl } from "astro:i18n";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import HeaderLink from "./HeaderLink.astro";
 import { Icon } from "astro-icon/components";
 import LanguageSelector from "./svelte/LanguageSelector.svelte";
@@ -99,7 +99,7 @@ const items = [
 		<div
 			class="w-[7rem] rounded-md transition-all duration-150 flex-shrink-0"
 		>
-			<ThemSwitcher client:only>
+			<ThemSwitcher client:only="svelte">
 				<Fragment slot="light">
 					<Icon name="radix-icons:sun" />
 				</Fragment>
