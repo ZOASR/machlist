@@ -58,7 +58,7 @@ const directories = [
 			await fs.mkdir(dir, {
 				recursive: true
 			});
-		} catch (error) {
+		} catch (err) {
 			if (err.code !== "EEXIST") throw err;
 		}
 	}
