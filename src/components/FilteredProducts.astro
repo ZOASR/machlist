@@ -44,7 +44,7 @@ const productsWithOptimizedImages = mappedProducts.map((product, index) => ({
 <ProductsList
 	products={productsWithOptimizedImages}
 	locale={locale}
-	client:only
+	client:only="svelte"
 >
 	<Fragment slot="caret-icon">
 		<Icon name="radix-icons:caret-sort" />

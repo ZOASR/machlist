@@ -9,7 +9,7 @@
 
 	const t = useTranslations(locale);
 
-	function grow(node: Element, { duration, delay, easing }: AnimationProps) {
+	function grow(_: Element, { duration, delay, easing }: AnimationProps) {
 		return {
 			duration,
 			delay,

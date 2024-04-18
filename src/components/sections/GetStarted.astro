@@ -1,7 +1,6 @@
 ---
 import Arrow from "@components/Arrow.astro";
 import ContactUsButton from "@components/ContactUsButton.astro";
-import LocaledContent from "@components/LocaledContent.astro";
 import SeeProductsButton from "@components/SeeProductsButton.astro";
 import StagerredBoxes from "@components/svelte/StagerredBoxes.svelte";
 import SectionLayout from "@layouts/SectionLayout.astro";
@@ -15,7 +14,10 @@ const t = useTranslations(locale);
 	<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
 		{t("getStarted.title")}
 	</h1>
-	<StagerredBoxes client:only dir={locale === "en" ? "left" : "right"} />
+	<StagerredBoxes
+		client:only="svelte"
+		dir={locale === "en" ? "left" : "right"}
+	/>
 	<div
 		class="w-full flex md:flex-row flex-col justify-center items-center gap-[5rem] h-full text-center"
 	>

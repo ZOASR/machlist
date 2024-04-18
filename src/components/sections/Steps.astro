@@ -10,6 +10,6 @@ const t = useTranslations(locale);
 <SectionLayout>
 	<h1 class="text-[clamp(5rem,10dvw,8rem)] text-center md:text-start">
 		{t("steps.title")}
-		<Line client:only locale={locale} />
+		<Line client:only="svelte" locale={locale} />
 	</h1>
 </SectionLayout>

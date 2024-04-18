@@ -1,5 +1,5 @@
 ---
-import { getLocaleByPath, getRelativeLocaleUrl } from "astro:i18n";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import HeaderLink from "./HeaderLink.astro";
 import { Icon } from "astro-icon/components";
 import LanguageSelector from "./svelte/LanguageSelector.svelte";
@@ -99,7 +99,7 @@ const items = [
 		<div
 			class="w-[7rem] rounded-md transition-all duration-150 flex-shrink-0"
 		>
-			<ThemSwitcher client:only>
+			<ThemSwitcher client:only="svelte">
 				<Fragment slot="light">
 					<Icon name="radix-icons:sun" />
 				</Fragment>
@@ -112,22 +112,33 @@ const items = [
 </header>
 
 <script is:inline>
-	const header = document.querySelector("header");
+	let headerEl = document.getElementById("header");
 	let prevScrollY = window.scrollY;
-	let dy = 0;
+	let dy = prevScrollY - window.scrollY;
 
-	window.addEventListener("scroll", () => {
+	const changeScroll = (headerEl) => {
 		dy = prevScrollY - window.scrollY;
-
 		if (dy > 0) {
-			header.classList.add("scrolled-up");
-			header.classList.remove("scrolled-down");
-		} else if (window.scrollY > window.innerHeight * 0.2) {
-			header.classList.add("scrolled-down");
-			header.classList.remove("scrolled-up");
+			headerEl.classList.add("scrolled-up");
+			headerEl.classList.remove("scrolled-down");
+		} else if (window.scrollY > window.innerHeight * 0.3 && dy < 0) {
+			headerEl.classList.add("scrolled-down");
+			headerEl.classList.remove("scrolled-up");
 		}
 
 		prevScrollY = window.scrollY;
+	};
+
+	const initScroll = (windowDocument) => {
+		headerEl = windowDocument.getElementById("header");
+		console.log(headerEl);
+		window.addEventListener("scroll", () => changeScroll(headerEl));
+	};
+	initScroll(document);
+	document.addEventListener("astro:before-swap", (ev) => {
+		prevScrollY = window.scrollY;
+		dy = prevScrollY - window.scrollY;
+		initScroll(ev.newDocument);
 	});
 </script>
 
