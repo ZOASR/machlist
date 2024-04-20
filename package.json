@@ -11,8 +11,8 @@
 		"astro": "astro",
 		"create:machine": "node ./scripts/create-machine.mjs",
 		"create:old-machine": "node ./scripts/create-old-machine.mjs",
-		"mergeto:main": "git checkout main && git merge static --no-ff --no-commit && git reset astro.config.mjs && git restore astro.config.mjs",
-		"mergeto:static": "git checkout static && git merge main --no-ff --no-commit && git reset astro.config.mjs && git restore astro.config.mjs"
+		"mergeto:main": "git checkout main && git merge static --no-ff --no-commit && git reset astro.config.mjs && git restore astro.config.mjs && git commit --no-edit",
+		"mergeto:static": "git checkout static && git merge main --no-ff --no-commit && git reset astro.config.mjs && git restore astro.config.mjs && git commit --no-edit"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.5.10",
