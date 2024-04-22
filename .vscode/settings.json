@@ -6,5 +6,12 @@
 		"astro", // Enable .astro
 		"typescript", // Enable .ts
 		"typescriptreact" // Enable .tsx
-	]
+	],
+	"workbench.editor.customLabels.patterns": {
+		// astro
+		"**/src/pages/**/index.{astro,md,mdx}": "${dirname} (route)",
+		"**/src/pages/**/*.{astro,md,mdx}": "${filename} (route)",
+		"**/src/components/**/*.astro": "${filename}.${extname} (component)",
+		"**/src/content/**/*.{md,mdx}": "${filename}.${extname} (content)",
+	}
 }
