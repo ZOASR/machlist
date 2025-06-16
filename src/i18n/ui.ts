@@ -69,7 +69,7 @@ export const ui = {
 		"footer.nav": "Website",
 		"footer.social": "Social Media",
 		"footer.location": "Our Location",
-		"footer.location.address": "18 Omar Ibn El-khattab St. - Faisal - Giza",
+		"footer.location.address": "[ADDRESS]",
 		"footer.contact": "Contact Us",
 
 		// Product
@@ -156,7 +156,7 @@ export const ui = {
 		"footer.nav": "تصفح الموقع",
 		"footer.social": "صفحات التواصل الاجتماعي",
 		"footer.location": "موقعنا",
-		"footer.location.address": "١٨ ش عمر ابن الخطاب - فيصل - الجيزة",
+		"footer.location.address": "[ADDRESS]",
 		"footer.contact": "اتصل بنا",
 
 		// Product
