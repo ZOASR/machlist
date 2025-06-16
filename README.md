@@ -1,26 +1,80 @@
-- [Machlist](#machlist)
-	- [Building](#building)
-		- [Branches](#branches)
-		- [Merging changes between branches](#merging-changes-between-branches)
-	- [Project Structure](#project-structure)
-	- [Astro docs](#astro-docs)
-	- [Commands](#commands)
-	- [Ui](#ui)
-		- [Tailwind](#tailwind)
-		- [Sass](#sass)
-		- [astro-icon](#astro-icon)
-		- [AOS](#aos)
-	- [Content Collection](#content-collection)
-		- [Adding a product](#adding-a-product)
-			- [`create:machine`:](#createmachine)
-			- [`create:old-machine`:](#createold-machine)
-		- [Rendering the collection](#rendering-the-collection)
-	- [Internationalization (i18n)](#internationalization-i18n)
-		- [Config](#config)
-		- [UI strings](#ui-strings)
-		- [Utilty functions](#utilty-functions)
+# Machlist - Industrial Equipment Showcase
+
+[![Built with Astro](https://astro.badg.es/v2/built-with-astro/small.svg)](https://astro.build)
+[![i18n Ready](https://img.shields.io/badge/i18n-Arabic%20%26%20English-blue)](https://github.com/ZOASR/machlist)
+
+A modern, high-performance website for showcasing industrial machinery and equipment. Built with Astro for optimal performance and SEO, featuring full internationalization support for both English and Arabic languages.
+
+## 🌟 Features
+
+-   **Blazing Fast** - Built with Astro for optimal performance and minimal JavaScript
+-   **Bilingual Support** - Full Arabic and English language support with RTL layout switching
+-   **Modern UI** - Responsive design with smooth animations and transitions
+-   **Type Safety** - Built with TypeScript for better developer experience
+-   **Content Management** - Easy-to-update content collections for products and services
+-   **SEO Optimized** - Server-side rendering and semantic HTML for better search engine visibility
+
+## 🚀 Getting Started
+
+This project uses [pnpm](https://pnpm.io/) as its package manager. Using it is recommended for the best development experience.
+
+```sh
+# Install dependencies
+pnpm i
+
+# Start development server
+pnpm run dev
+
+# Build for production
+pnpm run build
+```
+
+> [!WARNING]
+> If you want to switch to another package manager, just delete the [pnpm-lock.yaml](/pnpm-lock.yaml) file, then install with your preferred package manager.
+
+## 📦 Project Structure
+
+```
+/
+├── src/
+│   ├── components/     # Reusable UI components
+│   ├── content/        # Content collections
+│   ├── i18n/          # Internationalization config and strings
+│   ├── layouts/        # Page layouts
+│   ├── pages/          # Page components
+│   └── styles/         # Global styles and themes
+```
+
+## 🌐 Internationalization
+
+The website supports both English and Arabic with automatic RTL layout switching. All UI strings are managed through the i18n system.
+
+## 📄 Table of Contents
+
+-   [Machlist](#machlist)
+-   [Building](#building)
+    -   [Branches](#branches)
+    -   [Merging changes between branches](#merging-changes-between-branches)
+-   [Project Structure](#project-structure)
+-   [Astro docs](#astro-docs)
+-   [Commands](#commands)
+-   [Ui](#ui)
+    -   [Tailwind](#tailwind)
+    -   [Sass](#sass)
+    -   [astro-icon](#astro-icon)
+    -   [AOS](#aos)
+-   [Content Collection](#content-collection)
+    -   [Adding a product](#adding-a-product)
+        -   [`create:machine`:](#createmachine)
+        -   [`create:old-machine`:](#createold-machine)
+    -   [Rendering the collection](#rendering-the-collection)
+-   [Internationalization (i18n)](#internationalization-i18n)
+    -   [Config](#config)
+    -   [UI strings](#ui-strings)
+    -   [Utilty functions](#utilty-functions)
 
 # Machlist
+
 This project uses pnpm as its package manager using it is recommended
 
 ```sh
@@ -30,24 +84,26 @@ pnpm i
 > [!WARNING]
 > If you you want to switch to another package manager just delete the [pnpm-lock.yaml](/pnpm-lock.yaml) then install with your favourite package manager
 
-
-
 ## Building
 
 To build the site just run `pnpm run build` which will build the site to `./dist/` or `./.vercel` folder depending on the current git branch.
 
 ### Branches
-- `main` - a branch that contains the vercel ssr integration
-- `static` - a branch that contains the static config for building static html files
+
+-   `main` - a branch that contains the vercel ssr integration
+-   `static` - a branch that contains the static config for building static html files
 
 ### Merging changes between branches
 
-- merging from `main` to `static`:
+-   merging from `main` to `static`:
 -
+
 ```sh
 pnpm run mergeto:static
 ```
-- merging from `static` to `main`:
+
+-   merging from `static` to `main`:
+
 ```sh
 pnpm run mergeto:main
 ```
@@ -121,30 +177,30 @@ Feel free to check [Astro's documentation](https://docs.astro.build)
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                       | Action                                                                                                                                                                                            | Usage                                                                                                                                 |
-| :---------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `pnpm install`                | Installs dependencies                                                                                                                                                                             |                                                                                                                                       |
-| `pnpm run dev`                | Starts local dev server at `localhost:4321`                                                                                                                                                       |                                                                                                                                       |
-| `pnpm run build`              | Build your production site to `"./dist/", ".vercel"`                                                                                                                                              |                                                                                                                                       |
-| `pnpm run preview`            | Preview your build locally, before deploying                                                                                                                                                      |                                                                                                                                       |
-| `pnpm run check`              | Check for linting and formatting errors before building                                                                                                                                           |                                                                                                                                       |
-| `pnpm run astro ...`          | Run CLI commands like `astro add`, `astro check`                                                                                                                                                  |                                                                                                                                       |
-| `pnpm run astro -- --help`    | Get help using the Astro CLI                                                                                                                                                                      |                                                                                                                                       |
-| `pnpm run create:machine`     | Creates all the files necessary for a new product with nested routes (eg.: `catalog.mdx`, `design.mdx`, `...etc` ) and pages inside the `./src/content/products` & `./src/assets` folders         | `pnpm run create:machine --name=[name] --titleen=[titleen] --titlear=[titlear] --model=[model] --order=[order] --isLine=[isLine]`     |
-| `pnpm run create:old-machine` | Creates all the files necessary for a new product (only `.md` files) inside the `./src/content/products` & `./src/assets` folders                                                                 | `pnpm run create:old-machine --name=[name] --titleen=[titleen] --titlear=[titlear] --model=[model] --order=[order] --isLine=[isLine]` |
-| `pnpm run mergeto:main`       | Merges changes from `static` branch to `main` branch     |                                                                                                                                                                                                                                                                                                         |
-| `pnpm run mergeto:static` | Merges changes from `main` branch to `static` branch  | |
+| Command                       | Action                                                                                                                                                                                    | Usage                                                                                                                                 |
+| :---------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm install`                | Installs dependencies                                                                                                                                                                     |                                                                                                                                       |
+| `pnpm run dev`                | Starts local dev server at `localhost:4321`                                                                                                                                               |                                                                                                                                       |
+| `pnpm run build`              | Build your production site to `"./dist/", ".vercel"`                                                                                                                                      |                                                                                                                                       |
+| `pnpm run preview`            | Preview your build locally, before deploying                                                                                                                                              |                                                                                                                                       |
+| `pnpm run check`              | Check for linting and formatting errors before building                                                                                                                                   |                                                                                                                                       |
+| `pnpm run astro ...`          | Run CLI commands like `astro add`, `astro check`                                                                                                                                          |                                                                                                                                       |
+| `pnpm run astro -- --help`    | Get help using the Astro CLI                                                                                                                                                              |                                                                                                                                       |
+| `pnpm run create:machine`     | Creates all the files necessary for a new product with nested routes (eg.: `catalog.mdx`, `design.mdx`, `...etc` ) and pages inside the `./src/content/products` & `./src/assets` folders | `pnpm run create:machine --name=[name] --titleen=[titleen] --titlear=[titlear] --model=[model] --order=[order] --isLine=[isLine]`     |
+| `pnpm run create:old-machine` | Creates all the files necessary for a new product (only `.md` files) inside the `./src/content/products` & `./src/assets` folders                                                         | `pnpm run create:old-machine --name=[name] --titleen=[titleen] --titlear=[titlear] --model=[model] --order=[order] --isLine=[isLine]` |
+| `pnpm run mergeto:main`       | Merges changes from `static` branch to `main` branch                                                                                                                                      |                                                                                                                                       |
+| `pnpm run mergeto:static`     | Merges changes from `main` branch to `static` branch                                                                                                                                      |                                                                                                                                       |
 
 ## Ui
 
 This Project uses the following frameworks and libraries for building the ui:
 
-- Tailwind
-- Sass
-- astro-icon
-- AOS
-- Svelte
-  - bits-ui
+-   Tailwind
+-   Sass
+-   astro-icon
+-   AOS
+-   Svelte
+    -   bits-ui
 
 ### Tailwind
 
@@ -202,13 +258,12 @@ Using Sass inside an Astro component is as simple as:
 </style>
 ```
 
-
 ### astro-icon
 
 [astro-icon](https://www.astroicon.dev/getting-started/) is a component for using icons in Astro projects.
 
-
 You can utilize any icon inside the [Iconify icon collection](https://icon-sets.iconify.design/) in the form of:
+
 ```jsx
 <Icon name="[icon-collection]:[icon-name]" />
 ```
@@ -219,25 +274,22 @@ You can utilize any icon inside the [Iconify icon collection](https://icon-sets.
 > [!NOTE]
 > This project already has these following icon collections installed: `ic`, `ri`, `radix-icons`
 
-
 ### AOS
 
 [AOS](https://michalsnik.github.io/aos/) is a library for animating elements on scroll
 
-- You'll find it used in the homepage to animate some sections
-- You can learn more about how to use it [here](https://michalsnik.github.io/aos/)
+-   You'll find it used in the homepage to animate some sections
+-   You can learn more about how to use it [here](https://michalsnik.github.io/aos/)
 
 To include it in your Astro project just add script with the following code:
 
 ```js
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
 AOS.init();
 ```
 
 this script is already configured inside [aos.js](./src/js/aos.js) and imported inside the pages layout, there is no need to do anything else.
-
-
 
 ## Content Collection
 
@@ -247,16 +299,19 @@ there is only one collection for this project called `products`
 ### Adding a product
 
 To add a new product to the collection `products` you can do it by running:
+
 ```sh
 pnpm run create:machine ...
 ```
-  or
+
+or
 
 ```sh
 pnpm run create:old-machine ...
 ```
 
 #### `create:machine`:
+
 by running the follwowing command:
 
 ```sh
@@ -265,23 +320,25 @@ pnpm run create:machine --name=example-name --titleen="Example name" --titlear="
 
 This will create the following files inside the `./src/content/products` folder:
 
-- `en`:
-  - `./src/content/products/en/example-name.mdx`
-  - `./src/content/products/en/example-name/catalog.mdx`
-  - `./src/content/products/en/example-name/design.mdx`
-  - `./src/content/products/en/example-name/gallery.mdx`
-  - `./src/content/products/en/example-name/drawings.mdx`
+-   `en`:
 
-- `ar`
-  - `./src/content/products/ar/example-name.mdx`
-  - `./src/content/products/ar/example-name/catalog.mdx`
-  - `./src/content/products/ar/example-name/design.mdx`
-  - `./src/content/products/ar/example-name/gallery.mdx`
-  - `./src/content/products/ar/example-name/drawings.mdx`
+    -   `./src/content/products/en/example-name.mdx`
+    -   `./src/content/products/en/example-name/catalog.mdx`
+    -   `./src/content/products/en/example-name/design.mdx`
+    -   `./src/content/products/en/example-name/gallery.mdx`
+    -   `./src/content/products/en/example-name/drawings.mdx`
 
-- images folders:
-  - `./src/assets/product_thumbs/example-name.jpg`
-  - `./src/assets/article_images/example-name/`
+-   `ar`
+
+    -   `./src/content/products/ar/example-name.mdx`
+    -   `./src/content/products/ar/example-name/catalog.mdx`
+    -   `./src/content/products/ar/example-name/design.mdx`
+    -   `./src/content/products/ar/example-name/gallery.mdx`
+    -   `./src/content/products/ar/example-name/drawings.mdx`
+
+-   images folders:
+    -   `./src/assets/product_thumbs/example-name.jpg`
+    -   `./src/assets/article_images/example-name/`
 
 > [!WARNING]
 > The script creates `jpg` files but they have no actual data you'll have to replace them with your own of course otherwise astro will throw an error
@@ -299,6 +356,7 @@ order: 10
 isLine: false
 nested: true
 ---
+
 import ProductTabs from "@components/ProductTabs.astro";
 
 <ProductTabs />
@@ -315,31 +373,33 @@ order: 10
 isLine: false
 nested: false
 ---
+
 import ProductTabs from "@components/ProductTabs.astro";
 
 <ProductTabs />
 ```
 
 #### `create:old-machine`:
+
 by running the follwowing command:
 
 ```sh
 pnpm run create:old-machine --name=example-name --titleen="Example name" --titlear="مثال" --model=ABCDE  --order=10 --isLine=false
 ```
 
-
 This will create the following files inside the `./src/content/products` folder:
 
-- `en`:
-  - `./src/content/products/en/example-name.md`
+-   `en`:
 
-- `ar`
-  - `./src/content/products/ar/example-name.md`
+    -   `./src/content/products/en/example-name.md`
 
-- images folders:
-  - `./src/assets/product_thumbs/example-name.jpg`
-  - `./src/assets/article_images/example-name/`
+-   `ar`
 
+    -   `./src/content/products/ar/example-name.md`
+
+-   images folders:
+    -   `./src/assets/product_thumbs/example-name.jpg`
+    -   `./src/assets/article_images/example-name/`
 
 Files contents:
 
@@ -362,8 +422,8 @@ inside the path `[locale]/products/[locale]/[...product]`:
 
 we will do the follwoing:
 
-
 1. define a `getStaticPaths` function to generate all the pages for all of the files in the collection":
+
 ```js
 export async function getStaticPaths() {
 	const productEntries = await getCollection("products");
@@ -380,15 +440,17 @@ const { product } = Astro.params;
 ```
 
 3. we get the entry from the collection based on the parameter:
+
 ```js
 const entry = await getEntry("products", product);
 const { Content } = await entry.render();
 ```
 
 4. render the content:
+
 ```jsx
 <Layout title={entry.data.title}>
-   <ProductHead />
+	<ProductHead />
 	<article>
 		<ContentLayout>
 			<Content />
@@ -400,9 +462,7 @@ const { Content } = await entry.render();
 > [!NOTE]
 > The `<Content>` element is destructured from the `entry.render()` function
 
-
 ## Internationalization (i18n)
-
 
 ### Config
 
@@ -420,9 +480,11 @@ export default defineConfig({
 	}
 });
 ```
+
 the `prefixDefaultLocale` is used to prefix the current locale in the URL, which makes routing a bit easier to handle.
 
 ### UI strings
+
 inside [@i18n/ui.ts](./src/i18n/ui.ts) you'll find the following:
 
 ```ts
@@ -444,15 +506,16 @@ export const ui = {
 ```
 
 the `ui` object is used to define the ui strings for each locale with keys for every ui string.
+
 > [!NOTE]
 > both `en` and `ar` objects need to have the same keys for the translation to work correctly.
 
 ### Utilty functions
 
-- `getLangFromUrl()`:
-  takes the current URL and returns the locale of the current page.
-- `useTranslations()` :
-  takes the locale and returns a function that can be used to translate strings.
+-   `getLangFromUrl()`:
+    takes the current URL and returns the locale of the current page.
+-   `useTranslations()` :
+    takes the locale and returns a function that can be used to translate strings.
 
 you can import these functions anywhere even in astro islands, and they'll be typically like so:
 
